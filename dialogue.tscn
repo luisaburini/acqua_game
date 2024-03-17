@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://b56pfrbvd7r3d"]
+
+[ext_resource type="Script" path="res://dialogue.gd" id="1_nq3vc"]
+[ext_resource type="FontFile" uid="uid://gg6nhd2pel50" path="res://fonts/iknowaghost.ttf" id="2_o6e56"]
+[ext_resource type="Texture2D" uid="uid://dl3dhoqs5yfv3" path="res://img/ok.png" id="3_gelhn"]
+[ext_resource type="Texture2D" uid="uid://cq31pdmkbm52d" path="res://img/not_ok.png" id="4_2fred"]
+
+[node name="Dialogue" type="Node"]
+script = ExtResource("1_nq3vc")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 172.0
+offset_top = 274.0
+offset_right = 584.0
+offset_bottom = 457.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_o6e56")
+theme_override_font_sizes/font_size = 30
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 271.0
+offset_top = 69.0
+offset_right = 488.0
+offset_bottom = 302.0
+
+[node name="HideInteractionTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="TouchYesButton" type="TouchScreenButton" parent="."]
+position = Vector2(429, 390)
+texture_normal = ExtResource("3_gelhn")
+
+[node name="TouchNoButton" type="TouchScreenButton" parent="."]
+position = Vector2(161, 394)
+texture_normal = ExtResource("4_2fred")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="timeout" from="HideInteractionTimer" to="." method="_on_hide_interaction_timer_timeout"]
+[connection signal="pressed" from="TouchYesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="TouchNoButton" to="." method="_on_no_button_pressed"]

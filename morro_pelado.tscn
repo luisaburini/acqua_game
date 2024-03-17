@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c52hjdxcq1355"]
+
+[ext_resource type="Script" path="res://morro_pelado.gd" id="1_tm34b"]
+[ext_resource type="Texture2D" uid="uid://b7fbxva6o5cei" path="res://img/morro-pelado-2.jpg" id="2_bnxb0"]
+
+[node name="MorroPelado" type="CanvasLayer"]
+script = ExtResource("1_tm34b")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -4
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_bnxb0")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
