@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2mryi4ci1g35"]
+
+[ext_resource type="FontFile" uid="uid://gg6nhd2pel50" path="res://fonts/iknowaghost.ttf" id="1_3l1xg"]
+[ext_resource type="Script" path="res://hud.gd" id="1_lesg7"]
+[ext_resource type="Texture2D" uid="uid://qp2c13sqenqp" path="res://img/tela_inicial.jpg" id="3_c2hin"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_lesg7")
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.523
+anchor_top = 0.583
+anchor_right = 0.523
+anchor_bottom = 0.583
+offset_left = -174.496
+offset_top = -243.784
+offset_right = 145.504
+offset_bottom = -179.784
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_3l1xg")
+theme_override_font_sizes/font_size = 64
+text = "Acqua Game"
+
+[node name="StartButton" type="Button" parent="."]
+z_index = 50
+anchors_preset = -1
+anchor_left = 0.51
+anchor_top = 0.612
+anchor_right = 0.51
+anchor_bottom = 0.612
+offset_left = -211.52
+offset_top = -96.576
+offset_right = 212.48
+offset_bottom = 96.424
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("1_3l1xg")
+theme_override_font_sizes/font_size = 64
+text = "Ir para Águas"
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_c2hin")
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
