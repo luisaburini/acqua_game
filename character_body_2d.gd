@@ -19,6 +19,9 @@ func _physics_process(delta):
 	if position.distance_to(clicked_position) > 3:
 		target_position = (clicked_position - position).normalized()
 		velocity = target_position * SPEED
+		$AnimatedSprite2D.animation = "walk"
+		$AnimatedSprite2D.flip_v = false
+		$AnimatedSprite2D.flip_h = velocity.x < 0
 		$AnimatedSprite2D.play()
 		move_and_slide()
 	

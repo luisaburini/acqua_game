@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ds7odrisj6q82"]
+[gd_scene load_steps=23 format=3 uid="uid://ds7odrisj6q82"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_savun"]
 [ext_resource type="Texture2D" uid="uid://co04cptm064gp" path="res://img/Orange Fat Cat/Walk/CAT WALK0001.png" id="2_122up"]
@@ -82,12 +82,20 @@ animations = [{
 "texture": ExtResource("20_7klym")
 }],
 "loop": true,
-"name": &"default",
+"name": &"walk",
 "speed": 5.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e8jgy"]
+radius = 310.0
+height = 876.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_savun")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ng0qm")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_e8jgy")
