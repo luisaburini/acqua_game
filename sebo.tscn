@@ -10,35 +10,35 @@
 [ext_resource type="Texture2D" uid="uid://bkwltlqo61wt8" path="res://img/porta.png" id="6_smq6c"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="8_vfo1t"]
 [ext_resource type="PackedScene" uid="uid://46blvwif58os" path="res://inventory.tscn" id="9_hjf6q"]
-[ext_resource type="Texture2D" uid="uid://bde43tg0b1ijd" path="res://img/sebo1.jpg" id="10_akrnp"]
+[ext_resource type="Texture2D" uid="uid://cop4e6sy0hsnu" path="res://img/cenario/sebo/sebo1.png" id="10_akrnp"]
 
 [node name="Sebo" type="CanvasLayer"]
 script = ExtResource("1_mq8n6")
 
 [node name="Vinyl" type="TextureButton" parent="."]
 z_index = 55
-offset_left = 348.0
-offset_top = 93.0
-offset_right = 388.0
-offset_bottom = 133.0
+offset_left = 1000.0
+offset_top = 600.0
+offset_right = 1040.0
+offset_bottom = 640.0
 action_mode = 0
 texture_normal = ExtResource("1_c2b32")
 
 [node name="Gramophone" type="TextureButton" parent="."]
-offset_left = 125.0
-offset_top = 391.0
-offset_right = 165.0
-offset_bottom = 438.0
+offset_left = 100.0
+offset_top = 625.0
+offset_right = 140.0
+offset_bottom = 672.0
 texture_normal = ExtResource("5_dj45l")
 
 [node name="AudioDica" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_fi0a5")
 
 [node name="Door" type="TextureButton" parent="."]
-offset_left = 2.0
-offset_top = 130.0
-offset_right = 233.0
-offset_bottom = 510.0
+offset_left = 1140.0
+offset_top = 260.0
+offset_right = 1293.0
+offset_bottom = 564.0
 texture_normal = ExtResource("6_smq6c")
 
 [node name="Dialogue" parent="." instance=ExtResource("8_vfo1t")]
@@ -46,10 +46,10 @@ texture_normal = ExtResource("6_smq6c")
 [node name="Inventory" parent="." instance=ExtResource("9_hjf6q")]
 
 [node name="Ismael" type="TextureButton" parent="."]
-offset_left = 555.0
-offset_top = 320.0
-offset_right = 626.0
-offset_bottom = 407.0
+offset_left = 60.0
+offset_top = 310.0
+offset_right = 131.0
+offset_bottom = 397.0
 texture_normal = ExtResource("2_4h7i1")
 texture_pressed = ExtResource("3_6037n")
 texture_hover = ExtResource("4_b435f")
