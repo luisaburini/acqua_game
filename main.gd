@@ -20,15 +20,10 @@ func _ready():
 	$CityMap.hide()
 	$HUD.show()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func new_game():
 	$Music.play()
 	$Sebo.start()
 	$HUD.show_message("")	
-	$Player.show()
 	$Player.start($StartPosition.position)
 
 func _on_player_limite_direito():
@@ -91,7 +86,6 @@ func _on_city_map_pressed_morro():
 
 func _on_sebo_go_to_next_scene():
 	_on_player_limite_direito()
-
-
+	
 func _on_sebo_go_back_scene():
 	_on_player_limite_esquerdo()

@@ -1,31 +1,46 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1716504458
-character_body_2d.gd::GDScript::-1::1716498399::0::1::::<>CharacterBody2D<>::
-character_body_2d.tscn::PackedScene::8489577626060734597::1716498402::0::1::::<><>::res://character_body_2d.gd<>uid://co04cptm064gp::::res://img/Orange Fat Cat/Walk/CAT WALK0001.png<>uid://b7137bd1oe2p5::::res://img/Orange Fat Cat/Walk/CAT WALK0002.png<>uid://dkf0bvtxt0er3::::res://img/Orange Fat Cat/Walk/CAT WALK0003.png<>uid://c4d67iv8r3852::::res://img/Orange Fat Cat/Walk/CAT WALK0004.png<>uid://y5pnmaivmux3::::res://img/Orange Fat Cat/Walk/CAT WALK0005.png<>uid://bu2m4aiinjrd3::::res://img/Orange Fat Cat/Walk/CAT WALK0006.png<>uid://2ffdodm26f1h::::res://img/Orange Fat Cat/Walk/CAT WALK0007.png<>uid://hqkyl6vqi0wc::::res://img/Orange Fat Cat/Walk/CAT WALK0008.png<>uid://dwx2plf84uf54::::res://img/Orange Fat Cat/Walk/CAT WALK0009.png<>uid://hxrevinuaqlw::::res://img/Orange Fat Cat/Walk/CAT WALK0010.png<>uid://m615i1fsgxrj::::res://img/Orange Fat Cat/Walk/CAT WALK0011.png<>uid://wdwrsorrurud::::res://img/Orange Fat Cat/Walk/CAT WALK0012.png<>uid://b5mct8eiqdyvo::::res://img/Orange Fat Cat/Walk/CAT WALK0013.png<>uid://4g540iargtjp::::res://img/Orange Fat Cat/Walk/CAT WALK0014.png<>uid://x7i5m2ym6iax::::res://img/Orange Fat Cat/Walk/CAT WALK0015.png<>uid://b6oximyg4s5jl::::res://img/Orange Fat Cat/Walk/CAT WALK0016.png<>uid://cat3fuxqf3sc1::::res://img/Orange Fat Cat/Walk/CAT WALK0017.png<>uid://bhnfh8g1vuppw::::res://img/Orange Fat Cat/Walk/CAT WALK0018.png<>uid://cjxrtva56cy50::::res://img/Orange Fat Cat/Walk/CAT WALK0019.png
+::res://::1718066285
+Chao.gd::GDScript::-1::1717378999::0::1::::<>Button<>::
+character_body_2d.gd::GDScript::-1::1718066283::0::1::::<>CharacterBody2D<>::
+character_body_2d.tscn::PackedScene::8489577626060734597::1718066285::0::1::::<><>::res://character_body_2d.gd<>uid://co04cptm064gp::::res://img/Orange Fat Cat/Walk/CAT WALK0001.png<>uid://b7137bd1oe2p5::::res://img/Orange Fat Cat/Walk/CAT WALK0002.png<>uid://dkf0bvtxt0er3::::res://img/Orange Fat Cat/Walk/CAT WALK0003.png<>uid://c4d67iv8r3852::::res://img/Orange Fat Cat/Walk/CAT WALK0004.png<>uid://y5pnmaivmux3::::res://img/Orange Fat Cat/Walk/CAT WALK0005.png<>uid://bu2m4aiinjrd3::::res://img/Orange Fat Cat/Walk/CAT WALK0006.png<>uid://2ffdodm26f1h::::res://img/Orange Fat Cat/Walk/CAT WALK0007.png<>uid://hqkyl6vqi0wc::::res://img/Orange Fat Cat/Walk/CAT WALK0008.png<>uid://dwx2plf84uf54::::res://img/Orange Fat Cat/Walk/CAT WALK0009.png<>uid://hxrevinuaqlw::::res://img/Orange Fat Cat/Walk/CAT WALK0010.png<>uid://m615i1fsgxrj::::res://img/Orange Fat Cat/Walk/CAT WALK0011.png<>uid://wdwrsorrurud::::res://img/Orange Fat Cat/Walk/CAT WALK0012.png<>uid://b5mct8eiqdyvo::::res://img/Orange Fat Cat/Walk/CAT WALK0013.png<>uid://4g540iargtjp::::res://img/Orange Fat Cat/Walk/CAT WALK0014.png<>uid://x7i5m2ym6iax::::res://img/Orange Fat Cat/Walk/CAT WALK0015.png<>uid://b6oximyg4s5jl::::res://img/Orange Fat Cat/Walk/CAT WALK0016.png<>uid://cat3fuxqf3sc1::::res://img/Orange Fat Cat/Walk/CAT WALK0017.png<>uid://bhnfh8g1vuppw::::res://img/Orange Fat Cat/Walk/CAT WALK0018.png<>uid://cjxrtva56cy50::::res://img/Orange Fat Cat/Walk/CAT WALK0019.png
 city_map.gd::GDScript::-1::1710801616::0::1::::<>CanvasLayer<>::
 city_map.tscn::PackedScene::8222043960322394226::1710801616::0::1::::<><>::res://city_map.gd<>uid://bkly35vk2ram6::::res://img/mapa.png<>uid://dbj7kkshl6c0b::::res://img/sebo-detalhe.jpeg<>uid://bej76s5venf5f::::res://img/morro-pelado.png<>uid://b4emr0htn3oe0::::res://img/praca-adhemar-de-barros.jpg
 dialogue.gd::GDScript::-1::1710801616::0::1::::<>Node<>::
-dialogue.tscn::PackedScene::4557002282472135183::1710801616::0::1::::<><>::res://dialogue.gd<>uid://gg6nhd2pel50::::res://fonts/iknowaghost.ttf<>uid://dl3dhoqs5yfv3::::res://img/ok.png<>uid://cq31pdmkbm52d::::res://img/not_ok.png
-export_presets.cfg::TextFile::-1::1710801616::0::1::::<><>::
-hud.gd::GDScript::-1::1710801616::0::1::::<>CanvasLayer<>::
-hud.tscn::PackedScene::4307367507988160702::1716498402::0::1::::<><>::uid://gg6nhd2pel50::::res://fonts/iknowaghost.ttf<>res://hud.gd<>uid://qp2c13sqenqp::::res://img/tela_inicial.jpg<>uid://dsb76eo1ib74d::::res://img/capybara-ismael.png
+dialogue.tscn::PackedScene::4557002282472135183::1718064917::0::1::::<><>::res://dialogue.gd<>uid://gg6nhd2pel50::::res://fonts/iknowaghost.ttf<>uid://dl3dhoqs5yfv3::::res://img/ok.png<>uid://cq31pdmkbm52d::::res://img/not_ok.png
+export_presets.cfg::TextFile::-1::1717361943::0::1::::<><>::
+hud.gd::GDScript::-1::1718065895::0::1::::<>CanvasLayer<>::
+hud.tscn::PackedScene::4307367507988160702::1718066285::0::1::::<><>::uid://gg6nhd2pel50::::res://fonts/iknowaghost.ttf<>res://hud.gd<>uid://qp2c13sqenqp::::res://img/tela_inicial.jpg<>uid://dsb76eo1ib74d::::res://img/capybara-ismael.png
 icon.svg::CompressedTexture2D::7133882918057745319::1710801616::1716414808::1::::<><>::
 Inventory.gd::GDScript::-1::1710801616::0::1::::<>Node<>::
 inventory.tscn::PackedScene::2099553673951945522::1710801616::0::1::::<><>::res://Inventory.gd
 item.gd::GDScript::-1::1710801616::0::1::::<>RefCounted<>::
 item.tscn::PackedScene::3799160211610485684::1710801616::0::1::::<><>::res://item.gd
-main.gd::GDScript::-1::1716497067::0::1::::<>Node<>::
-main.tscn::PackedScene::6085408948872813419::1716498402::0::1::::<><>::res://main.gd<>uid://b2mryi4ci1g35::::res://hud.tscn<>uid://c52hjdxcq1355::::res://morro_pelado.tscn<>uid://ds7odrisj6q82::::res://character_body_2d.tscn<>uid://b8wk3pt07sp1m::::res://sebo.tscn<>uid://b56pfrbvd7r3d::::res://dialogue.tscn<>uid://dpe24lml0sq6u::::res://city_map.tscn
-morro_pelado.gd::GDScript::-1::1710801616::0::1::::<>CanvasLayer<>::
+main.gd::GDScript::-1::1718065889::0::1::::<>Node<>::
+main.tscn::PackedScene::6085408948872813419::1718066285::0::1::::<><>::res://main.gd<>uid://b2mryi4ci1g35::::res://hud.tscn<>uid://c52hjdxcq1355::::res://morro_pelado.tscn<>uid://ds7odrisj6q82::::res://character_body_2d.tscn<>uid://b8wk3pt07sp1m::::res://sebo.tscn<>uid://b56pfrbvd7r3d::::res://dialogue.tscn<>uid://dpe24lml0sq6u::::res://city_map.tscn
+morro_pelado.gd::GDScript::-1::1718065917::0::1::::<>CanvasLayer<>::
 morro_pelado.tscn::PackedScene::6934686160195156442::1710801616::0::1::::<><>::res://morro_pelado.gd<>uid://b7fbxva6o5cei::::res://img/morro-pelado-2.jpg
 player.gd::GDScript::-1::1710801616::0::1::::<>Area2D<>::
 player.tscn::PackedScene::7408123630545515488::1710801616::0::1::::<><>::res://player.gd<>uid://do8t3to30a1fd::::res://img/andando-baixo-1.png<>uid://bcbihhw6hxbpc::::res://img/andando-baixo-2.png<>uid://dvxarxng65kme::::res://img/andando-baixo-3.png<>uid://cn3w7gk1cp1tk::::res://img/andando-baixo-4.png<>uid://bh0i6vhcam15v::::res://img/andando-cima-1.png<>uid://bsh0suy1kk4lw::::res://img/andando-cima-2.png<>uid://drprelt3kw8jg::::res://img/andando-cima-3.png<>uid://baa5gibqq4f0d::::res://img/andando-cima-4.png<>uid://co04cptm064gp::::res://img/Orange Fat Cat/Walk/CAT WALK0001.png<>uid://b7137bd1oe2p5::::res://img/Orange Fat Cat/Walk/CAT WALK0002.png<>uid://dkf0bvtxt0er3::::res://img/Orange Fat Cat/Walk/CAT WALK0003.png<>uid://c4d67iv8r3852::::res://img/Orange Fat Cat/Walk/CAT WALK0004.png<>uid://y5pnmaivmux3::::res://img/Orange Fat Cat/Walk/CAT WALK0005.png<>uid://bu2m4aiinjrd3::::res://img/Orange Fat Cat/Walk/CAT WALK0006.png<>uid://2ffdodm26f1h::::res://img/Orange Fat Cat/Walk/CAT WALK0007.png<>uid://hqkyl6vqi0wc::::res://img/Orange Fat Cat/Walk/CAT WALK0008.png<>uid://dwx2plf84uf54::::res://img/Orange Fat Cat/Walk/CAT WALK0009.png<>uid://hxrevinuaqlw::::res://img/Orange Fat Cat/Walk/CAT WALK0010.png<>uid://m615i1fsgxrj::::res://img/Orange Fat Cat/Walk/CAT WALK0011.png<>uid://wdwrsorrurud::::res://img/Orange Fat Cat/Walk/CAT WALK0012.png<>uid://b5mct8eiqdyvo::::res://img/Orange Fat Cat/Walk/CAT WALK0013.png<>uid://4g540iargtjp::::res://img/Orange Fat Cat/Walk/CAT WALK0014.png<>uid://x7i5m2ym6iax::::res://img/Orange Fat Cat/Walk/CAT WALK0015.png<>uid://b6oximyg4s5jl::::res://img/Orange Fat Cat/Walk/CAT WALK0016.png<>uid://cat3fuxqf3sc1::::res://img/Orange Fat Cat/Walk/CAT WALK0017.png<>uid://bhnfh8g1vuppw::::res://img/Orange Fat Cat/Walk/CAT WALK0018.png<>uid://cjxrtva56cy50::::res://img/Orange Fat Cat/Walk/CAT WALK0019.png
-sebo.gd::GDScript::-1::1716498325::0::1::::<>CanvasLayer<>::
-sebo.tscn::PackedScene::4748726824875396652::1716498402::0::1::::<><>::uid://cvsscrkk2s2y1::::res://img/vinyl.png<>res://sebo.gd<>uid://071kdkysw8ai::::res://img/ismael-1.png<>uid://cv7802yxgc1fm::::res://img/ismael-2.png<>uid://cd6kv8hrkf5gd::::res://img/ismael-3.png<>uid://xwryyafxq4sg::::res://sounds/rolima.mp3<>uid://iymf1wfygr8c::::res://img/gramophone.png<>uid://bkwltlqo61wt8::::res://img/porta.png<>uid://b56pfrbvd7r3d::::res://dialogue.tscn<>uid://46blvwif58os::::res://inventory.tscn<>uid://cop4e6sy0hsnu::::res://img/cenario/sebo/sebo1.png
-::res://android/::1710715506
+sebo.gd::GDScript::-1::1718066110::0::1::::<>CanvasLayer<>::
+sebo.tscn::PackedScene::4748726824875396652::1718066285::0::1::::<><>::uid://cvsscrkk2s2y1::::res://img/vinyl.png<>res://sebo.gd<>uid://xwryyafxq4sg::::res://sounds/rolima.mp3<>uid://leudbm0qttwb::::res://img/cenario/sebo/porta-sebo3.png<>uid://iymf1wfygr8c::::res://img/gramophone.png<>uid://bd0jwuqexw7vw::::res://img/cenario/sebo/ismael-sebo1.png<>uid://b56pfrbvd7r3d::::res://dialogue.tscn<>uid://46blvwif58os::::res://inventory.tscn<>uid://drylxilsb0qba::::res://img/cenario/sebo/estante-sebo3.png<>uid://smcugduypyn0::::res://img/cenario/sebo/chao-sebo1.png<>uid://eshe6q73h8dg::::res://img/cenario/sebo/obstaculo-sebo1.png<>uid://x0t1rcibmyqn::::res://img/cenario/sebo/porta-sebo1.png
+::res://addons/::1717102010
+::res://addons/godot_icon/::1717102010
+CreateIcon.gd::GDScript::-1::1717102010::0::1::::CreateIcon<>SceneTree<>::
+GodotIconPlugin.gd::GDScript::-1::1717102010::0::1::::<>EditorPlugin<>::
+IconCreator.gd::GDScript::-1::1717102010::0::1::::<>ConfirmationDialog<>::
+IconCreator.tscn::PackedScene::6022893750037439598::1717102010::0::1::::<><>::res://addons/godot_icon/IconCreator.gd
+IconReplacer.gd::GDScript::-1::1717102010::0::1::::<>ConfirmationDialog<>::
+IconReplacer.tscn::PackedScene::4954727098840103535::1717102010::0::1::::<><>::res://addons/godot_icon/IconReplacer.gd
+LICENSE.md::TextFile::-1::1717102010::0::1::::<><>::
+plugin.cfg::TextFile::-1::1717102010::0::1::::<><>::
+ReplaceIcon.gd::GDScript::-1::1717102010::0::1::::ReplaceIcon<>SceneTree<>::
+::res://android/::1717111003
+::res://executables/::1717362004
+::res://executables/icon/::1717102974
+icon_256.png::CompressedTexture2D::3907430221326222470::1717102583::1717102974::1::::<><>::
 ::res://fonts/::1716414808
 iknowaghost.ttf::FontFile::435425143993913713::1710715507::1716414808::1::::<><>::
-::res://img/::1716427715
+::res://img/::1717102925
 capybara-ismael.png::CompressedTexture2D::8426724150610275877::1710715507::1716414808::1::::<><>::
 gramophone.png::CompressedTexture2D::611794747936722424::1710715507::1716414808::1::::<><>::
 ismael-1.png::CompressedTexture2D::1822377852965201116::1710715507::1716414808::1::::<><>::
@@ -44,14 +59,30 @@ sebo-detalhe.jpeg::CompressedTexture2D::7249991649585399523::1710715507::1716414
 tela_inicial.jpg::CompressedTexture2D::1155631504612938307::1716422838::1716422851::1::::<><>::
 vinyl-detalhe.png::CompressedTexture2D::3671601036086725906::1710715507::1716414808::1::::<><>::
 vinyl.png::CompressedTexture2D::6285063269651735734::1710715507::1716414808::1::::<><>::
-::res://img/cenario/::1716416512
-::res://img/cenario/praca/::1716416611
+::res://img/cenario/::1717159637
+::res://img/cenario/balneario/::1717160202
+balneário - cena 1.png::CompressedTexture2D::169965349312534344::1716861236::1717160202::1::::<><>::
+balneário - cena 2.png::CompressedTexture2D::6694073773646877260::1716938507::1717160202::1::::<><>::
+balneário - cena 3.png::CompressedTexture2D::8641952492079826837::1717026859::1717160202::1::::<><>::
+::res://img/cenario/praca/::1717160202
 praça - cena 1.png::CompressedTexture2D::9007930178007609568::1716386463::1716416611::1::::<><>::
-::res://img/cenario/sebo/::1716424834
-sebo1.png::CompressedTexture2D::5788220437749888094::1716257093::1716416906::1::::<><>::
-sebo2.png::CompressedTexture2D::8066470839654327025::1716257134::1716424834::1::::<><>::
-sebo3.png::CompressedTexture2D::6808141969631686326::1716257123::1716424830::1::::<><>::
-sebo4.png::CompressedTexture2D::3465411751685607497::1716257112::1716424832::1::::<><>::
+praça - cena 2.png::CompressedTexture2D::353385921209408942::1716766897::1717160202::1::::<><>::
+praça - cena 3.png::CompressedTexture2D::8610634778296791240::1716825426::1717160202::1::::<><>::
+::res://img/cenario/sebo/::1718065531
+chao-sebo1.png::CompressedTexture2D::1288329189112843499::1717360740::1717360997::1::::<><>::
+chao-sebo2.png::CompressedTexture2D::7224585863781689213::1718066351::1718066357::1::::<><>::
+chao-sebo3.png::CompressedTexture2D::7574753558228744119::1717377461::1717377558::1::::<><>::
+escada-sebo3.png::CompressedTexture2D::2716116243641119451::1717161621::1717161848::1::::<><>::
+estante-sebo3.png::CompressedTexture2D::8402726857203356858::1717161805::1717161848::1::::<><>::
+ismael-sebo1.png::CompressedTexture2D::2649183474256751872::1717161347::1717161874::1::::<><>::
+obstaculo-sebo1.png::CompressedTexture2D::318347990682579816::1717380317::1717380329::1::::<><>::
+porta-sebo1.png::CompressedTexture2D::1667153797382210301::1718065515::1718065531::1::::<><>::
+porta-sebo3.png::CompressedTexture2D::781554560490678897::1717161709::1717161848::1::::<><>::
+sebo1.png::CompressedTexture2D::5788220437749888094::1717359990::1717359997::1::::<><>::
+sebo2.png::CompressedTexture2D::8066470839654327025::1717357647::1717357654::1::::<><>::
+sebo3.png::CompressedTexture2D::6808141969631686326::1717360817::1717360997::1::::<><>::
+sebo4.png::CompressedTexture2D::3465411751685607497::1717360624::1717360628::1::::<><>::
+vitrola-sebo3.png::CompressedTexture2D::7679104048837783118::1717161469::1717161848::1::::<><>::
 ::res://img/Orange Fat Cat/::1716414809
 megupets.png::CompressedTexture2D::1944563453711189952::1710715507::1716414809::1::::<><>::
 previewbig.jpg::CompressedTexture2D::5256001054067427532::1710715507::1716414809::1::::<><>::
