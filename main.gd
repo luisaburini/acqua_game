@@ -9,8 +9,8 @@ var praca_scenarios = ["res://img/praca1.jpg",
 					   "res://img/praca2.jpg",
 					   "res://img/praca3.jpg"]
 					
-signal reset_pos_esquerdo
-signal reset_pos_direito
+signal reset_pos_esquerdo(pos)
+signal reset_pos_direito(pos)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Player.hide()
@@ -31,7 +31,7 @@ func _on_player_limite_direito():
 	$Sebo.update_texture(+1)
 	$Sebo.update_objs_state()
 	$Dialogue.hide()
-	reset_pos_direito.emit()
+	reset_pos_direito.emit($Sebo.get_start_position())
 
 
 func _on_player_limite_esquerdo():
@@ -39,7 +39,7 @@ func _on_player_limite_esquerdo():
 	$Sebo.update_texture(-1)
 	$Sebo.update_objs_state()
 	$Dialogue.hide()
-	reset_pos_esquerdo.emit()
+	reset_pos_esquerdo.emit($Sebo.get_return_position())
 
 func _on_dialogue_pressed_yes():
 	$Dialogue.hide()

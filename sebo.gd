@@ -11,22 +11,31 @@ signal go_to_next_scene
 signal go_back_scene
 
 var scenario_index = 0
+
 var start_positions = [
 	Vector2(500, 600),
 	Vector2(272, 566),
-	Vector2(63, 512)
-]
+	Vector2(63, 512) ]
+	
+func get_start_position():
+	return start_positions[scenario_index]
+
 var return_positions = [
 	Vector2(380, 470),
 	Vector2(972, 593),
 	Vector2(1118, 642)
 ]
+func  get_return_position():
+	return return_positions[scenario_index]
+	
 var sebo_scenarios = ["res://img/cenario/sebo/sebo1.png",
 					  "res://img/cenario/sebo/sebo2.png",
 					  "res://img/cenario/sebo/sebo3.png"]
+					
 var chao_sebo = ["res://img/cenario/sebo/chao-sebo1.png",
 			 	 "res://img/cenario/sebo/chao-sebo2.png",
 				 "res://img/cenario/sebo/chao-sebo3.png"]
+				
 var played_vinyl = false
 					
 # Called when the node enters the scene tree for the first time.
@@ -51,17 +60,14 @@ func hide_objs():
 	hide()
 	
 func start():
-	scenario_index = 0
-	update_objs_avoidance()
-	update_objs_state()
 	show()
-	$Ismael.show()
+	scenario_index = 0
+	update_objs_state()
+	
 		
 func is_completed():
 	return played_vinyl and $Inventory.check_if_item_exists("livro_magico")
 
-func update_objs_avoidance():
-	$Estante.set_avoidance_enabled(true)
 
 func update_texture(limit):
 	scenario_index = scenario_index+limit
@@ -72,17 +78,22 @@ func update_texture(limit):
 func update_objs_state():
 	$Dialogue.hide()
 	var objs = [
-		["Ismael", "Porta1"],
-		[ "Vinyl", "Porta3"],
-		["Gramophone", "Estante"]
+		["Ismael", "Porta1", "Obstaculo"],
+		[ "Vinyl", "Porta2", "Estante2"],
+		["Gramophone", "Porta3", "Estante3" ]
 	]
 	for i in range(len(objs)):
 		for o in objs[i]:
 			var obj = get_node(o)
 			if scenario_index == i:
 				obj.show()
+				if obj.get_class() == "StaticBody2D":
+					obj.get_child(0).disabled = false
 			else:
 				obj.hide()
+				if obj.get_class() == "StaticBody2D":
+					obj.get_child(0).disabled = true
+					
 	if $Inventory.check_if_item_exists("vinyl"):
 		$Vinyl.hide()
 		
@@ -129,17 +140,18 @@ func _on_ismael_clicked():
 	_on_player_clicked_ismael()
 
 func _on_player_clicked_ismael():
-	will_show_dialogue.emit()
-	$Dialogue.show()
-	if $Inventory.check_if_item_exists("livro_magico"):
-		$Dialogue.hide_interaction()
-		$Dialogue.start_hide_timer()
-		$Dialogue.change_texture("res://img/capybara-ismael.png")
-		$Dialogue.change_label("Estou ocupado, desencosta")
-	else:
-		$Dialogue.change_texture("res://img/livro.png")
-		$Dialogue.change_label("Gostaria de ganhar um livro mágico?")
-		$Dialogue.show_interaction()
+	if scenario_index == 0:
+		will_show_dialogue.emit()
+		$Dialogue.show()
+		if $Inventory.check_if_item_exists("livro_magico"):
+			$Dialogue.hide_interaction()
+			$Dialogue.start_hide_timer()
+			$Dialogue.change_texture("res://img/capybara-ismael.png")
+			$Dialogue.change_label("Estou ocupado, desencosta")
+		else:
+			$Dialogue.change_texture("res://img/livro.png")
+			$Dialogue.change_label("Gostaria de ganhar um livro mágico?")
+			$Dialogue.show_interaction()
 	
 var first_click = true
 func _unhandled_input(event):
@@ -147,9 +159,14 @@ func _unhandled_input(event):
 		if first_click:
 			first_click = false
 			return
-		if $Porta1.check_if_click_is_inside(event.position):
+		if scenario_index == 0 and $Porta1.check_if_click_is_inside(event.position):
 			print("Click is inside porta 1")
 			print(event.position)
+			await get_tree().create_timer(1).timeout 
 			go_to_next_scene.emit()
 			return
 		user_can_go_to.emit(event.position)
+
+
+func _on_porta_2_pressed():
+	go_to_next_scene.emit()

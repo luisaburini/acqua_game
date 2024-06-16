@@ -1,9 +1,0 @@
-TextureRect
-CollisionShape2D
-StaticBody2D
-Area2D
-TextureButton
-CollisionPolygon2D
-CharacterBody2D
-Button
-NavigationObstacle2D
