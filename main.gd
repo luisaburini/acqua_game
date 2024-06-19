@@ -27,19 +27,21 @@ func new_game():
 	$Player.start($StartPosition.position)
 
 func _on_player_limite_direito():
-	print("Player limite direito")
-	$Sebo.update_texture(+1)
-	$Sebo.update_objs_state()
-	$Dialogue.hide()
-	reset_pos_direito.emit($Sebo.get_start_position())
+	if not $Player.is_walking():
+		print("Player limite direito")
+		$Sebo.update_texture(+1)
+		$Sebo.update_objs_state()
+		$Dialogue.hide()
+		reset_pos_direito.emit($Sebo.get_start_position())
 
 
 func _on_player_limite_esquerdo():
-	print("Player limite esquerdo")
-	$Sebo.update_texture(-1)
-	$Sebo.update_objs_state()
-	$Dialogue.hide()
-	reset_pos_esquerdo.emit($Sebo.get_return_position())
+	if not $Player.is_walking():
+		print("Player limite esquerdo")
+		$Sebo.update_texture(-1)
+		$Sebo.update_objs_state()
+		$Dialogue.hide()
+		reset_pos_esquerdo.emit($Sebo.get_return_position())
 
 func _on_dialogue_pressed_yes():
 	$Dialogue.hide()

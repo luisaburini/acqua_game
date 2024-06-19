@@ -12,12 +12,12 @@ signal go_back_scene
 
 var scenario_index = 0
 
-var start_positions = [
-	Vector2(500, 600),
-	Vector2(272, 566),
-	Vector2(63, 512) ]
+var start_positions = [ Vector2(500, 600),
+	 					Vector2(272, 566),
+						Vector2(63, 512) ]
 	
 func get_start_position():
+	print("Get start position")
 	return start_positions[scenario_index]
 
 var return_positions = [
@@ -26,6 +26,7 @@ var return_positions = [
 	Vector2(1118, 642)
 ]
 func  get_return_position():
+	print("Get return position")
 	return return_positions[scenario_index]
 	
 var sebo_scenarios = ["res://img/cenario/sebo/sebo1.png",
@@ -79,8 +80,8 @@ func update_objs_state():
 	$Dialogue.hide()
 	var objs = [
 		["Ismael", "Porta1", "Obstaculo"],
-		[ "Vinyl", "Porta2", "Estante2"],
-		["Gramophone", "Porta3", "Estante3" ]
+		[ "Vinyl", "Porta2", "Estante2", "Retorno2"],
+		["Gramophone", "Porta3", "Estante3", "Retorno3"]
 	]
 	for i in range(len(objs)):
 		for o in objs[i]:
@@ -88,11 +89,13 @@ func update_objs_state():
 			if scenario_index == i:
 				obj.show()
 				if obj.get_class() == "StaticBody2D":
-					obj.get_child(0).disabled = false
+					for c in obj.get_children():
+						c.disabled = false
 			else:
 				obj.hide()
 				if obj.get_class() == "StaticBody2D":
-					obj.get_child(0).disabled = true
+					for c in obj.get_children():
+						c.disabled = true
 					
 	if $Inventory.check_if_item_exists("vinyl"):
 		$Vinyl.hide()
@@ -136,9 +139,6 @@ func _on_vinyl_pressed():
 	$Vinyl.hide()
 	$Inventory.add_item("vinyl")
 
-func _on_ismael_clicked():
-	_on_player_clicked_ismael()
-
 func _on_player_clicked_ismael():
 	if scenario_index == 0:
 		will_show_dialogue.emit()
@@ -162,7 +162,6 @@ func _unhandled_input(event):
 		if scenario_index == 0 and $Porta1.check_if_click_is_inside(event.position):
 			print("Click is inside porta 1")
 			print(event.position)
-			await get_tree().create_timer(1).timeout 
 			go_to_next_scene.emit()
 			return
 		user_can_go_to.emit(event.position)
@@ -170,3 +169,7 @@ func _unhandled_input(event):
 
 func _on_porta_2_pressed():
 	go_to_next_scene.emit()
+
+
+func _on_retorno_3_pressed():
+	go_back_scene.emit()

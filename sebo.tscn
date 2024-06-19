@@ -1,13 +1,15 @@
-[gd_scene load_steps=22 format=3 uid="uid://b8wk3pt07sp1m"]
+[gd_scene load_steps=24 format=3 uid="uid://b8wk3pt07sp1m"]
 
 [ext_resource type="Texture2D" uid="uid://cvsscrkk2s2y1" path="res://img/vinyl.png" id="1_c2b32"]
 [ext_resource type="Script" path="res://sebo.gd" id="1_mq8n6"]
 [ext_resource type="Script" path="res://Porta1.gd" id="2_4e0ty"]
 [ext_resource type="Texture2D" uid="uid://dqmbp68266r08" path="res://img/cenario/sebo/estante-sebo2.png" id="2_unok4"]
-[ext_resource type="Texture2D" uid="uid://b3uj1oy6r6xwf" path="res://img/cenario/sebo/estante2-sebo2.png" id="3_dwsj0"]
+[ext_resource type="Texture2D" uid="uid://b3uj1oy6r6xwf" path="res://img/cenario/sebo/estante3-sebo3.png" id="3_dwsj0"]
 [ext_resource type="AudioStream" uid="uid://xwryyafxq4sg" path="res://sounds/rolima.mp3" id="4_fi0a5"]
-[ext_resource type="Texture2D" uid="uid://leudbm0qttwb" path="res://img/cenario/sebo/porta-sebo3.png" id="5_70ggl"]
+[ext_resource type="Texture2D" uid="uid://leudbm0qttwb" path="res://img/cenario/sebo/porta-sebo2.png" id="5_1wea5"]
+[ext_resource type="Texture2D" uid="uid://c72xje3npegbk" path="res://img/cenario/sebo/porta-sebo3.png" id="5_70ggl"]
 [ext_resource type="Texture2D" uid="uid://iymf1wfygr8c" path="res://img/gramophone.png" id="5_dj45l"]
+[ext_resource type="Texture2D" uid="uid://cnfjcs38dxbkp" path="res://img/cenario/sebo/retorno2-sebo2.png" id="7_701o8"]
 [ext_resource type="Texture2D" uid="uid://bd0jwuqexw7vw" path="res://img/cenario/sebo/ismael-sebo1.png" id="8_brlfp"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="8_vfo1t"]
 [ext_resource type="PackedScene" uid="uid://46blvwif58os" path="res://inventory.tscn" id="9_hjf6q"]
@@ -15,20 +17,14 @@
 [ext_resource type="Texture2D" uid="uid://smcugduypyn0" path="res://img/cenario/sebo/chao-sebo1.png" id="11_mhncv"]
 [ext_resource type="Texture2D" uid="uid://eshe6q73h8dg" path="res://img/cenario/sebo/obstaculo-sebo1.png" id="12_upd1o"]
 [ext_resource type="Texture2D" uid="uid://x0t1rcibmyqn" path="res://img/cenario/sebo/porta-sebo1.png" id="13_by46i"]
+[ext_resource type="Texture2D" uid="uid://cr67ie1xcct5o" path="res://img/cenario/sebo/estante2-sebo3.png" id="15_yue0m"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qob3j"]
-radius = 110.0
-height = 436.344
-
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_d3x2i"]
-points = PackedVector2Array(100, 500, 500, 400, 0, 0, -200, 250)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wkd7g"]
+radius = 41.0
+height = 306.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2cesc"]
 size = Vector2(435, 459)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_legqv"]
-radius = 46.0
-height = 172.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvdkb"]
 size = Vector2(867, 479)
@@ -36,40 +32,24 @@ size = Vector2(867, 479)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itlfo"]
 size = Vector2(489, 228)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qob3j"]
+radius = 110.0
+height = 436.344
+
 [node name="Sebo" type="CanvasLayer"]
 script = ExtResource("1_mq8n6")
 
-[node name="Estante2" type="StaticBody2D" parent="."]
-position = Vector2(400, 250)
+[node name="Ismael" type="TextureButton" parent="."]
+z_index = 500
+offset_left = 14.0
+offset_top = 297.0
+offset_right = 199.0
+offset_bottom = 646.0
+texture_normal = ExtResource("8_brlfp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Estante2"]
-position = Vector2(192, 175)
-rotation = 0.523599
-scale = Vector2(0.8, 0.8)
-shape = SubResource("CapsuleShape2D_qob3j")
-disabled = true
-
-[node name="TextureRect" type="TextureRect" parent="Estante2/CollisionShape2D"]
-offset_left = -258.0
-offset_top = -102.0
-offset_right = 101.0
-offset_bottom = 331.0
-rotation = -0.546288
-texture = ExtResource("2_unok4")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Estante2"]
-position = Vector2(864, -246)
-rotation = 0.877901
-shape = SubResource("ConvexPolygonShape2D_d3x2i")
-
-[node name="TextureRect" type="TextureRect" parent="Estante2/CollisionShape2D2"]
-offset_left = -226.065
-offset_top = 234.724
-offset_right = 113.935
-offset_bottom = 954.724
-rotation = -0.872665
-texture = ExtResource("3_dwsj0")
-flip_h = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ismael"]
+position = Vector2(94, 162)
+shape = SubResource("CapsuleShape2D_wkd7g")
 
 [node name="Porta1" type="StaticBody2D" parent="."]
 script = ExtResource("2_4e0ty")
@@ -85,27 +65,41 @@ offset_right = 244.0
 offset_bottom = 264.0
 texture = ExtResource("13_by46i")
 
+[node name="Obstaculo" type="StaticBody2D" parent="."]
+process_priority = -1
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo"]
+position = Vector2(864.5, 239.5)
+shape = SubResource("RectangleShape2D_yvdkb")
+one_way_collision_margin = 0.0
+
+[node name="Estante2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Estante2"]
+position = Vector2(703, 417)
+shape = SubResource("RectangleShape2D_itlfo")
+
+[node name="TextureRect" type="TextureRect" parent="Estante2/CollisionShape2D"]
+offset_left = -367.0
+offset_top = -136.0
+offset_right = 311.0
+offset_bottom = 142.0
+texture = ExtResource("10_dc2ro")
+
 [node name="Porta2" type="TextureButton" parent="."]
-offset_left = 937.0
-offset_top = 14.0
+offset_left = 1113.0
+offset_top = 135.0
 offset_right = 1277.0
 offset_bottom = 734.0
-texture_normal = ExtResource("3_dwsj0")
-flip_h = true
+texture_normal = ExtResource("5_1wea5")
 
-[node name="Ismael" type="StaticBody2D" parent="."]
-z_index = 120
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ismael"]
-position = Vector2(122, 474)
-shape = SubResource("CapsuleShape2D_legqv")
-
-[node name="TextureRect" type="TextureRect" parent="Ismael/CollisionShape2D"]
-offset_left = -95.0
-offset_top = -162.0
-offset_right = 90.0
-offset_bottom = 187.0
-texture = ExtResource("8_brlfp")
+[node name="Retorno2" type="TextureButton" parent="."]
+offset_left = 7.0
+offset_top = 117.0
+offset_right = 185.0
+offset_bottom = 626.0
+texture_normal = ExtResource("7_701o8")
 
 [node name="Vinyl" type="TextureButton" parent="."]
 z_index = 55
@@ -123,29 +117,55 @@ offset_right = 140.0
 offset_bottom = 672.0
 texture_normal = ExtResource("5_dj45l")
 
+[node name="Estante3" type="StaticBody2D" parent="."]
+position = Vector2(400, 250)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Estante3"]
+position = Vector2(192, 175)
+rotation = 0.523599
+scale = Vector2(0.8, 0.8)
+shape = SubResource("CapsuleShape2D_qob3j")
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="Estante3/CollisionShape2D"]
+offset_left = -258.0
+offset_top = -102.0
+offset_right = 101.0
+offset_bottom = 331.0
+rotation = -0.546288
+texture = ExtResource("2_unok4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Estante3"]
+polygon = PackedVector2Array(871, 461, 876, -252, 609, -252, 528, -195, 528, 162, 600, 250, 635, 245, 628, 340, 709, 468)
+
+[node name="TextureRect" type="TextureRect" parent="Estante3/CollisionPolygon2D"]
+offset_left = 533.0
+offset_top = -250.0
+offset_right = 873.0
+offset_bottom = 470.0
+texture = ExtResource("3_dwsj0")
+flip_h = true
+
 [node name="AudioDica" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_fi0a5")
 
 [node name="Porta3" type="TextureButton" parent="."]
-offset_left = 1121.0
-offset_top = 110.0
-offset_right = 1285.0
-offset_bottom = 701.0
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 1277.0
+offset_bottom = 716.0
 texture_normal = ExtResource("5_70ggl")
 
 [node name="Dialogue" parent="." instance=ExtResource("8_vfo1t")]
 
 [node name="Inventory" parent="." instance=ExtResource("9_hjf6q")]
 
-[node name="Obstaculo" type="StaticBody2D" parent="."]
-process_priority = -1
-disable_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo"]
-visible = false
-position = Vector2(864.5, 239.5)
-shape = SubResource("RectangleShape2D_yvdkb")
-one_way_collision_margin = 0.0
+[node name="Retorno3" type="TextureButton" parent="."]
+z_index = -1011
+offset_top = -2.0
+offset_right = 40.0
+offset_bottom = 38.0
+texture_normal = ExtResource("15_yue0m")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -10
@@ -162,19 +182,6 @@ offset_bottom = 720.0
 mouse_filter = 2
 texture = ExtResource("11_mhncv")
 
-[node name="Estante3" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Estante3"]
-position = Vector2(703, 417)
-shape = SubResource("RectangleShape2D_itlfo")
-
-[node name="TextureRect" type="TextureRect" parent="Estante3/CollisionShape2D"]
-offset_left = -367.0
-offset_top = -136.0
-offset_right = 311.0
-offset_bottom = 142.0
-texture = ExtResource("10_dc2ro")
-
 [connection signal="input_event" from="Porta1" to="." method="_on_porta_1_input_event"]
 [connection signal="mouse_entered" from="Porta1" to="." method="_on_porta_1_mouse_entered"]
 [connection signal="pressed" from="Porta2" to="." method="_on_porta_2_pressed"]
@@ -183,3 +190,4 @@ texture = ExtResource("10_dc2ro")
 [connection signal="pressed" from="Porta3" to="." method="_on_door_pressed"]
 [connection signal="pressed_no" from="Dialogue" to="." method="_on_dialogue_pressed_no"]
 [connection signal="pressed_yes" from="Dialogue" to="." method="_on_dialogue_pressed_yes"]
+[connection signal="pressed" from="Retorno3" to="." method="_on_retorno_3_pressed"]
