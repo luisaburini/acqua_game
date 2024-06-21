@@ -12,21 +12,22 @@ signal go_back_scene
 
 var scenario_index = 0
 
-var start_positions = [ Vector2(500, 600),
-	 					Vector2(272, 566),
-						Vector2(63, 512) ]
+var start_positions = [ 	
+	Vector2(380, 470),
+	Vector2(250, 400),
+	Vector2(350, 690) 
+]
 	
 func get_start_position():
-	print("Get start position")
 	return start_positions[scenario_index]
 
 var return_positions = [
-	Vector2(380, 470),
-	Vector2(972, 593),
-	Vector2(1118, 642)
+	Vector2(250, 500),
+	Vector2(250, 560),
+	Vector2(400, 500)
 ]
+
 func  get_return_position():
-	print("Get return position")
 	return return_positions[scenario_index]
 	
 var sebo_scenarios = ["res://img/cenario/sebo/sebo1.png",
@@ -57,7 +58,7 @@ func hide_objs():
 	$Door.hide()
 	$Ismael.hide()
 	$Vinyl.hide()
-	$Gramophone.hide()
+	$Vitrola.hide()
 	hide()
 	
 func start():
@@ -80,19 +81,23 @@ func update_objs_state():
 	$Dialogue.hide()
 	var objs = [
 		["Ismael", "Porta1", "Obstaculo"],
-		[ "Vinyl", "Porta2", "Estante2", "Retorno2"],
-		["Gramophone", "Porta3", "Estante3", "Retorno3"]
+		[ "Vitrola", "Porta2", "Estante2", "Retorno2"],
+		["Vinyl", "Porta3", "Estante3", "Retorno3"]
 	]
 	for i in range(len(objs)):
 		for o in objs[i]:
 			var obj = get_node(o)
 			if scenario_index == i:
 				obj.show()
+				if obj.get_class() == "TextureButton":
+					obj.disabled = false
 				if obj.get_class() == "StaticBody2D":
 					for c in obj.get_children():
 						c.disabled = false
 			else:
 				obj.hide()
+				if obj.get_class() == "TextureButton":
+					obj.disabled = true
 				if obj.get_class() == "StaticBody2D":
 					for c in obj.get_children():
 						c.disabled = true
@@ -100,7 +105,7 @@ func update_objs_state():
 	if $Inventory.check_if_item_exists("vinyl"):
 		$Vinyl.hide()
 		
-func _on_gramophone_pressed():
+func _on_vitrola_pressed():
 	will_show_dialogue.emit()
 	$Dialogue.show()
 	$Dialogue.hide_interaction()
@@ -134,12 +139,23 @@ func _on_dialogue_pressed_yes():
 func _on_dialogue_pressed_no():
 	$Dialogue.hide()
 
+func _unhandled_input(event):
+	if event is InputEventScreenTouch and event.pressed == true:
+		if scenario_index == 0 and $Porta1.check_if_click_is_inside(event.position):
+			go_to_next_scene.emit()
+			return
+		user_can_go_to.emit(event.position)
 
-func _on_vinyl_pressed():
-	$Vinyl.hide()
-	$Inventory.add_item("vinyl")
+func _on_porta_2_pressed():
+	go_to_next_scene.emit()
 
-func _on_player_clicked_ismael():
+func _on_retorno_3_pressed():
+	go_back_scene.emit()
+
+func _on_retorno_2_pressed():
+	go_back_scene.emit()
+
+func _on_ismael_pressed():
 	if scenario_index == 0:
 		will_show_dialogue.emit()
 		$Dialogue.show()
@@ -147,29 +163,13 @@ func _on_player_clicked_ismael():
 			$Dialogue.hide_interaction()
 			$Dialogue.start_hide_timer()
 			$Dialogue.change_texture("res://img/capybara-ismael.png")
-			$Dialogue.change_label("Estou ocupado, desencosta")
+			$Dialogue.change_label("Estou ocupado, vá se ocupar também.")
 		else:
 			$Dialogue.change_texture("res://img/livro.png")
 			$Dialogue.change_label("Gostaria de ganhar um livro mágico?")
 			$Dialogue.show_interaction()
-	
-var first_click = true
-func _unhandled_input(event):
-	if event is InputEventScreenTouch and event.pressed == true:
-		if first_click:
-			first_click = false
-			return
-		if scenario_index == 0 and $Porta1.check_if_click_is_inside(event.position):
-			print("Click is inside porta 1")
-			print(event.position)
-			go_to_next_scene.emit()
-			return
-		user_can_go_to.emit(event.position)
 
 
-func _on_porta_2_pressed():
-	go_to_next_scene.emit()
-
-
-func _on_retorno_3_pressed():
-	go_back_scene.emit()
+func _on_vinyl_pressed():
+	$Vinyl.hide()
+	$Inventory.add_item("vinyl")

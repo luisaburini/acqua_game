@@ -28,7 +28,6 @@ func new_game():
 
 func _on_player_limite_direito():
 	if not $Player.is_walking():
-		print("Player limite direito")
 		$Sebo.update_texture(+1)
 		$Sebo.update_objs_state()
 		$Dialogue.hide()
@@ -37,7 +36,6 @@ func _on_player_limite_direito():
 
 func _on_player_limite_esquerdo():
 	if not $Player.is_walking():
-		print("Player limite esquerdo")
 		$Sebo.update_texture(-1)
 		$Sebo.update_objs_state()
 		$Dialogue.hide()
