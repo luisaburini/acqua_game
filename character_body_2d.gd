@@ -24,7 +24,6 @@ func _physics_process(delta):
 		walking = true
 		move_and_slide()
 	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
 		clicked_position.x = position.x
 		clicked_position.y = position.y
 		
@@ -41,7 +40,6 @@ func _ready():
 
 func _on_sebo_user_can_go_to(pos):
 	if not walking:
-		print("User can go")
 		clicked_position = pos
 
 
@@ -60,3 +58,8 @@ func _on_main_reset_pos_esquerdo(pos):
 
 func is_walking():
 	return walking
+
+
+func _on_praca_user_can_go_to(pos):
+	if not walking:
+		clicked_position = pos

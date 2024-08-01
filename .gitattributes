@@ -1,0 +1,3 @@
+executables/* filter=lfs diff=lfs merge=lfs -text
+Acqua-Game.side.wasm filter=lfs diff=lfs merge=lfs -text
+android/acquagame.apk filter=lfs diff=lfs merge=lfs -text

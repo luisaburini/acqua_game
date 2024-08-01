@@ -13,18 +13,20 @@ signal go_back_scene
 var scenario_index = 0
 
 var start_positions = [ 	
-	Vector2(380, 470),
-	Vector2(250, 400),
-	Vector2(350, 690) 
+	Vector2(900, 450),
+	Vector2(250, 500),
+	Vector2(350, 600),
+	Vector2(380, 470) 
 ]
 	
 func get_start_position():
 	return start_positions[scenario_index]
 
 var return_positions = [
-	Vector2(250, 500),
-	Vector2(250, 560),
-	Vector2(400, 500)
+	Vector2(380, 500),
+	Vector2(380, 560),
+	Vector2(400, 500),
+	Vector2(250, 500)
 ]
 
 func  get_return_position():
@@ -32,11 +34,13 @@ func  get_return_position():
 	
 var sebo_scenarios = ["res://img/cenario/sebo/sebo1.png",
 					  "res://img/cenario/sebo/sebo2.png",
-					  "res://img/cenario/sebo/sebo3.png"]
+					  "res://img/cenario/sebo/sebo3.png",
+					  "res://img/cenario/sebo/sebo4.png"]
 					
 var chao_sebo = ["res://img/cenario/sebo/chao-sebo1.png",
-			 	 "res://img/cenario/sebo/chao-sebo2.png",
-				 "res://img/cenario/sebo/chao-sebo3.png"]
+			 	 "res://*/img/cenario/sebo/chao-sebo2.png",
+				 "res://img/cenario/sebo/chao-sebo3.png",
+				 "res://img/cenario/sebo/chao-sebo1.png"]
 				
 var played_vinyl = false
 					
@@ -52,14 +56,6 @@ func _process(delta):
 func hide_dialogue():
 	$Dialogue.hide()
 
-func hide_objs():
-	$Dialogue.hide()
-	$Dialogue.hide_interaction()
-	$Door.hide()
-	$Ismael.hide()
-	$Vinyl.hide()
-	$Vitrola.hide()
-	hide()
 	
 func start():
 	show()
@@ -72,7 +68,7 @@ func is_completed():
 
 
 func update_texture(limit):
-	scenario_index = scenario_index+limit
+	scenario_index = abs(scenario_index+limit)
 	scenario_index = scenario_index%len(sebo_scenarios)
 	$Background.texture = load(sebo_scenarios[scenario_index])
 	$Chao.texture = load(chao_sebo[scenario_index])
@@ -82,7 +78,8 @@ func update_objs_state():
 	var objs = [
 		["Ismael", "Porta1", "Obstaculo"],
 		[ "Vitrola", "Porta2", "Estante2", "Retorno2"],
-		["Vinyl", "Porta3", "Estante3", "Retorno3"]
+		["Vinyl", "Porta3", "Estante3", "Retorno3"],
+		["Saida", "Retorno4"]
 	]
 	for i in range(len(objs)):
 		for o in objs[i]:
@@ -119,16 +116,6 @@ func _on_vitrola_pressed():
 	if !$Inventory.check_if_item_exists("vinyl"):
 		$Dialogue.change_label("Você precisa do vinyl")
 
-
-func _on_door_pressed():
-	if scenario_index == 2:
-		if $Inventory.check_if_item_exists("vinyl") and $Inventory.check_if_item_exists("livro_magico") and played_vinyl:
-			leave.emit()
-			$AudioDica.stop()
-		else:
-			cannot_leave.emit()
-	else:
-		go_to_next_scene.emit()
 
 
 func _on_dialogue_pressed_yes():
@@ -173,3 +160,22 @@ func _on_ismael_pressed():
 func _on_vinyl_pressed():
 	$Vinyl.hide()
 	$Inventory.add_item("vinyl")
+
+
+func _on_porta_3_pressed():
+	go_to_next_scene.emit()
+
+
+func _on_saida_pressed():
+	if scenario_index == 3:
+		if $Inventory.check_if_item_exists("vinyl") and $Inventory.check_if_item_exists("livro_magico") and played_vinyl:
+			leave.emit()
+			$AudioDica.stop()
+		else:
+			cannot_leave.emit()
+	else:
+		go_to_next_scene.emit()
+
+
+func _on_retorno_4_pressed():
+	go_back_scene.emit()

@@ -38,7 +38,7 @@ mouse_filter = 2
 texture = ExtResource("3_c2hin")
 
 [node name="StartButton" type="TouchScreenButton" parent="."]
-position = Vector2(1087, 553)
+position = Vector2(783, 455)
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("4_opq0t")
 

@@ -1,11 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://b8wk3pt07sp1m"]
+[gd_scene load_steps=27 format=3 uid="uid://b8wk3pt07sp1m"]
 
 [ext_resource type="Texture2D" uid="uid://cvsscrkk2s2y1" path="res://img/vinyl.png" id="1_c2b32"]
 [ext_resource type="Script" path="res://sebo.gd" id="1_mq8n6"]
 [ext_resource type="Script" path="res://Porta1.gd" id="2_4e0ty"]
 [ext_resource type="Texture2D" uid="uid://dqmbp68266r08" path="res://img/cenario/sebo/estante-sebo2.png" id="2_unok4"]
 [ext_resource type="Texture2D" uid="uid://b3uj1oy6r6xwf" path="res://img/cenario/sebo/estante3-sebo3.png" id="3_dwsj0"]
-[ext_resource type="AudioStream" uid="uid://xwryyafxq4sg" path="res://sounds/rolima.mp3" id="4_fi0a5"]
 [ext_resource type="Texture2D" uid="uid://leudbm0qttwb" path="res://img/cenario/sebo/porta-sebo2.png" id="5_1wea5"]
 [ext_resource type="Texture2D" uid="uid://c72xje3npegbk" path="res://img/cenario/sebo/porta-sebo3.png" id="5_70ggl"]
 [ext_resource type="Texture2D" uid="uid://dcswf8kjsrbnx" path="res://img/cenario/sebo/estante4-sebo3.png" id="6_w6u6d"]
@@ -18,7 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://smcugduypyn0" path="res://img/cenario/sebo/chao-sebo1.png" id="11_mhncv"]
 [ext_resource type="Texture2D" uid="uid://eshe6q73h8dg" path="res://img/cenario/sebo/obstaculo-sebo1.png" id="12_upd1o"]
 [ext_resource type="Texture2D" uid="uid://x0t1rcibmyqn" path="res://img/cenario/sebo/porta-sebo1.png" id="13_by46i"]
+[ext_resource type="AudioStream" uid="uid://comh7fk73sya5" path="res://sounds/micuim 8bit.mp3" id="13_pf0ty"]
 [ext_resource type="Texture2D" uid="uid://cr67ie1xcct5o" path="res://img/cenario/sebo/estante2-sebo3.png" id="15_yue0m"]
+[ext_resource type="Texture2D" uid="uid://nrxqclrilwgl" path="res://img/cenario/sebo/saida.png" id="18_p4o6h"]
+[ext_resource type="Texture2D" uid="uid://defimrtnchcvy" path="res://img/cenario/sebo/porta-sebo4.png" id="21_m3uc3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wkd7g"]
 radius = 41.0
@@ -71,6 +73,7 @@ texture = ExtResource("13_by46i")
 
 [node name="Obstaculo" type="StaticBody2D" parent="."]
 process_priority = -1
+z_index = -2
 disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo"]
@@ -79,9 +82,10 @@ shape = SubResource("RectangleShape2D_yvdkb")
 one_way_collision_margin = 0.0
 
 [node name="Estante2" type="StaticBody2D" parent="."]
+z_index = -2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Estante2"]
-z_index = 5
+z_index = -5
 position = Vector2(642.75, 413)
 shape = SubResource("RectangleShape2D_itlfo")
 
@@ -93,6 +97,7 @@ offset_bottom = 165.0
 texture = ExtResource("10_dc2ro")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Estante2"]
+z_index = -6
 polygon = PackedVector2Array(-9, -1, 839, 3, 848, 114, 678, 115, 675, 393, 673, 445, 6, 409)
 
 [node name="TextureRect" type="TextureRect" parent="Estante2/CollisionPolygon2D"]
@@ -109,6 +114,7 @@ offset_bottom = 734.0
 texture_normal = ExtResource("5_1wea5")
 
 [node name="Retorno2" type="TextureButton" parent="."]
+z_index = -4
 offset_top = 113.0
 offset_right = 178.0
 offset_bottom = 622.0
@@ -140,6 +146,7 @@ position = Vector2(107, 83)
 polygon = PackedVector2Array(-70, 19, -107, -7, -109, 102, 140, 110, 140, 75, 123, 65, 118, 15, 72, -8, 46, -85, -81, -69)
 
 [node name="Estante3" type="StaticBody2D" parent="."]
+z_index = -2
 position = Vector2(400, 250)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Estante3"]
@@ -169,7 +176,7 @@ texture = ExtResource("3_dwsj0")
 flip_h = true
 
 [node name="AudioDica" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_fi0a5")
+stream = ExtResource("13_pf0ty")
 
 [node name="Porta3" type="TextureButton" parent="."]
 z_index = -1000
@@ -183,12 +190,25 @@ texture_normal = ExtResource("5_70ggl")
 
 [node name="Inventory" parent="." instance=ExtResource("9_hjf6q")]
 
+[node name="Saida" type="TextureButton" parent="."]
+offset_left = 875.0
+offset_top = 489.0
+offset_right = 1275.0
+offset_bottom = 681.0
+texture_normal = ExtResource("18_p4o6h")
+
 [node name="Retorno3" type="TextureButton" parent="."]
 z_index = -1011
 offset_top = -2.0
 offset_right = 40.0
 offset_bottom = 38.0
 texture_normal = ExtResource("15_yue0m")
+
+[node name="Retorno4" type="TextureButton" parent="."]
+offset_top = 105.0
+offset_right = 381.0
+offset_bottom = 515.0
+texture_normal = ExtResource("21_m3uc3")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -10
@@ -210,7 +230,9 @@ texture = ExtResource("11_mhncv")
 [connection signal="pressed" from="Retorno2" to="." method="_on_retorno_2_pressed"]
 [connection signal="pressed" from="Vinyl" to="." method="_on_vinyl_pressed"]
 [connection signal="pressed" from="Vitrola" to="." method="_on_vitrola_pressed"]
-[connection signal="pressed" from="Porta3" to="." method="_on_door_pressed"]
+[connection signal="pressed" from="Porta3" to="." method="_on_porta_3_pressed"]
 [connection signal="pressed_no" from="Dialogue" to="." method="_on_dialogue_pressed_no"]
 [connection signal="pressed_yes" from="Dialogue" to="." method="_on_dialogue_pressed_yes"]
+[connection signal="pressed" from="Saida" to="." method="_on_saida_pressed"]
 [connection signal="pressed" from="Retorno3" to="." method="_on_retorno_3_pressed"]
+[connection signal="pressed" from="Retorno4" to="." method="_on_retorno_4_pressed"]

@@ -1,45 +1,52 @@
 extends Node
 
-var locations = ["sebo", "morro", "praca"]
+var locations = ["Sebo", "Praca", "Balneario"]
+var current_location = 0					
 
-var morro_scenarios = ["res://img/morro1.jpg",
-					   "res://img/morro2.jpg",
-					   "res://img/morro3.jpg"]
-var praca_scenarios = ["res://img/praca1.jpg",
-					   "res://img/praca2.jpg",
-					   "res://img/praca3.jpg"]
-					
 signal reset_pos_esquerdo(pos)
 signal reset_pos_direito(pos)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Player.hide()
 	$Dialogue.hide()
 	$Sebo.hide()
-	$MorroPelado.hide()
+	$Praca.hide()
 	$CityMap.hide()
+	$HUDMusic.play()
 	$HUD.show()
 
 func new_game():
-	$Music.play()
+	$HUDMusic.stop()
+	$SeboMusic.play()
+	$Praca.hide_all()
 	$Sebo.start()
 	$HUD.show_message("")	
 	$Player.start($StartPosition.position)
 
+func get_current_location_node():
+	var location = locations[current_location]
+	print(location)
+	return get_node(location)
+	
+	
+
 func _on_player_limite_direito():
-	if not $Player.is_walking():
-		$Sebo.update_texture(+1)
-		$Sebo.update_objs_state()
+	var loc = get_current_location_node()
+	if not $Player.is_walking() and loc != null:
+		loc.update_texture(+1)
+		loc.update_objs_state()
 		$Dialogue.hide()
-		reset_pos_direito.emit($Sebo.get_start_position())
+		reset_pos_direito.emit(loc.get_start_position())
 
 
 func _on_player_limite_esquerdo():
-	if not $Player.is_walking():
-		$Sebo.update_texture(-1)
-		$Sebo.update_objs_state()
+	var loc = get_current_location_node()
+	if not $Player.is_walking() and loc != null:
+		loc.update_texture(-1)
+		loc.update_objs_state()
 		$Dialogue.hide()
-		reset_pos_esquerdo.emit($Sebo.get_return_position())
+		reset_pos_esquerdo.emit(loc.get_return_position())
 
 func _on_dialogue_pressed_yes():
 	$Dialogue.hide()
@@ -48,9 +55,9 @@ func _on_dialogue_pressed_no():
 	$Dialogue.hide()
 
 func _on_sebo_leave():
-	print("Ir para o morro")
 	$Sebo.hide()
 	$CityMap.show()
+	current_location = current_location+1
 
 func _on_sebo_cannot_leave():
 	$Dialogue.change_texture("res://img/capybara-ismael.png")
@@ -62,7 +69,7 @@ func _on_sebo_cannot_leave():
 
 
 func _on_sebo_stop_music():
-	$Music.stop()
+	$SeboMusic.stop()
 
 
 func _on_sebo_will_show_dialogue():
@@ -75,17 +82,26 @@ func _on_city_map_pressed_sebo():
 	$Sebo.show()
 
 
-func _on_city_map_pressed_morro():
-	$Dialogue.hide()
-	if $Sebo.is_completed():
-		$CityMap.hide()
-		$MorroPelado.show()
-		$Player.show()
-		$Player.start($StartPosition.position)
-
-
 func _on_sebo_go_to_next_scene():
 	_on_player_limite_direito()
 	
 func _on_sebo_go_back_scene():
 	_on_player_limite_esquerdo()
+
+
+func _on_city_map_pressed_praca():
+	$Dialogue.hide()
+	if $Sebo.is_completed():
+		$CityMap.hide()
+		$PracaMusic.play()
+		$Praca.start()
+		$Player.show()
+		$Player.start($StartPosition.position)
+
+
+func _on_praca_go_back_scene():
+	_on_player_limite_esquerdo()
+
+
+func _on_praca_go_to_next_scene():
+	_on_player_limite_direito()

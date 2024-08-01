@@ -13,6 +13,7 @@ func _process(delta):
 
 func hide():
 	is_hidden = true
+	$TextureRect.hide()
 	$Label.hide()
 	$TextureButton.hide()
 	$TouchYesButton.hide()
@@ -20,6 +21,7 @@ func hide():
 	
 func show():
 	is_hidden = false
+	$TextureRect.show()
 	$Label.show()
 	$TextureButton.show()
 	$TouchYesButton.show()

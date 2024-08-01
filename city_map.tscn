@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpe24lml0sq6u"]
+[gd_scene load_steps=5 format=3 uid="uid://dpe24lml0sq6u"]
 
 [ext_resource type="Script" path="res://city_map.gd" id="1_ggjlf"]
 [ext_resource type="Texture2D" uid="uid://bkly35vk2ram6" path="res://img/mapa.png" id="2_v868w"]
 [ext_resource type="Texture2D" uid="uid://dbj7kkshl6c0b" path="res://img/sebo-detalhe.jpeg" id="3_jn0u0"]
-[ext_resource type="Texture2D" uid="uid://bej76s5venf5f" path="res://img/morro-pelado.png" id="4_un2jy"]
 [ext_resource type="Texture2D" uid="uid://b4emr0htn3oe0" path="res://img/praca-adhemar-de-barros.jpg" id="5_1bmcs"]
 
 [node name="CityMap" type="CanvasLayer"]
@@ -18,15 +17,9 @@ texture = ExtResource("2_v868w")
 position = Vector2(325, 235)
 texture_normal = ExtResource("3_jn0u0")
 
-[node name="TouchMorroButton" type="TouchScreenButton" parent="."]
-position = Vector2(410, -6)
-scale = Vector2(1.42, 1.36)
-texture_normal = ExtResource("4_un2jy")
-
 [node name="TouchPracaButton" type="TouchScreenButton" parent="."]
 position = Vector2(252, 345)
 texture_normal = ExtResource("5_1bmcs")
 
 [connection signal="pressed" from="TouchSeboButton" to="." method="_on_touch_sebo_button_pressed"]
-[connection signal="pressed" from="TouchMorroButton" to="." method="_on_touch_morro_button_pressed"]
 [connection signal="pressed" from="TouchPracaButton" to="." method="_on_touch_praca_button_pressed"]
