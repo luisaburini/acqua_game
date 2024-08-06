@@ -9,36 +9,41 @@
 [node name="Dialogue" type="Node"]
 script = ExtResource("1_nq3vc")
 
-[node name="Label" type="Label" parent="."]
-z_index = 100
-offset_left = 453.0
-offset_top = 287.0
-offset_right = 865.0
-offset_bottom = 470.0
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_o6e56")
-theme_override_font_sizes/font_size = 30
-
-[node name="TextureButton" type="TextureButton" parent="."]
-z_index = 100
-offset_left = 559.0
-offset_top = 57.0
-offset_right = 776.0
-offset_bottom = 290.0
-
 [node name="HideInteractionTimer" type="Timer" parent="."]
 wait_time = 5.0
 
 [node name="TouchYesButton" type="TouchScreenButton" parent="."]
 z_index = 100
-position = Vector2(738, 374)
+position = Vector2(750, 500)
 texture_normal = ExtResource("3_gelhn")
 
 [node name="TouchNoButton" type="TouchScreenButton" parent="."]
 z_index = 100
-position = Vector2(480, 375)
+position = Vector2(410, 500)
 texture_normal = ExtResource("4_2fred")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+z_index = 100
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -108.5
+offset_top = 54.0
+offset_right = 108.5
+offset_bottom = 287.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="."]
+z_index = 100
+offset_left = 365.0
+offset_top = 340.0
+offset_right = 914.0
+offset_bottom = 523.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_o6e56")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
@@ -48,7 +53,7 @@ offset_right = 1279.0
 offset_bottom = 719.0
 texture = ExtResource("5_o3mks")
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="timeout" from="HideInteractionTimer" to="." method="_on_hide_interaction_timer_timeout"]
 [connection signal="pressed" from="TouchYesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="TouchNoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

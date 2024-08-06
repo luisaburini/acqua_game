@@ -1,21 +1,18 @@
 extends CanvasLayer
 
 signal leave
-signal cannot_leave
 signal stop_music
-signal will_show_dialogue
 signal user_can_go_to(position)
-signal hide_user
-signal show_user
 signal go_to_next_scene
 signal go_back_scene
+signal audiodica_finished
 
 var scenario_index = 0
 
 var start_positions = [ 	
 	Vector2(900, 450),
-	Vector2(250, 500),
-	Vector2(350, 600),
+	Vector2(900, 260),
+	Vector2(290, 450),
 	Vector2(380, 470) 
 ]
 	
@@ -59,22 +56,24 @@ func hide_dialogue():
 	
 func start():
 	show()
-	scenario_index = 0
-	update_objs_state()
+	update_objs_state(0)
 	
 		
 func is_completed():
 	return played_vinyl and $Inventory.check_if_item_exists("livro_magico")
 
 
-func update_texture(limit):
-	scenario_index = abs(scenario_index+limit)
-	scenario_index = scenario_index%len(sebo_scenarios)
+func update_texture():
+	$Dialogue.hide()
 	$Background.texture = load(sebo_scenarios[scenario_index])
 	$Chao.texture = load(chao_sebo[scenario_index])
 	
-func update_objs_state():
-	$Dialogue.hide()
+func update_objs_state(limit):
+	scenario_index = abs(scenario_index+limit)
+	scenario_index = scenario_index%len(sebo_scenarios)
+	
+	update_texture()
+	
 	var objs = [
 		["Ismael", "Porta1", "Obstaculo"],
 		[ "Vitrola", "Porta2", "Estante2", "Retorno2"],
@@ -84,30 +83,42 @@ func update_objs_state():
 	for i in range(len(objs)):
 		for o in objs[i]:
 			var obj = get_node(o)
-			if scenario_index == i:
-				obj.show()
-				if obj.get_class() == "TextureButton":
-					obj.disabled = false
-				if obj.get_class() == "StaticBody2D":
+			if obj != null:
+				if scenario_index == i:
+					obj.show()
+					if check_collision(obj):
+						obj.disabled = false
+					print("Sebo: " + obj.get_class()+" update_objs_state")
 					for c in obj.get_children():
-						c.disabled = false
-			else:
-				obj.hide()
-				if obj.get_class() == "TextureButton":
-					obj.disabled = true
-				if obj.get_class() == "StaticBody2D":
+						print("Sebo: " + c.get_class()+" update_objs_state")
+						if check_collision(c):
+							c.disabled = false
+						for b in c.get_children():
+							if check_collision(b):
+								b.disabled = false
+				else:
+					obj.hide()
+					if check_collision(obj):
+						obj.disabled = true
 					for c in obj.get_children():
-						c.disabled = true
+						if check_collision(c):
+							c.disabled = true
+						for b in c.get_children():
+							if check_collision(b):
+								b.disabled = true
 					
 	if $Inventory.check_if_item_exists("vinyl"):
 		$Vinyl.hide()
 		
+func check_collision(o):
+	return o.get_class() == "CollisionShape2D" or o.get_class() == "CollisionPolygon2D"
+
+
 func _on_vitrola_pressed():
-	will_show_dialogue.emit()
 	$Dialogue.show()
 	$Dialogue.hide_interaction()
 	$Dialogue.start_hide_timer()
-	$Dialogue.change_texture("res://img/vinyl-detalhe.png")	
+	$Dialogue.change_texture("res://img/cenario/sebo/vinyl-detalhe.png")	
 	if $Inventory.check_if_item_exists("vinyl") and !played_vinyl:
 		$Dialogue.change_label("Tocando o vinyl!")
 		stop_music.emit()
@@ -128,9 +139,6 @@ func _on_dialogue_pressed_no():
 
 func _unhandled_input(event):
 	if event is InputEventScreenTouch and event.pressed == true:
-		if scenario_index == 0 and $Porta1.check_if_click_is_inside(event.position):
-			go_to_next_scene.emit()
-			return
 		user_can_go_to.emit(event.position)
 
 func _on_porta_2_pressed():
@@ -144,7 +152,6 @@ func _on_retorno_2_pressed():
 
 func _on_ismael_pressed():
 	if scenario_index == 0:
-		will_show_dialogue.emit()
 		$Dialogue.show()
 		if $Inventory.check_if_item_exists("livro_magico"):
 			$Dialogue.hide_interaction()
@@ -172,10 +179,22 @@ func _on_saida_pressed():
 			leave.emit()
 			$AudioDica.stop()
 		else:
-			cannot_leave.emit()
+			$Dialogue.change_texture("res://img/capybara-ismael.png")
+			$Dialogue.change_label("Ainda tem coisa pra fazer aqui")
+			$Dialogue.show()
+			$Dialogue.hide_interaction()
+			$Dialogue.start_hide_timer()
 	else:
 		go_to_next_scene.emit()
 
 
 func _on_retorno_4_pressed():
 	go_back_scene.emit()
+
+
+func _on_audio_dica_finished():
+	audiodica_finished.emit()
+
+
+func _on_porta_1_pressed():
+	go_to_next_scene.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://djgyvbm6dglio"]
+[gd_scene load_steps=22 format=3 uid="uid://djgyvbm6dglio"]
 
 [ext_resource type="Script" path="res://praca.gd" id="1_cpsnw"]
 [ext_resource type="Texture2D" uid="uid://ctvqmhrg5xkhe" path="res://img/cenario/praca/sr-do-pedalinho.png" id="1_r65fp"]
@@ -6,86 +6,49 @@
 [ext_resource type="Texture2D" uid="uid://bci31ox8i5we3" path="res://img/cenario/praca/chao-cena1A.png" id="3_10ar6"]
 [ext_resource type="Texture2D" uid="uid://lm435y0fsaa0" path="res://img/cenario/praca/praca-cena1A.png" id="4_0143s"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="5_45i88"]
+[ext_resource type="Texture2D" uid="uid://pgat8brosock" path="res://img/cenario/praca/sapo.png" id="5_en60o"]
 [ext_resource type="Texture2D" uid="uid://4dbwhrjlc3m6" path="res://img/cenario/praca/porta.png" id="6_vcmb7"]
 [ext_resource type="Texture2D" uid="uid://d38segdx1vmpr" path="res://img/cenario/praca/retorno.png" id="7_6jmfg"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aydxi"]
-radius = 65.0
-height = 406.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fpmm5"]
-radius = 40.0
-height = 450.0
+[ext_resource type="Texture2D" uid="uid://nrxqclrilwgl" path="res://img/cenario/sebo/saida.png" id="10_kdfbs"]
+[ext_resource type="Texture2D" uid="uid://nodn63553np5" path="res://img/cenario/praca/balao1.png" id="11_5qtc8"]
+[ext_resource type="Texture2D" uid="uid://car1qj4od21ho" path="res://img/cenario/praca/balao1-pressed.png" id="12_72rim"]
+[ext_resource type="Texture2D" uid="uid://8lk0wfan3t4u" path="res://img/cenario/praca/balao2.png" id="13_ff8ba"]
+[ext_resource type="Texture2D" uid="uid://dws8qw2yrexb6" path="res://img/cenario/praca/balao2-pressed.png" id="14_lwes5"]
+[ext_resource type="Texture2D" uid="uid://df6c73m630yov" path="res://img/cenario/praca/balao3.png" id="15_24yf3"]
+[ext_resource type="Texture2D" uid="uid://d0fh2vjrxywua" path="res://img/cenario/praca/balao3-pressed.png" id="16_o0toj"]
+[ext_resource type="PackedScene" uid="uid://46blvwif58os" path="res://inventory.tscn" id="17_hsapi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_synie"]
 size = Vector2(1262, 511)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aydxi"]
+radius = 53.0
+height = 362.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fpmm5"]
+radius = 40.0
+height = 262.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_24lke"]
+radius = 89.0
+height = 340.261
+
 [node name="Praca" type="Node2D"]
 script = ExtResource("1_cpsnw")
-
-[node name="Dialogue" parent="." instance=ExtResource("5_45i88")]
-
-[node name="SrBaloes" type="TextureButton" parent="."]
-z_index = 10
-offset_left = 966.0
-offset_top = 198.0
-offset_right = 1206.0
-offset_bottom = 682.0
-texture_normal = ExtResource("1_xf8u4")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="SrBaloes"]
-position = Vector2(116, 231)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SrBaloes/StaticBody2D"]
-position = Vector2(14, 58)
-shape = SubResource("CapsuleShape2D_aydxi")
-
-[node name="SrPedalinho" type="TextureButton" parent="."]
-z_index = 16
-offset_left = 949.0
-offset_top = 158.0
-offset_right = 1189.0
-offset_bottom = 673.0
-mouse_default_cursor_shape = 16
-texture_normal = ExtResource("1_r65fp")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="SrPedalinho"]
-z_index = 1
-position = Vector2(116, 242)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SrPedalinho/StaticBody2D"]
-z_index = 2
-position = Vector2(-3, 7)
-shape = SubResource("CapsuleShape2D_fpmm5")
-
-[node name="Retorno" type="TextureButton" parent="."]
-z_index = 1000
-offset_top = -1.0
-offset_right = 33.0
-offset_bottom = 1080.0
-texture_normal = ExtResource("7_6jmfg")
-
-[node name="Porta" type="TextureButton" parent="."]
-z_index = 1000
-offset_left = 1243.0
-offset_right = 1276.0
-offset_bottom = 1080.0
-texture_normal = ExtResource("6_vcmb7")
 
 [node name="Chao" type="TextureRect" parent="."]
 z_index = -1000
 y_sort_enabled = true
-offset_left = 2.0
-offset_top = 421.0
-offset_right = 1282.0
-offset_bottom = 721.0
+offset_top = -2.0
+offset_right = 1280.0
+offset_bottom = 718.0
 texture = ExtResource("3_10ar6")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -500
 offset_left = 2.0
 offset_right = 1282.0
-offset_bottom = 560.0
+offset_bottom = 720.0
 mouse_filter = 2
 texture = ExtResource("4_0143s")
 
@@ -95,8 +58,116 @@ texture = ExtResource("4_0143s")
 position = Vector2(640, 256.5)
 shape = SubResource("RectangleShape2D_synie")
 
+[node name="Inventory" parent="." instance=ExtResource("17_hsapi")]
+
+[node name="Dialogue" parent="." instance=ExtResource("5_45i88")]
+
+[node name="SrBaloes" type="TextureButton" parent="."]
+z_index = 2
+offset_left = 103.0
+offset_top = 256.0
+offset_right = 277.0
+offset_bottom = 606.0
+texture_normal = ExtResource("1_xf8u4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="SrBaloes"]
+position = Vector2(116, 231)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SrBaloes/StaticBody2D"]
+position = Vector2(-35, -78)
+shape = SubResource("CapsuleShape2D_aydxi")
+
+[node name="SrPedalinho" type="TextureButton" parent="."]
+z_index = 16
+offset_left = 935.0
+offset_top = 217.0
+offset_right = 1093.0
+offset_bottom = 567.0
+mouse_default_cursor_shape = 16
+texture_normal = ExtResource("1_r65fp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="SrPedalinho"]
+z_index = 1
+position = Vector2(116, 242)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SrPedalinho/StaticBody2D"]
+z_index = 2
+position = Vector2(-36, -70)
+shape = SubResource("CapsuleShape2D_fpmm5")
+
+[node name="Sapo" type="TextureButton" parent="."]
+offset_left = 191.0
+offset_top = 129.0
+offset_right = 541.0
+offset_bottom = 292.0
+texture_normal = ExtResource("5_en60o")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sapo"]
+position = Vector2(617, 186)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sapo/StaticBody2D"]
+position = Vector2(-437, -101)
+rotation = 1.43641
+shape = SubResource("CapsuleShape2D_24lke")
+
+[node name="Retorno" type="TextureButton" parent="."]
+z_index = 1000
+offset_top = -1.0
+offset_right = 33.0
+offset_bottom = 719.0
+mouse_force_pass_scroll_events = false
+texture_normal = ExtResource("7_6jmfg")
+
+[node name="Porta" type="TextureButton" parent="."]
+z_index = 1000
+offset_left = 1180.0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_force_pass_scroll_events = false
+texture_normal = ExtResource("6_vcmb7")
+
+[node name="Saida" type="TextureButton" parent="."]
+offset_left = 758.0
+offset_top = 523.0
+offset_right = 1158.0
+offset_bottom = 715.0
+texture_normal = ExtResource("10_kdfbs")
+
+[node name="Balao1" type="TextureButton" parent="."]
+z_index = 10
+offset_left = 239.0
+offset_top = 27.0
+offset_right = 449.0
+offset_bottom = 358.0
+texture_normal = ExtResource("11_5qtc8")
+texture_pressed = ExtResource("12_72rim")
+
+[node name="Balao2" type="TextureButton" parent="."]
+z_index = 100
+offset_left = 537.0
+offset_top = 25.0
+offset_right = 747.0
+offset_bottom = 356.0
+texture_normal = ExtResource("13_ff8ba")
+texture_pressed = ExtResource("14_lwes5")
+
+[node name="Balao3" type="TextureButton" parent="."]
+z_index = 100
+offset_left = 832.0
+offset_top = 25.0
+offset_right = 1042.0
+offset_bottom = 356.0
+texture_normal = ExtResource("15_24yf3")
+texture_pressed = ExtResource("16_o0toj")
+
+[connection signal="pressed_yes" from="Dialogue" to="." method="_on_dialogue_pressed_yes"]
 [connection signal="pressed" from="SrBaloes" to="." method="_on_sr_baloes_pressed"]
 [connection signal="focus_entered" from="SrPedalinho" to="." method="_on_sr_pedalinho_focus_entered"]
 [connection signal="pressed" from="SrPedalinho" to="." method="_on_sr_pedalinho_pressed"]
+[connection signal="pressed" from="Sapo" to="." method="_on_sapo_pressed"]
 [connection signal="pressed" from="Retorno" to="." method="_on_retorno_pressed"]
 [connection signal="pressed" from="Porta" to="." method="_on_porta_pressed"]
+[connection signal="pressed" from="Saida" to="." method="_on_saida_pressed"]
+[connection signal="pressed" from="Balao1" to="." method="_on_balao_1_pressed"]
+[connection signal="pressed" from="Balao2" to="." method="_on_balao_2_pressed"]
+[connection signal="pressed" from="Balao3" to="." method="_on_balao_3_pressed"]

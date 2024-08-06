@@ -1,0 +1,120 @@
+[gd_scene load_steps=15 format=3 uid="uid://doqpickhbibsx"]
+
+[ext_resource type="Script" path="res://balneario.gd" id="1_js21y"]
+[ext_resource type="Texture2D" uid="uid://im6djd27cgas" path="res://img/cenario/balneario/balneario-cena1A.png" id="2_qvboi"]
+[ext_resource type="Texture2D" uid="uid://de5n0eqdi465i" path="res://img/cenario/balneario/senhora.png" id="2_xbuj5"]
+[ext_resource type="Texture2D" uid="uid://dwtpytvfpas2a" path="res://img/cenario/balneario/chao-cena1A.png" id="3_5b2h3"]
+[ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="4_s4g8n"]
+[ext_resource type="Texture2D" uid="uid://cfgpovi8255d7" path="res://img/cenario/balneario/guarda-sol.png" id="6_d1tob"]
+[ext_resource type="Texture2D" uid="uid://dun5sumea0me" path="res://img/cenario/balneario/porta.png" id="7_dsvga"]
+[ext_resource type="Texture2D" uid="uid://dlou21knliyvf" path="res://img/cenario/balneario/retorno.png" id="8_0txry"]
+[ext_resource type="Texture2D" uid="uid://b478ifmjehrps" path="res://img/cenario/balneario/fonte.png" id="9_2sxvp"]
+[ext_resource type="Texture2D" uid="uid://boh8n0oq7eexu" path="res://img/cenario/balneario/lua.png" id="10_tibdl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mb0g3"]
+radius = 93.0
+height = 326.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajpor"]
+size = Vector2(1296, 496)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yca5o"]
+radius = 116.719
+height = 496.396
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmkwn"]
+size = Vector2(665.006, 197)
+
+[node name="Balneario" type="Node2D"]
+script = ExtResource("1_js21y")
+
+[node name="Dialogue" parent="." instance=ExtResource("4_s4g8n")]
+
+[node name="Senhora" type="TextureButton" parent="."]
+z_index = 200
+offset_left = 953.0
+offset_top = 285.0
+offset_right = 1143.0
+offset_bottom = 624.0
+texture_normal = ExtResource("2_xbuj5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Senhora"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Senhora/StaticBody2D"]
+position = Vector2(89, 177)
+shape = SubResource("CapsuleShape2D_mb0g3")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_qvboi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
+position = Vector2(638, 238)
+shape = SubResource("RectangleShape2D_ajpor")
+
+[node name="Chao" type="TextureRect" parent="."]
+offset_left = -2.0
+offset_right = 1278.0
+offset_bottom = 720.0
+texture = ExtResource("3_5b2h3")
+
+[node name="Guardasol" type="TextureRect" parent="."]
+offset_left = 2.0
+offset_top = 388.0
+offset_right = 457.0
+offset_bottom = 720.0
+texture = ExtResource("6_d1tob")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Guardasol"]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Guardasol/StaticBody2D"]
+position = Vector2(212, 178)
+rotation = 2.03505
+shape = SubResource("CapsuleShape2D_yca5o")
+
+[node name="Porta" type="TextureButton" parent="."]
+offset_left = 1180.0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture_normal = ExtResource("7_dsvga")
+
+[node name="Retorno" type="TextureButton" parent="."]
+offset_right = 100.0
+offset_bottom = 720.0
+texture_normal = ExtResource("8_0txry")
+
+[node name="Fonte" type="TextureButton" parent="."]
+offset_left = 92.0
+offset_top = 283.0
+offset_right = 815.0
+offset_bottom = 548.0
+texture_normal = ExtResource("9_2sxvp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Fonte"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fonte/StaticBody2D"]
+position = Vector2(366, 89)
+rotation = -0.226893
+shape = SubResource("RectangleShape2D_qmkwn")
+
+[node name="Lua" type="TextureButton" parent="."]
+offset_left = 913.0
+offset_top = 27.0
+offset_right = 1193.0
+offset_bottom = 293.0
+texture_normal = ExtResource("10_tibdl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Lua"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lua/StaticBody2D"]
+
+[connection signal="pressed" from="Senhora" to="." method="_on_senhora_pressed"]
+[connection signal="pressed" from="Porta" to="." method="_on_porta_pressed"]
+[connection signal="pressed" from="Retorno" to="." method="_on_retorno_pressed"]
+[connection signal="pressed" from="Fonte" to="." method="_on_fonte_pressed"]
+[connection signal="pressed" from="Lua" to="." method="_on_lua_pressed"]

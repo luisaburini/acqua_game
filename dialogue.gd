@@ -55,6 +55,7 @@ func _on_yes_button_pressed():
 	
 func _on_no_button_pressed():
 	pressed_no.emit()
+	hide()
 
 
 func _on_hide_interaction_timer_timeout():

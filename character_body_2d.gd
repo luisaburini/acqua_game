@@ -44,14 +44,12 @@ func _on_sebo_user_can_go_to(pos):
 
 
 func _on_main_reset_pos_direito(pos):
-	print("Reset pos direito")
 	walking = false
 	position.x = pos.x
 	position.y = pos.y
 
 
 func _on_main_reset_pos_esquerdo(pos):
-	print("Reset pos esquerdo")
 	walking = false
 	position.x = pos.x
 	position.y = pos.y
