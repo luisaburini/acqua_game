@@ -9,7 +9,6 @@ var scenario_index = 0
 var rng = RandomNumberGenerator.new()
 var balao_premiado = rng.randi_range(1, 3)
 var baloes_estourados = []
-var andou_no_pedalinho = false
 
 
 var praca_scenarios = ["res://img/cenario/praca/praca-cena1A.png",
@@ -30,6 +29,14 @@ var chao_praca = ["res://img/cenario/praca/chao-cena1A.png",
 func _ready():
 	$Dialogue.hide()
 	update_objs_state(0)
+	
+func reset():
+	scenario_index = 0
+	rng = RandomNumberGenerator.new()
+	balao_premiado = rng.randi_range(1, 3)
+	baloes_estourados = []
+	$Inventory.reset()
+	$Dialogue.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -144,7 +151,6 @@ func _on_porta_pressed():
 
 
 func _on_retorno_pressed():
-	scenario_index
 	go_back_scene.emit()
 
 
@@ -154,7 +160,6 @@ func _on_sr_pedalinho_pressed():
 		$Inventory.add_item("pedalinho")
 	else:
 		$Dialogue.change_label("Para andar no pedalinho é necessário ter o bilhete.")
-		go_to_next_scene.emit()
 	$Dialogue.change_texture("res://img/cenario/praca/pedalinho.png")
 	$Dialogue.show()
 	$Dialogue.hide_interaction()

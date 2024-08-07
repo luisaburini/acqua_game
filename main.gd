@@ -13,6 +13,7 @@ func _ready():
 	for loc in locations:
 		var loc_node = get_node(loc)
 		loc_node.hide()
+		loc_node.reset()
 	$CityMap.hide()
 	$HUDMusic.play()
 	$HUD.show()
@@ -51,6 +52,7 @@ func _on_player_limite_esquerdo():
 
 func _on_sebo_leave():
 	$Sebo.hide()
+	$SeboMusic.stop()
 	$CityMap.show()
 
 
@@ -113,6 +115,7 @@ func _on_city_map_pressed_balneario():
 
 func _on_praca_leave():
 	$Praca.hide()
+	$PracaMusic.stop()
 	$CityMap.show()
 
 
@@ -142,4 +145,15 @@ func _on_balneario_music_finished():
 
 func _on_balneario_leave():
 	$Balneario.hide_all()
+	$BalnearioMusic.stop()
 	$Fim.show()
+
+
+func _on_reset_pressed():
+	current_location = 0	
+	$SeboMusic.stop()
+	$PracaMusic.stop()
+	$BalnearioMusic.stop()
+	$HUDMusic.stop()
+	_ready()
+	new_game()

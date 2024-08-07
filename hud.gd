@@ -7,7 +7,6 @@ signal start_game
 func _ready():
 	pass # Replace with function body.
 
-
 func show_message(text):
 	$Message.text = text
 	$Message.show()

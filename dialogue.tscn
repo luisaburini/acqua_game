@@ -13,17 +13,17 @@ script = ExtResource("1_nq3vc")
 wait_time = 5.0
 
 [node name="TouchYesButton" type="TouchScreenButton" parent="."]
-z_index = 100
+z_index = 4096
 position = Vector2(750, 500)
 texture_normal = ExtResource("3_gelhn")
 
 [node name="TouchNoButton" type="TouchScreenButton" parent="."]
-z_index = 100
+z_index = 4096
 position = Vector2(410, 500)
 texture_normal = ExtResource("4_2fred")
 
 [node name="TextureButton" type="TextureButton" parent="."]
-z_index = 100
+z_index = 4096
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -34,7 +34,7 @@ offset_bottom = 287.0
 grow_horizontal = 2
 
 [node name="Label" type="Label" parent="."]
-z_index = 100
+z_index = 4096
 offset_left = 365.0
 offset_top = 340.0
 offset_right = 914.0

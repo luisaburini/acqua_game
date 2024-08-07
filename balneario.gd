@@ -24,9 +24,16 @@ var chao_balneario = ["res://img/cenario/balneario/chao-cena1A.png",
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Lua.hide()
 	$Dialogue.hide()
 	update_objs_state(0)
 
+func reset():
+	scenario_index = 0
+	$Inventory.reset()
+	$Lua.hide()
+	$Dialogue.hide()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -34,6 +41,7 @@ func _process(delta):
 
 func start():
 	show()
+	$Lua.hide()
 	update_objs_state(0)
 
 func get_objs():
@@ -42,7 +50,7 @@ func get_objs():
 		["Senhora"],
 		[""],
 		[""],
-		[""],
+		["Placa"],
 		["Fonte"],
 	]
 	
@@ -112,14 +120,15 @@ func _on_senhora_pressed():
 	$Dialogue.show()
 	$Dialogue.hide_interaction()
 	$Dialogue.start_hide_timer()
+	$Inventory.add_item("senhora")
 	
 var start_positions = [ 	
-	Vector2(350, 600),
-	Vector2(350, 500),
-	Vector2(350, 500),
-	Vector2(350, 500),
-	Vector2(350, 500),
-	Vector2(350, 500) 
+	Vector2(600, 500),
+	Vector2(600, 500),
+	Vector2(600, 500),
+	Vector2(400, 500),
+	Vector2(600, 500),
+	Vector2(600, 500) 
 ]
 	
 func get_start_position():
@@ -139,13 +148,30 @@ func  get_return_position():
 
 
 func _on_fonte_pressed():
-	$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
-	$Dialogue.change_label("Enchendo a garrafa...")
+	if is_completed():
+		$Lua.show()
+		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
+		$Dialogue.change_label("Enchendo a garrafa...")
+	else:
+		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
+		$Dialogue.change_label("Ainda tem coisa para fazer...")
 	$Dialogue.show()
 	$Dialogue.hide_interaction()
 	$Dialogue.start_hide_timer()
-	$Lua.show()
-
 
 func _on_lua_pressed():
 	leave.emit()
+	
+func is_completed():
+	var interagiu_com_senhora = $Inventory.check_if_item_exists("senhora")
+	var leu_placa = $Inventory.check_if_item_exists("placa")
+	return interagiu_com_senhora and leu_placa
+
+
+func _on_placa_pressed():
+	$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
+	$Dialogue.change_label("A água consumida na missão Apollo 11 era brasileira.")
+	$Dialogue.show()
+	$Dialogue.hide_interaction()
+	$Dialogue.start_hide_timer()
+	$Inventory.add_item("placa")

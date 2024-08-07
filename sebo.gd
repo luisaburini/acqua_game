@@ -46,6 +46,12 @@ func _ready():
 	$Dialogue.hide()
 	$Dialogue.hide_interaction()
 
+func reset():
+	scenario_index = 0
+	played_vinyl = false
+	$Inventory.reset()
+	$Dialogue.hide()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

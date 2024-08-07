@@ -79,9 +79,9 @@ shape = SubResource("CapsuleShape2D_aydxi")
 
 [node name="SrPedalinho" type="TextureButton" parent="."]
 z_index = 16
-offset_left = 935.0
+offset_left = 773.0
 offset_top = 217.0
-offset_right = 1093.0
+offset_right = 931.0
 offset_bottom = 567.0
 mouse_default_cursor_shape = 16
 texture_normal = ExtResource("1_r65fp")
@@ -112,17 +112,19 @@ shape = SubResource("CapsuleShape2D_24lke")
 
 [node name="Retorno" type="TextureButton" parent="."]
 z_index = 1000
-offset_top = -1.0
-offset_right = 33.0
-offset_bottom = 719.0
+offset_left = -21.0
+offset_top = 353.0
+offset_right = 129.0
+offset_bottom = 503.0
 mouse_force_pass_scroll_events = false
 texture_normal = ExtResource("7_6jmfg")
 
 [node name="Porta" type="TextureButton" parent="."]
 z_index = 1000
-offset_left = 1180.0
-offset_right = 1280.0
-offset_bottom = 720.0
+offset_left = 1163.0
+offset_top = 344.0
+offset_right = 1313.0
+offset_bottom = 494.0
 mouse_force_pass_scroll_events = false
 texture_normal = ExtResource("6_vcmb7")
 

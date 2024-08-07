@@ -1,7 +1,10 @@
 # AcquaGame
 
 ## Fase 1 - Sebo
-Livro mágico do Sebo do Ismael
+Tela 1 - Coleta livro mágico do Sebo com Ismael
+Tela 3 - Coleta vinyl 
+Tela 2 - Bota pra tocar o vinyl 
+Tela 4 - Saida
 
 
 ## Fase 2 - Praça 

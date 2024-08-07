@@ -42,4 +42,12 @@ position = Vector2(783, 455)
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("4_opq0t")
 
+[node name="Label" type="Label" parent="."]
+offset_top = 20.0
+offset_right = 1284.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("1_3l1xg")
+theme_override_font_sizes/font_size = 73
+text = "Conheça a cidade de Águas de Lindóia"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_touch_screen_button_pressed"]

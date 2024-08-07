@@ -4,6 +4,9 @@ enum ITEM_TYPE {vinyl, livro_magico, pagina_morro, pagina_praca}
 
 var items_list = []
 
+func reset():
+	items_list = []
+
 func add_item(item):
 	items_list.append(item)
 		
