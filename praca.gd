@@ -229,7 +229,7 @@ func _on_sapo_pressed():
 	if $Inventory.check_if_item_exists("bilhete") and $Inventory.check_if_item_exists("pedalinho"):
 		$Inventory.add_item("garrafa")
 		$Dialogue.change_texture("res://img/cenario/praca/garrafa.png")
-		$Dialogue.change_label("Leve essa garrafa adiante!")	
+		$Dialogue.change_label("Vá até o balneário e\nencha essa garrafa,\nnossos astronautas estão com sede.")	
 	else:
 		$Dialogue.change_texture("res://img/cenario/praca/sapo-detalhe.png")
 		$Dialogue.change_label("Ainda tem coisa pra fazer aqui...")	

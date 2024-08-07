@@ -116,7 +116,7 @@ func _on_porta_pressed():
 
 func _on_senhora_pressed():
 	$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
-	$Dialogue.change_label("Você já tem a garrafa, agora só falta a água.\nOnde poderia estar?")
+	$Dialogue.change_label("Você já tem a garrafa,\nagora só falta a água.\nOnde poderia estar?")
 	$Dialogue.show()
 	$Dialogue.hide_interaction()
 	$Dialogue.start_hide_timer()
@@ -170,7 +170,7 @@ func is_completed():
 
 func _on_placa_pressed():
 	$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
-	$Dialogue.change_label("A água consumida na missão Apollo 11 era brasileira.")
+	$Dialogue.change_label("Temos muito orgulho de ter matado a sede\ndos astronautas da missão Apollo 11.")
 	$Dialogue.show()
 	$Dialogue.hide_interaction()
 	$Dialogue.start_hide_timer()

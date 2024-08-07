@@ -117,9 +117,9 @@ position = Vector2(123, 159)
 shape = SubResource("RectangleShape2D_7s5ag")
 
 [node name="Porta" type="TextureButton" parent="."]
-offset_left = 1173.0
+offset_left = 1159.0
 offset_top = 257.0
-offset_right = 1323.0
+offset_right = 1309.0
 offset_bottom = 407.0
 texture_normal = ExtResource("7_dsvga")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://csx22cryo0iv0"]
+[gd_scene load_steps=15 format=3 uid="uid://csx22cryo0iv0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ufh4c"]
 [ext_resource type="PackedScene" uid="uid://b2mryi4ci1g35" path="res://hud.tscn" id="3_4u6pc"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://doqpickhbibsx" path="res://balneario.tscn" id="11_7mojm"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="11_q3g2q"]
 [ext_resource type="Texture2D" uid="uid://d3okdu2d10qc1" path="res://img/fim.png" id="12_o4f8d"]
+[ext_resource type="FontFile" uid="uid://gg6nhd2pel50" path="res://fonts/iknowaghost.ttf" id="12_ywc2t"]
 [ext_resource type="Texture2D" uid="uid://8yd5nesb4cdw" path="res://img/reset.png" id="13_16pxi"]
 [ext_resource type="PackedScene" uid="uid://dpe24lml0sq6u" path="res://city_map.tscn" id="13_p82sj"]
 
@@ -60,6 +61,16 @@ offset_top = 365.0
 offset_right = 405.0
 offset_bottom = 486.0
 texture_normal = ExtResource("13_16pxi")
+
+[node name="Label" type="Label" parent="Fim"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 637.0
+offset_right = 1252.0
+offset_bottom = 708.0
+theme_override_fonts/font = ExtResource("12_ywc2t")
+theme_override_font_sizes/font_size = 70
+text = "Obrigado por ajudar os astronautas!"
 
 [node name="Player" parent="." instance=ExtResource("7_kkwop")]
 z_index = 4000

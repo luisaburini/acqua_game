@@ -30,7 +30,7 @@ radius = 40.0
 height = 262.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_24lke"]
-radius = 89.0
+radius = 55.576
 height = 340.261
 
 [node name="Praca" type="Node2D"]
@@ -79,10 +79,10 @@ shape = SubResource("CapsuleShape2D_aydxi")
 
 [node name="SrPedalinho" type="TextureButton" parent="."]
 z_index = 16
-offset_left = 773.0
-offset_top = 217.0
-offset_right = 931.0
-offset_bottom = 567.0
+offset_left = 970.0
+offset_top = 243.0
+offset_right = 1128.0
+offset_bottom = 593.0
 mouse_default_cursor_shape = 16
 texture_normal = ExtResource("1_r65fp")
 
@@ -96,17 +96,17 @@ position = Vector2(-36, -70)
 shape = SubResource("CapsuleShape2D_fpmm5")
 
 [node name="Sapo" type="TextureButton" parent="."]
-offset_left = 191.0
-offset_top = 129.0
-offset_right = 541.0
-offset_bottom = 292.0
+offset_left = 110.0
+offset_top = 198.0
+offset_right = 460.0
+offset_bottom = 361.0
 texture_normal = ExtResource("5_en60o")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sapo"]
 position = Vector2(617, 186)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sapo/StaticBody2D"]
-position = Vector2(-437, -101)
+position = Vector2(-437, -92)
 rotation = 1.43641
 shape = SubResource("CapsuleShape2D_24lke")
 

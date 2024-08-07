@@ -22,6 +22,7 @@ func new_game():
 	$Fim.hide()
 	$Dialogue.hide()
 	$HUDMusic.stop()
+	$HUD.hide_all()
 	$SeboMusic.play()
 	$Praca.hide_all()
 	$Balneario.hide_all()

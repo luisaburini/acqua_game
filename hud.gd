@@ -8,8 +8,8 @@ func _ready():
 	pass # Replace with function body.
 
 func show_message(text):
-	$Message.text = text
 	$Message.show()
+	$Label.show()
 	$MessageTimer.start()
 	
 func show_game_over():
@@ -26,8 +26,18 @@ func show_game_over():
 
 func _on_message_timer_timeout():
 	$Message.hide()
+	$Label.hide()
+	print("HUD: HIDE LABEL<<<--------------------------")
+	
+func hide_all():
+	$Message.hide()
+	$TextureRect.hide()
+	$StartButton.hide()
+	$Label.hide()
+	hide()
 
 func _on_touch_screen_button_pressed():
 	$StartButton.hide()
 	$TextureRect.hide()
+	$Label.hide()
 	start_game.emit()
