@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://csx22cryo0iv0"]
+[gd_scene load_steps=17 format=3 uid="uid://csx22cryo0iv0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ufh4c"]
 [ext_resource type="PackedScene" uid="uid://b2mryi4ci1g35" path="res://hud.tscn" id="3_4u6pc"]
@@ -14,6 +14,8 @@
 [ext_resource type="FontFile" uid="uid://gg6nhd2pel50" path="res://fonts/iknowaghost.ttf" id="12_ywc2t"]
 [ext_resource type="Texture2D" uid="uid://8yd5nesb4cdw" path="res://img/reset.png" id="13_16pxi"]
 [ext_resource type="PackedScene" uid="uid://dpe24lml0sq6u" path="res://city_map.tscn" id="13_p82sj"]
+[ext_resource type="AudioStream" uid="uid://br3s0cadfqmtn" path="res://sounds/atmosfera lua.wav" id="15_cf5ru"]
+[ext_resource type="AudioStream" uid="uid://drpr7ny4uujq3" path="res://sounds/som et.wav" id="16_ebr23"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ufh4c")
@@ -22,34 +24,45 @@ script = ExtResource("1_ufh4c")
 wait_time = 2.0
 one_shot = true
 
-[node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(700, 550)
-
 [node name="HUD" parent="." instance=ExtResource("3_4u6pc")]
 visible = false
 
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(700, 550)
+
 [node name="HUDMusic" type="AudioStreamPlayer2D" parent="."]
+visible = false
 stream = ExtResource("3_m6cy0")
 
 [node name="CityMap" parent="." instance=ExtResource("13_p82sj")]
 visible = false
 
-[node name="SeboMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_eip3a")
-
-[node name="PracaMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_v6yaw")
-
-[node name="BalnearioMusic" type="AudioStreamPlayer2D" parent="."]
-
 [node name="Sebo" parent="." instance=ExtResource("8_rqt1b")]
 layer = -2
 
+[node name="SeboMusic" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("3_eip3a")
+
 [node name="Praca" parent="." instance=ExtResource("7_s7ujm")]
+visible = false
+
+[node name="PracaMusic" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("10_v6yaw")
+
+[node name="PracaPosition" type="Marker2D" parent="."]
+position = Vector2(550, 650)
 
 [node name="Balneario" parent="." instance=ExtResource("11_7mojm")]
+visible = false
+
+[node name="BalnearioMusic" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("3_m6cy0")
 
 [node name="Fim" type="TextureRect" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("12_o4f8d")
@@ -72,12 +85,24 @@ theme_override_fonts/font = ExtResource("12_ywc2t")
 theme_override_font_sizes/font_size = 70
 text = "Obrigado por ajudar os astronautas!"
 
+[node name="FimMusic" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("15_cf5ru")
+
+[node name="EtMusic" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("16_ebr23")
+
 [node name="Player" parent="." instance=ExtResource("7_kkwop")]
 z_index = 4000
 position = Vector2(700, 550)
 scale = Vector2(0.1, 0.1)
 
 [node name="Dialogue" parent="." instance=ExtResource("11_q3g2q")]
+
+[node name="BalnearioPosition" type="Marker2D" parent="."]
+position = Vector2(550, 600)
+metadata/_edit_lock_ = true
 
 [connection signal="reset_pos_direito" from="." to="Player" method="_on_main_reset_pos_direito"]
 [connection signal="reset_pos_esquerdo" from="." to="Player" method="_on_main_reset_pos_esquerdo"]
@@ -86,22 +111,20 @@ scale = Vector2(0.1, 0.1)
 [connection signal="pressed_balneario" from="CityMap" to="." method="_on_city_map_pressed_balneario"]
 [connection signal="pressed_praca" from="CityMap" to="." method="_on_city_map_pressed_praca"]
 [connection signal="pressed_sebo" from="CityMap" to="." method="_on_city_map_pressed_sebo"]
-[connection signal="finished" from="SeboMusic" to="." method="_on_sebo_music_finished"]
-[connection signal="finished" from="PracaMusic" to="." method="_on_praca_music_finished"]
-[connection signal="finished" from="BalnearioMusic" to="." method="_on_balneario_music_finished"]
 [connection signal="go_back_scene" from="Sebo" to="." method="_on_sebo_go_back_scene"]
 [connection signal="go_to_next_scene" from="Sebo" to="." method="_on_sebo_go_to_next_scene"]
 [connection signal="leave" from="Sebo" to="." method="_on_sebo_leave"]
 [connection signal="stop_music" from="Sebo" to="." method="_on_sebo_stop_music"]
-[connection signal="user_can_go_to" from="Sebo" to="Player" method="_on_sebo_user_can_go_to"]
+[connection signal="user_can_go_to" from="Sebo" to="." method="_on_sebo_user_can_go_to"]
+[connection signal="finished" from="SeboMusic" to="." method="_on_sebo_music_finished"]
 [connection signal="go_back_scene" from="Praca" to="." method="_on_praca_go_back_scene"]
 [connection signal="go_to_next_scene" from="Praca" to="." method="_on_praca_go_to_next_scene"]
 [connection signal="leave" from="Praca" to="." method="_on_praca_leave"]
-[connection signal="user_can_go_to" from="Praca" to="Player" method="_on_praca_user_can_go_to"]
+[connection signal="finished" from="PracaMusic" to="." method="_on_praca_music_finished"]
 [connection signal="go_back_scene" from="Balneario" to="." method="_on_balneario_go_back_scene"]
 [connection signal="go_to_next_scene" from="Balneario" to="." method="_on_balneario_go_to_next_scene"]
 [connection signal="leave" from="Balneario" to="." method="_on_balneario_leave"]
+[connection signal="finished" from="BalnearioMusic" to="." method="_on_balneario_music_finished"]
 [connection signal="pressed" from="Fim/Reset" to="." method="_on_reset_pressed"]
 [connection signal="limite_direito" from="Player" to="." method="_on_player_limite_direito"]
 [connection signal="limite_esquerdo" from="Player" to="." method="_on_player_limite_esquerdo"]
-[connection signal="user_clicked" from="Player" to="Sebo" method="_on_player_user_clicked"]

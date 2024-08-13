@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://gg6nhd2pel50" path="res://fonts/iknowaghost.ttf" id="1_3l1xg"]
 [ext_resource type="Script" path="res://hud.gd" id="1_lesg7"]
 [ext_resource type="Texture2D" uid="uid://qp2c13sqenqp" path="res://img/tela_inicial.jpg" id="3_c2hin"]
-[ext_resource type="Texture2D" uid="uid://dsb76eo1ib74d" path="res://img/capybara-ismael.png" id="4_opq0t"]
+[ext_resource type="Texture2D" uid="uid://dsb76eo1ib74d" path="res://img/capybara.png" id="4_opq0t"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_lesg7")

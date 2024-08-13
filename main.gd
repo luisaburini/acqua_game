@@ -14,7 +14,7 @@ func _ready():
 		var loc_node = get_node(loc)
 		loc_node.hide()
 		loc_node.reset()
-	$CityMap.hide()
+	$CityMap.end()
 	$HUDMusic.play()
 	$HUD.show()
 
@@ -27,20 +27,20 @@ func new_game():
 	$Praca.hide_all()
 	$Balneario.hide_all()
 	$Sebo.start()
-	$HUD.show_message("")	
 	$Player.start($StartPosition.position)
 
 func get_current_location_node():
 	var location = locations[current_location]
-	print("Main: " + location)
+	print("Main: get_current location node " + location)
 	return get_node(location)
 	
 	
 
 func _on_player_limite_direito():
 	var loc = get_current_location_node()
-	if not $Player.is_walking() and loc != null:
+	if loc != null:
 		loc.update_objs_state(+1)
+		print(loc.get_start_position())
 		reset_pos_direito.emit(loc.get_start_position())
 
 
@@ -52,9 +52,9 @@ func _on_player_limite_esquerdo():
 
 
 func _on_sebo_leave():
-	$Sebo.hide()
+	$Sebo.end()
 	$SeboMusic.stop()
-	$CityMap.show()
+	$CityMap.start()
 
 
 func _on_sebo_stop_music():
@@ -62,12 +62,13 @@ func _on_sebo_stop_music():
 
 
 func _on_city_map_pressed_sebo():
-	$CityMap.hide()
+	$CityMap.end()
 	$Sebo.show()
 	current_location = 0
 
 
 func _on_sebo_go_to_next_scene():
+	print("SEBO GO TO NEXT SCENE")
 	_on_player_limite_direito()
 	
 func _on_sebo_go_back_scene():
@@ -76,12 +77,13 @@ func _on_sebo_go_back_scene():
 
 func _on_city_map_pressed_praca():
 	if $Sebo.is_completed():
+		print("STARTING PRACA")
+		$Player.start($PracaPosition.position)
+		$Player.show()
 		current_location = 1
-		$CityMap.hide()
+		$CityMap.end()
 		$PracaMusic.play()
 		$Praca.start()
-		$Player.show()
-		$Player.start($StartPosition.position)
 	else:
 		$Dialogue.change_label("Tem coisa para fazer no sebo! Volta lá!")
 		$Dialogue.change_texture("res://img/sebo-detalhe.png")
@@ -91,21 +93,23 @@ func _on_city_map_pressed_praca():
 
 
 func _on_praca_go_back_scene():
+	print("On praca go back scene")
 	_on_player_limite_esquerdo()
 
 
 func _on_praca_go_to_next_scene():
+	print("On praca go next scene")
 	_on_player_limite_direito()
 
 
 func _on_city_map_pressed_balneario():
 	if $Praca.is_completed():
-		$CityMap.hide()
+		$CityMap.end()
+		current_location = 2
 		$BalnearioMusic.play()
 		$Balneario.start()
+		$Player.start($BalnearioPosition.position)
 		$Player.show()
-		current_location = 2
-		$Player.start($StartPosition.position)
 	else:
 		$Dialogue.change_label("Tem coisa para fazer na praça! Volta lá!")
 		$Dialogue.change_texture("res://img/praca-adhemar-de-barros.jpg")
@@ -115,9 +119,10 @@ func _on_city_map_pressed_balneario():
 
 
 func _on_praca_leave():
-	$Praca.hide()
+	print("PRACA LEAVE")
+	$Praca.end()
 	$PracaMusic.stop()
-	$CityMap.show()
+	$CityMap.start()
 
 
 func _on_balneario_go_back_scene():
@@ -148,6 +153,8 @@ func _on_balneario_leave():
 	$Balneario.hide_all()
 	$BalnearioMusic.stop()
 	$Fim.show()
+	$FimMusic.play()
+	$EtMusic.play()
 
 
 func _on_reset_pressed():
@@ -156,5 +163,11 @@ func _on_reset_pressed():
 	$PracaMusic.stop()
 	$BalnearioMusic.stop()
 	$HUDMusic.stop()
+	$FimMusic.stop()
+	$EtMusic.stop()
 	_ready()
 	new_game()
+
+func _unhandled_input(event):
+	if event is InputEventScreenTouch and event.pressed == true:
+		$Player.walk_to_position(event.position)

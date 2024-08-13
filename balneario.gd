@@ -54,14 +54,23 @@ func get_objs():
 		["Fonte"],
 	]
 	
+
 func hide_all():
-	print("Balneario: Hide all")
 	var objs = get_objs()
-	var si = scenario_index
-	scenario_index = 1000
-	update_objs_state(0)
-	scenario_index = si
-	
+	for i in range(len(objs)):
+		for o in objs[i]:
+			var obj = get_node(o)
+			if obj != null:
+				# print("Root Node: "+ o)
+				if check_collision(o):
+					obj.disabled = true
+				for c in obj.get_children():
+					if check_collision(c.get_class()):
+						# print(c.get_class())
+						c.disabled = true
+					for b in c.get_children():
+						if check_collision(b.get_class()):
+							b.disabled = true
 	
 func update_texture():
 	$Dialogue.hide()
@@ -82,29 +91,27 @@ func update_objs_state(limit):
 			if obj != null:
 				if scenario_index == i:
 					obj.show()
-					if check_collision(obj):
+					if check_collision(o):
 						obj.disabled = false
-					print("Balneario: " + obj.get_class()+" update_objs_state")
 					for c in obj.get_children():
-						print("Balneario: " + c.get_class()+" update_objs_state")
-						if check_collision(c):
+						if check_collision(c.get_class()):
 							c.disabled = false
 						for b in c.get_children():
-							if check_collision(b):
+							if check_collision(b.get_class()):
 								b.disabled = false
 				else:
 					obj.hide()
-					if check_collision(obj):
+					if check_collision(o):
 						obj.disabled = true
 					for c in obj.get_children():
-						if check_collision(c):
+						if check_collision(c.get_class()):
 							c.disabled = true
 						for b in c.get_children():
-							if check_collision(b):
+							if check_collision(b.get_class()):
 								b.disabled = true
 
 func check_collision(o):
-	return o.get_class() == "CollisionShape2D" or o.get_class() == "CollisionPolygon2D"
+	return o == "CollisionShape2D" or o == "CollisionPolygon2D"
 
 func _on_retorno_pressed():
 	go_back_scene.emit()
@@ -121,6 +128,7 @@ func _on_senhora_pressed():
 	$Dialogue.hide_interaction()
 	$Dialogue.start_hide_timer()
 	$Inventory.add_item("senhora")
+	$ColetaSound.play()
 	
 var start_positions = [ 	
 	Vector2(600, 500),
@@ -149,6 +157,7 @@ func  get_return_position():
 
 func _on_fonte_pressed():
 	if is_completed():
+		$AguaSound.play()
 		$Lua.show()
 		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
 		$Dialogue.change_label("Enchendo a garrafa...")
@@ -160,6 +169,7 @@ func _on_fonte_pressed():
 	$Dialogue.start_hide_timer()
 
 func _on_lua_pressed():
+	$AguaSound.stop()
 	leave.emit()
 	
 func is_completed():
@@ -175,3 +185,4 @@ func _on_placa_pressed():
 	$Dialogue.hide_interaction()
 	$Dialogue.start_hide_timer()
 	$Inventory.add_item("placa")
+	$ColetaSound.play()

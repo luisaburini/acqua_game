@@ -1,10 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://djgyvbm6dglio"]
+[gd_scene load_steps=44 format=3 uid="uid://djgyvbm6dglio"]
 
 [ext_resource type="Script" path="res://praca.gd" id="1_cpsnw"]
 [ext_resource type="Texture2D" uid="uid://ctvqmhrg5xkhe" path="res://img/cenario/praca/sr-do-pedalinho.png" id="1_r65fp"]
 [ext_resource type="Texture2D" uid="uid://bg3a5uh20xkel" path="res://img/cenario/praca/sr-dos-baloes.png" id="1_xf8u4"]
 [ext_resource type="Texture2D" uid="uid://bci31ox8i5we3" path="res://img/cenario/praca/chao-cena1A.png" id="3_10ar6"]
-[ext_resource type="Texture2D" uid="uid://lm435y0fsaa0" path="res://img/cenario/praca/praca-cena1A.png" id="4_0143s"]
+[ext_resource type="Texture2D" uid="uid://lm435y0fsaa0" path="res://img/cenario/praca/praca-cena1A.png" id="3_i32li"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="5_45i88"]
 [ext_resource type="Texture2D" uid="uid://pgat8brosock" path="res://img/cenario/praca/sapo.png" id="5_en60o"]
 [ext_resource type="Texture2D" uid="uid://4dbwhrjlc3m6" path="res://img/cenario/praca/porta.png" id="6_vcmb7"]
@@ -17,21 +17,86 @@
 [ext_resource type="Texture2D" uid="uid://df6c73m630yov" path="res://img/cenario/praca/balao3.png" id="15_24yf3"]
 [ext_resource type="Texture2D" uid="uid://d0fh2vjrxywua" path="res://img/cenario/praca/balao3-pressed.png" id="16_o0toj"]
 [ext_resource type="PackedScene" uid="uid://46blvwif58os" path="res://inventory.tscn" id="17_hsapi"]
+[ext_resource type="AudioStream" uid="uid://c2jrm4sqeuryy" path="res://sounds/bexiga estourando.wav" id="18_a7s6e"]
+[ext_resource type="AudioStream" uid="uid://jys8fp8cu6ve" path="res://sounds/varios pato.wav" id="19_vtyrt"]
+[ext_resource type="AudioStream" uid="uid://tcsnjxxibcvq" path="res://sounds/pedalinho andando completo.wav" id="20_leak2"]
+[ext_resource type="AudioStream" uid="uid://cjhxrg03d8c48" path="res://sounds/sapo freesound.mp3" id="21_hbmqr"]
+[ext_resource type="AudioStream" uid="uid://x8ex3h5p1h1g" path="res://sounds/mixkit-fairy-arcade-sparkle-866.wav" id="22_ei27n"]
+[ext_resource type="Texture2D" uid="uid://dk73e5x84gq8j" path="res://img/cenario/praca/patos.png" id="24_viruo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_synie"]
-size = Vector2(1262, 511)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkh22"]
+size = Vector2(1304, 292)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qb82f"]
+radius = 28.0
+height = 280.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_myhba"]
+radius = 35.0
+height = 262.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ebhi"]
+radius = 25.5164
+height = 236.091
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k3sx2"]
+radius = 50.9253
+height = 346.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4op8"]
+size = Vector2(1301, 543)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ock3"]
+radius = 87.0
+height = 444.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aydxi"]
 radius = 53.0
-height = 362.0
+height = 296.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uytvl"]
+size = Vector2(1291, 263)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gcd27"]
+radius = 99.0741
+height = 908.051
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6rai3"]
+radius = 109.207
+height = 397.528
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_05mlu"]
+radius = 70.1359
+height = 498.904
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_miv8g"]
+size = Vector2(1270, 516)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_upnfn"]
+radius = 91.0
+height = 332.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fpmm5"]
 radius = 40.0
 height = 262.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o54df"]
+size = Vector2(1292, 298)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_24lke"]
 radius = 55.576
 height = 340.261
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v8nws"]
+radius = 37.0
+height = 610.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rnh0f"]
+radius = 40.0
+height = 470.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cx86i"]
+size = Vector2(138, 227)
 
 [node name="Praca" type="Node2D"]
 script = ExtResource("1_cpsnw")
@@ -50,92 +115,172 @@ offset_left = 2.0
 offset_right = 1282.0
 offset_bottom = 720.0
 mouse_filter = 2
-texture = ExtResource("4_0143s")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
-position = Vector2(640, 256.5)
-shape = SubResource("RectangleShape2D_synie")
+texture = ExtResource("3_i32li")
 
 [node name="Inventory" parent="." instance=ExtResource("17_hsapi")]
 
 [node name="Dialogue" parent="." instance=ExtResource("5_45i88")]
 
-[node name="SrBaloes" type="TextureButton" parent="."]
-z_index = 2
-offset_left = 103.0
-offset_top = 256.0
-offset_right = 277.0
-offset_bottom = 606.0
-texture_normal = ExtResource("1_xf8u4")
+[node name="Obstaculo" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo"]
+position = Vector2(642, 136)
+shape = SubResource("RectangleShape2D_rkh22")
+
+[node name="Arvore1" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arvore1"]
+position = Vector2(422, 395)
+shape = SubResource("CapsuleShape2D_qb82f")
+
+[node name="Arvore2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arvore2"]
+position = Vector2(135, 390)
+shape = SubResource("CapsuleShape2D_myhba")
+
+[node name="Arvore3" type="StaticBody2D" parent="."]
+rotation = -0.226893
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arvore3"]
+position = Vector2(164.631, 438.267)
+rotation = -0.226893
+shape = SubResource("CapsuleShape2D_3ebhi")
+
+[node name="Capivaras" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Capivaras"]
+position = Vector2(979, 394)
+rotation = 1.58476
+shape = SubResource("CapsuleShape2D_k3sx2")
+
+[node name="TextureRect" type="TextureRect" parent="Capivaras"]
+offset_left = 823.0
+offset_top = 328.0
+offset_right = 1142.0
+offset_bottom = 447.0
+
+[node name="Obstaculo2" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo2"]
+position = Vector2(640.5, 261.5)
+shape = SubResource("RectangleShape2D_t4op8")
+
+[node name="SrBaloes" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SrBaloes"]
+position = Vector2(187, 418)
+shape = SubResource("CapsuleShape2D_2ock3")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="SrBaloes"]
-position = Vector2(116, 231)
+position = Vector2(219, 487)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SrBaloes/StaticBody2D"]
 position = Vector2(-35, -78)
 shape = SubResource("CapsuleShape2D_aydxi")
 
-[node name="SrPedalinho" type="TextureButton" parent="."]
+[node name="TextureRect" type="TextureRect" parent="SrBaloes"]
+z_index = 2
+offset_left = 103.0
+offset_top = 256.0
+offset_right = 277.0
+offset_bottom = 606.0
+texture = ExtResource("1_xf8u4")
+
+[node name="Obstaculo3" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo3"]
+position = Vector2(635.5, 121.5)
+shape = SubResource("RectangleShape2D_uytvl")
+
+[node name="Obstaculo31" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo31"]
+position = Vector2(857, 344)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_gcd27")
+
+[node name="Patos" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Patos"]
+position = Vector2(206, 381)
+rotation = 1.01927
+shape = SubResource("CapsuleShape2D_6rai3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Patos"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Patos/StaticBody2D"]
+position = Vector2(219, 322)
+rotation = 1.35787
+shape = SubResource("CapsuleShape2D_05mlu")
+
+[node name="TextureRect" type="TextureRect" parent="Patos"]
+offset_left = 66.0
+offset_top = 282.0
+offset_right = 355.0
+offset_bottom = 502.0
+texture = ExtResource("24_viruo")
+
+[node name="Obstaculo4" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo4"]
+visible = false
+position = Vector2(645, 248)
+shape = SubResource("RectangleShape2D_miv8g")
+
+[node name="SrPedalinho" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SrPedalinho"]
+position = Vector2(1046, 469)
+shape = SubResource("CapsuleShape2D_upnfn")
+
+[node name="TextureRect" type="TextureRect" parent="SrPedalinho"]
 z_index = 16
 offset_left = 970.0
 offset_top = 243.0
 offset_right = 1128.0
 offset_bottom = 593.0
 mouse_default_cursor_shape = 16
-texture_normal = ExtResource("1_r65fp")
+texture = ExtResource("1_r65fp")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="SrPedalinho"]
+[node name="StaticBody2D" type="StaticBody2D" parent="SrPedalinho/TextureRect"]
 z_index = 1
 position = Vector2(116, 242)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SrPedalinho/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SrPedalinho/TextureRect/StaticBody2D"]
 z_index = 2
 position = Vector2(-36, -70)
 shape = SubResource("CapsuleShape2D_fpmm5")
 
-[node name="Sapo" type="TextureButton" parent="."]
+[node name="Obstaculo5" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo5"]
+position = Vector2(636, 139)
+shape = SubResource("RectangleShape2D_o54df")
+
+[node name="Sapo" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sapo"]
+position = Vector2(290, 292)
+rotation = 1.43641
+shape = SubResource("CapsuleShape2D_24lke")
+
+[node name="TextureRect" type="TextureRect" parent="Sapo"]
 offset_left = 110.0
 offset_top = 198.0
 offset_right = 460.0
 offset_bottom = 361.0
-texture_normal = ExtResource("5_en60o")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Sapo"]
-position = Vector2(617, 186)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sapo/StaticBody2D"]
-position = Vector2(-437, -92)
-rotation = 1.43641
-shape = SubResource("CapsuleShape2D_24lke")
-
-[node name="Retorno" type="TextureButton" parent="."]
-z_index = 1000
-offset_left = -21.0
-offset_top = 353.0
-offset_right = 129.0
-offset_bottom = 503.0
-mouse_force_pass_scroll_events = false
-texture_normal = ExtResource("7_6jmfg")
-
-[node name="Porta" type="TextureButton" parent="."]
-z_index = 1000
-offset_left = 1163.0
-offset_top = 344.0
-offset_right = 1313.0
-offset_bottom = 494.0
-mouse_force_pass_scroll_events = false
-texture_normal = ExtResource("6_vcmb7")
-
-[node name="Saida" type="TextureButton" parent="."]
-offset_left = 758.0
-offset_top = 523.0
-offset_right = 1158.0
-offset_bottom = 715.0
-texture_normal = ExtResource("10_kdfbs")
+texture = ExtResource("5_en60o")
 
 [node name="Balao1" type="TextureButton" parent="."]
+visible = false
 z_index = 10
 offset_left = 239.0
 offset_top = 27.0
@@ -145,6 +290,7 @@ texture_normal = ExtResource("11_5qtc8")
 texture_pressed = ExtResource("12_72rim")
 
 [node name="Balao2" type="TextureButton" parent="."]
+visible = false
 z_index = 100
 offset_left = 537.0
 offset_top = 25.0
@@ -154,6 +300,7 @@ texture_normal = ExtResource("13_ff8ba")
 texture_pressed = ExtResource("14_lwes5")
 
 [node name="Balao3" type="TextureButton" parent="."]
+visible = false
 z_index = 100
 offset_left = 832.0
 offset_top = 25.0
@@ -162,14 +309,83 @@ offset_bottom = 356.0
 texture_normal = ExtResource("15_24yf3")
 texture_pressed = ExtResource("16_o0toj")
 
+[node name="Retorno" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Retorno"]
+position = Vector2(55, 436)
+shape = SubResource("CapsuleShape2D_v8nws")
+
+[node name="TextureButton" type="TextureButton" parent="Retorno"]
+z_index = 1000
+offset_left = -21.0
+offset_top = 353.0
+offset_right = 129.0
+offset_bottom = 503.0
+mouse_force_pass_scroll_events = false
+texture_normal = ExtResource("7_6jmfg")
+
+[node name="Porta" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Porta"]
+position = Vector2(1260, 493)
+shape = SubResource("CapsuleShape2D_rnh0f")
+
+[node name="TextureButton" type="TextureButton" parent="Porta"]
+z_index = 1000
+offset_left = 1163.0
+offset_top = 344.0
+offset_right = 1313.0
+offset_bottom = 494.0
+mouse_force_pass_scroll_events = false
+texture_normal = ExtResource("6_vcmb7")
+
+[node name="Saida" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saida"]
+position = Vector2(1089, 602.5)
+shape = SubResource("RectangleShape2D_cx86i")
+
+[node name="TextureRect" type="TextureRect" parent="Saida"]
+offset_left = 1021.0
+offset_top = 483.0
+offset_right = 1169.0
+offset_bottom = 704.0
+texture = ExtResource("10_kdfbs")
+
+[node name="BalaoSound" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("18_a7s6e")
+
+[node name="PatoSound" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("19_vtyrt")
+
+[node name="PedalinhoSound" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("20_leak2")
+
+[node name="SapoSound" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("21_hbmqr")
+
+[node name="ColetaSound" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("22_ei27n")
+
 [connection signal="pressed_yes" from="Dialogue" to="." method="_on_dialogue_pressed_yes"]
-[connection signal="pressed" from="SrBaloes" to="." method="_on_sr_baloes_pressed"]
-[connection signal="focus_entered" from="SrPedalinho" to="." method="_on_sr_pedalinho_focus_entered"]
-[connection signal="pressed" from="SrPedalinho" to="." method="_on_sr_pedalinho_pressed"]
-[connection signal="pressed" from="Sapo" to="." method="_on_sapo_pressed"]
-[connection signal="pressed" from="Retorno" to="." method="_on_retorno_pressed"]
-[connection signal="pressed" from="Porta" to="." method="_on_porta_pressed"]
-[connection signal="pressed" from="Saida" to="." method="_on_saida_pressed"]
+[connection signal="body_entered" from="Capivaras" to="." method="_on_capivaras_body_entered"]
+[connection signal="body_entered" from="SrBaloes" to="." method="_on_sr_baloes_body_entered"]
+[connection signal="body_entered" from="Patos" to="." method="_on_patos_body_entered"]
+[connection signal="body_entered" from="SrPedalinho" to="." method="_on_sr_pedalinho_body_entered"]
+[connection signal="focus_entered" from="SrPedalinho/TextureRect" to="." method="_on_sr_pedalinho_focus_entered"]
+[connection signal="body_entered" from="Sapo" to="." method="_on_sapo_body_entered"]
 [connection signal="pressed" from="Balao1" to="." method="_on_balao_1_pressed"]
 [connection signal="pressed" from="Balao2" to="." method="_on_balao_2_pressed"]
 [connection signal="pressed" from="Balao3" to="." method="_on_balao_3_pressed"]
+[connection signal="body_entered" from="Retorno" to="." method="_on_retorno_body_entered"]
+[connection signal="body_exited" from="Retorno" to="." method="_on_retorno_body_exited"]
+[connection signal="pressed" from="Retorno/TextureButton" to="." method="_on_retorno_pressed"]
+[connection signal="body_entered" from="Porta" to="." method="_on_porta_body_entered"]
+[connection signal="body_exited" from="Porta" to="." method="_on_porta_body_exited"]
+[connection signal="pressed" from="Porta/TextureButton" to="." method="_on_porta_pressed"]
+[connection signal="body_entered" from="Saida" to="." method="_on_saida_body_entered"]

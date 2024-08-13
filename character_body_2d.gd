@@ -6,7 +6,6 @@ var target_position = position
 var clicked_position = position
 signal limite_direito
 signal limite_esquerdo
-signal user_clicked(position)
 
 var screen_size
 var troca_cenario = true
@@ -17,20 +16,21 @@ func _physics_process(delta):
 	if position.distance_to(clicked_position) > 2:
 		target_position = (clicked_position - position).normalized()
 		velocity = target_position * SPEED
-		$AnimatedSprite2D.animation = "walk"
+		if velocity.length() == 0:
+			$AnimatedSprite2D.animation = "idle"
+		else:
+			$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_v = false
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 		$AnimatedSprite2D.play()
 		walking = true
 		move_and_slide()
 	for i in get_slide_collision_count():
-		clicked_position.x = position.x
-		clicked_position.y = position.y
+		walk_to_position(position)
 		
 	
 func start(pos):
-	target_position = pos
-	clicked_position = pos
+	go_to_position(pos)
 	show()
 			
 			
@@ -38,26 +38,22 @@ func _ready():
 	screen_size = get_viewport_rect().size
 
 
-func _on_sebo_user_can_go_to(pos):
-	if not walking:
-		clicked_position = pos
-
-
 func _on_main_reset_pos_direito(pos):
-	walking = false
-	position.x = pos.x
-	position.y = pos.y
+	go_to_position(pos)
 
 
 func _on_main_reset_pos_esquerdo(pos):
-	walking = false
-	position.x = pos.x
-	position.y = pos.y
+	go_to_position(pos)
 
 func is_walking():
 	return walking
 
+func walk_to_position(pos):
+	clicked_position = pos
 
-func _on_praca_user_can_go_to(pos):
-	if not walking:
-		clicked_position = pos
+func go_to_position(pos):
+	walking = false
+	position = pos
+	target_position = pos
+	clicked_position = pos
+	

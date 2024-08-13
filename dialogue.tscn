@@ -16,16 +16,22 @@ offset_bottom = 720.0
 texture = ExtResource("5_o3mks")
 
 [node name="HideInteractionTimer" type="Timer" parent="."]
-wait_time = 5.0
 
-[node name="TouchYesButton" type="TouchScreenButton" parent="."]
+[node name="TouchYesButton" type="TextureButton" parent="."]
+process_priority = 500
 z_index = 4096
-position = Vector2(750, 578)
+offset_left = 750.0
+offset_top = 578.0
+offset_right = 750.0
+offset_bottom = 578.0
 texture_normal = ExtResource("3_gelhn")
 
-[node name="TouchNoButton" type="TouchScreenButton" parent="."]
+[node name="TouchNoButton" type="TextureButton" parent="."]
 z_index = 4096
-position = Vector2(410, 578)
+offset_left = 410.0
+offset_top = 578.0
+offset_right = 410.0
+offset_bottom = 578.0
 texture_normal = ExtResource("4_2fred")
 
 [node name="TextureButton" type="TextureButton" parent="."]
@@ -50,6 +56,7 @@ size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("2_o6e56")
 theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [connection signal="timeout" from="HideInteractionTimer" to="." method="_on_hide_interaction_timer_timeout"]
 [connection signal="pressed" from="TouchYesButton" to="." method="_on_yes_button_pressed"]

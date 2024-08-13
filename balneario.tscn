@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://doqpickhbibsx"]
+[gd_scene load_steps=19 format=3 uid="uid://doqpickhbibsx"]
 
 [ext_resource type="Script" path="res://balneario.gd" id="1_js21y"]
 [ext_resource type="Texture2D" uid="uid://d3mqn633548o7" path="res://img/cenario/balneario/balneario-cena3A.png" id="2_b71yn"]
@@ -12,9 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://boh8n0oq7eexu" path="res://img/cenario/balneario/lua.png" id="10_tibdl"]
 [ext_resource type="PackedScene" uid="uid://46blvwif58os" path="res://inventory.tscn" id="11_5x4vn"]
 [ext_resource type="Texture2D" uid="uid://cxit1wbnrgir" path="res://img/cenario/balneario/placa.png" id="12_c3syb"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajpor"]
-size = Vector2(1296, 496)
+[ext_resource type="AudioStream" uid="uid://c5nx4kmu8ltf1" path="res://sounds/ambiencia agua.wav" id="13_juypa"]
+[ext_resource type="AudioStream" uid="uid://x8ex3h5p1h1g" path="res://sounds/mixkit-fairy-arcade-sparkle-866.wav" id="14_mheyc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yca5o"]
 radius = 116.719
@@ -47,13 +46,6 @@ z_index = -100
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("2_b71yn")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
-position = Vector2(0, -1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
-position = Vector2(638, 238)
-shape = SubResource("RectangleShape2D_ajpor")
 
 [node name="Lua" type="TextureButton" parent="."]
 offset_left = 913.0
@@ -138,6 +130,12 @@ position = Vector2(81, 149)
 shape = SubResource("CapsuleShape2D_mb0g3")
 
 [node name="Dialogue" parent="." instance=ExtResource("4_s4g8n")]
+
+[node name="AguaSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_juypa")
+
+[node name="ColetaSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_mheyc")
 
 [connection signal="pressed" from="Lua" to="." method="_on_lua_pressed"]
 [connection signal="pressed" from="Fonte" to="." method="_on_fonte_pressed"]

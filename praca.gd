@@ -2,8 +2,9 @@ extends Node2D
 
 signal go_to_next_scene
 signal go_back_scene
-signal user_can_go_to(position)
 signal leave
+signal user_can_go_to(position)
+var started = false
 
 var scenario_index = 0
 var rng = RandomNumberGenerator.new()
@@ -44,24 +45,56 @@ func _process(delta):
 
 
 func start():
+	$Porta/TextureButton.hide()
+	$Retorno/TextureButton.hide()
+	scenario_index = 0
+	$Inventory.reset()
 	show()
 	update_objs_state(0)
+	started = true
+	
+	
+func end():
+	started = false
+	var objs = get_objs()
+	for i in range(len(objs)):
+		for o in objs[i]:
+			var obj = get_node(o)
+			if obj != null:
+				obj.hide()
+				for c in obj.get_children():
+					if check_collision(c.get_class()) or is_obstacle(c.get_class()):
+						# print(c.get_class())
+						c.disabled = true
+					for b in c.get_children():
+						if check_collision(b.get_class()):
+							b.disabled = true
+	hide()
 	
 func get_objs():
 		return [
-		[],
-		["SrBaloes"],
-		[],
-		["SrPedalinho"],
-		["Sapo"],
+		["Obstaculo", "Arvore1", "Arvore2", "Arvore3", "Capivaras"],
+		["SrBaloes", "Obstaculo2"],
+		["Obstaculo3", "Obstaculo31", "Patos"],
+		["SrPedalinho", "Obstaculo4"],
+		["Sapo", "Obstaculo5"],
 		["Saida"],
 	]
 	
 func hide_all():
 	var objs = get_objs()
-	var si = scenario_index
-	update_objs_state(1000)
-	scenario_index = si
+	for i in range(len(objs)):
+		for o in objs[i]:
+			var obj = get_node(o)
+			if obj != null:
+				# print("Root Node: "+ o)
+				for c in obj.get_children():
+					if check_collision(c.get_class()):
+						print(c.get_class())
+						c.disabled = true
+					for b in c.get_children():
+						if check_collision(b.get_class()):
+							b.disabled = true
 	
 func update_texture():
 	$Dialogue.hide()
@@ -70,11 +103,19 @@ func update_texture():
 
 
 func update_objs_state(limit):
+	$PedalinhoSound.stop()
+	$PatoSound.stop()
+	
 	scenario_index = abs(scenario_index+limit)
 	scenario_index = scenario_index%len(praca_scenarios)
+	print("Update objs state " + str(scenario_index))
 	
 	update_texture()
+	
 	toggle_visibility_balloons(false)
+	
+	if scenario_index == 2:
+		$PatoSound.play()
 	
 	var objs = get_objs()
 	for i in range(len(objs)):
@@ -82,88 +123,71 @@ func update_objs_state(limit):
 			var obj = get_node(o)
 			if obj != null:
 				if scenario_index == i:
+					print("Root obj " + o)
 					obj.show()
-					if check_collision(obj):
-						obj.disabled = false
-					print("Praca: " + obj.get_class()+" update_objs_state")
 					for c in obj.get_children():
-						print("Praca: " + c.get_class()+" update_objs_state")
-						if check_collision(c):
+						if check_button(c.get_class()):
+							c.hide()
+						if check_collision(c.get_class()):
+							print("Enabled " + c.get_class())
 							c.disabled = false
 						for b in c.get_children():
-							if check_collision(b):
+							if check_collision(b.get_class()):
+								print("Enabled " + b.get_class())
 								b.disabled = false
 				else:
+					print("Root obj " + o)
 					obj.hide()
-					if check_collision(obj):
-						obj.disabled = true
 					for c in obj.get_children():
-						if check_collision(c):
+						if check_collision(c.get_class()):
+							print("Disabled " + c.get_class())
 							c.disabled = true
 						for b in c.get_children():
-							if check_collision(b):
+							if check_collision(b.get_class()):
+								print("Disabled " + b.get_class())
 								b.disabled = true
-					
-func check_collision(o):
-	return o.get_class() == "CollisionShape2D" or o.get_class() == "CollisionPolygon2D"
 
+
+func check_collision(o):
+	# print("Is Collision?" + o + " " + str(o.begins_with("Collision")))
+	return o.begins_with("Collision")
+	
+func is_obstacle(o):
+	# print("Is Obstacle?" + o + " " + str(o.begins_with("Obstaculo") or o.begins_with("Arvore")))
+	return o.begins_with("Obstaculo") or o.begins_with("Arvore")
+	
+func check_button(b):
+	# print("Is Button?" + b + " " + str(b == "TextureButton"))
+	return b == "TextureButton"
 
 var start_positions = [ 	
-	Vector2(350, 500),
-	Vector2(350, 500),
-	Vector2(350, 500),
-	Vector2(350, 500),
-	Vector2(350, 500),
-	Vector2(350, 500) 
+	Vector2(550, 650),
+	Vector2(550, 650),
+	Vector2(550, 650),
+	Vector2(550, 650),
+	Vector2(550, 650),
+	Vector2(550, 650)
 ]
 	
 func get_start_position():
 	return start_positions[scenario_index]
 
 var return_positions = [
-	Vector2(900, 500),
-	Vector2(900, 500),
-	Vector2(900, 500),
-	Vector2(900, 500),
-	Vector2(900, 500),
-	Vector2(900, 500) 
+	Vector2(900, 650),
+	Vector2(900, 650),
+	Vector2(900, 650),
+	Vector2(900, 650),
+	Vector2(900, 650),
+	Vector2(900, 650) 
 ]
 
 func  get_return_position():
-	return return_positions[scenario_index]			
-
-
-func _on_sr_baloes_pressed():
-	if $Inventory.check_if_item_exists("bilhete"):
-		$Dialogue.change_label("Vai lá andar no pedalinho")
-		$Dialogue.change_texture("res://img/cenario/praca/pedalinho.png")
-		$Dialogue.start_hide_timer()
-		$Dialogue.show()
-		$Dialogue.hide_interaction()
-	else:
-		$Dialogue.change_label("Gostaria de estourar bexigas\npara concorrer a um prêmio?")
-		$Dialogue.change_texture("res://img/cenario/praca/baloes.png")
-		$Dialogue.show()
+	return return_positions[scenario_index]	
 	
 
 func _on_porta_pressed():
 	go_to_next_scene.emit()
 
-
-func _on_retorno_pressed():
-	go_back_scene.emit()
-
-
-func _on_sr_pedalinho_pressed():
-	if $Inventory.check_if_item_exists("bilhete"):
-		$Dialogue.change_label("Você tem o bilhete!\nVenha andar no pedalinho.")
-		$Inventory.add_item("pedalinho")
-	else:
-		$Dialogue.change_label("Para andar no pedalinho é necessário ter o bilhete.")
-	$Dialogue.change_texture("res://img/cenario/praca/pedalinho.png")
-	$Dialogue.show()
-	$Dialogue.hide_interaction()
-	$Dialogue.start_hide_timer()
 
 func toggle_visibility_balloons(visible):
 	var balao ="Balao"
@@ -195,9 +219,11 @@ func _on_balao_pressed(numero):
 	baloes_estourados = baloes_estourados + [numero]
 	if str(balao_premiado) == numero:
 		$Inventory.add_item("bilhete")
+		$ColetaSound.play()
 		$Dialogue.change_texture("res://img/cenario/praca/bilhete.png")
 		$Dialogue.change_label("Achou o bilhete premiado!")
 	else:
+		$BalaoSound.play()
 		var balao_estourado = "res://img/cenario/praca/balao" + numero + "-detalhe.png"
 		$Dialogue.change_texture(balao_estourado)
 		$Dialogue.change_label("Nada aqui dentro...")
@@ -211,29 +237,131 @@ func _on_balao_pressed(numero):
 
 func is_completed():
 	var achou_bilhete = $Inventory.check_if_item_exists("bilhete")
+	print("Achou bilhete" + str(achou_bilhete))
 	var achou_garrafa = $Inventory.check_if_item_exists("garrafa")
+	print("Achou garrafa " + str(achou_garrafa))
 	var andou_pedalinho = $Inventory.check_if_item_exists("pedalinho")
+	print("Achou pedalinho " + str(andou_pedalinho))
 	return andou_pedalinho and achou_bilhete and achou_garrafa
 
-func _on_saida_pressed():
-	if is_completed():
-		print("Praca: Pode sair")
-		leave.emit()
-	else:
-		$Dialogue.change_label("Ainda tem coisa pra fazer aqui")
+
+func _on_sr_baloes_body_entered(body):
+	print("Sr Baloes entered, lets see if really should " + str(scenario_index) + " " + str(started))
+	if started and scenario_index == 1 and is_player(body.get_class()):
+		print("Sr Baloes entered")
+		$Dialogue.show()
+		if $Inventory.check_if_item_exists("bilhete"):
+			$Dialogue.change_label("Vai lá andar no pedalinho")
+			$Dialogue.change_texture("res://img/cenario/praca/pedalinho.png")
+			$Dialogue.start_hide_timer()
+			$Dialogue.hide_interaction()
+		else:
+			$Dialogue.change_label("Gostaria de estourar bexigas\npara concorrer a um prêmio?")
+			$Dialogue.change_texture("res://img/cenario/praca/baloes.png")
+			$Dialogue.show()
+
+
+
+
+func _on_retorno_pressed():
+	go_back_scene.emit()
+
+
+func _on_porta_body_entered(body):
+	if started and is_player(body.get_class()):
+		print("Porta entered")
+		$Porta/TextureButton.show()
+
+
+func _on_porta_body_exited(body):
+	if started and is_player(body.get_class()):
+		print("Porta exited")
+		$Porta/TextureButton.hide()
+
+
+func _on_saida_body_entered(body):
+	if started and scenario_index == 5 and is_player(body.get_class()):
+		print("Saida entered")
+		if is_completed():
+			print("COMPLETED!! LEAVING PRACA")
+			leave.emit()
+		else:
+			$Dialogue.change_texture("res://img/cenario/praca/sa")
+			$Dialogue.change_label("Ainda tem coisa pra fazer aqui")
+			$Dialogue.show()
+			$Dialogue.hide_interaction()
+			$Dialogue.start_hide_timer()
+
+
+func is_player(p):
+	return p == "CharacterBody2D"
+
+func _on_sapo_body_entered(body):
+	print("Entered sapo lets see if really " + str(scenario_index) + " " + str(body.get_class()) + " " + str(started))
+	if scenario_index == 4 and started and is_player(body.get_class()):
+		print("Entered sapo")
+		$SapoSound.play()
+		if $Inventory.check_if_item_exists("bilhete") and $Inventory.check_if_item_exists("pedalinho"):
+			$Inventory.add_item("garrafa")
+			$ColetaSound.play()
+			$Dialogue.change_texture("res://img/cenario/praca/garrafa.png")
+			$Dialogue.change_label("Vá até o balneário e\nencha essa garrafa,\nnossos astronautas estão com sede.")	
+		else:
+			$Dialogue.change_texture("res://img/cenario/praca/sapo-detalhe.png")
+			$Dialogue.change_label("Ainda tem coisa pra fazer aqui...")	
+		
+		$Dialogue.start_hide_timer()
+		$Dialogue.show()
+		$Dialogue.hide_interaction()
+
+
+func _on_sr_pedalinho_body_entered(body):
+	if scenario_index == 3 and started and is_player(body.get_class()):
+		print("Entered Sr Pedalinho")
+		if $Inventory.check_if_item_exists("bilhete"):
+			$PedalinhoSound.play()
+			$Dialogue.change_label("Você tem o bilhete!\nVenha andar no pedalinho.")
+			$Inventory.add_item("pedalinho")
+			$ColetaSound.play()
+		else:
+			$Dialogue.change_label("Para andar no pedalinho é necessário ter o bilhete.")
+		$Dialogue.change_texture("res://img/cenario/praca/pedalinho.png")
 		$Dialogue.show()
 		$Dialogue.hide_interaction()
 		$Dialogue.start_hide_timer()
 
-func _on_sapo_pressed():
-	if $Inventory.check_if_item_exists("bilhete") and $Inventory.check_if_item_exists("pedalinho"):
-		$Inventory.add_item("garrafa")
-		$Dialogue.change_texture("res://img/cenario/praca/garrafa.png")
-		$Dialogue.change_label("Vá até o balneário e\nencha essa garrafa,\nnossos astronautas estão com sede.")	
-	else:
-		$Dialogue.change_texture("res://img/cenario/praca/sapo-detalhe.png")
-		$Dialogue.change_label("Ainda tem coisa pra fazer aqui...")	
-	
-	$Dialogue.start_hide_timer()
-	$Dialogue.show()
-	$Dialogue.hide_interaction()
+
+func _on_patos_body_entered(body):
+	print("Entered patos lets see if really " + str(scenario_index) + " " + str(body.get_class()) + " " + str(started))
+	if scenario_index == 2 and is_player(body.get_class()) and started:
+		print("Patos body entered")
+		$Dialogue.change_label("Quaquaraquaqua")
+		$PatoSound.play()
+		$Dialogue.change_texture("res://img/cenario/praca/pato-detalhe.png")
+		$Dialogue.show()
+		$Dialogue.hide_interaction()
+		$Dialogue.start_hide_timer()
+
+
+func _on_retorno_body_entered(body):
+	if started and is_player(body.get_class()):
+		print("Entered retorno")
+		$Retorno/TextureButton.show()
+
+
+func _on_retorno_body_exited(body):
+	if started and is_player(body.get_class()):
+		print("Exited retorno")
+		$Retorno/TextureButton.hide()
+
+
+func _on_capivaras_body_entered(body):
+	print("Capivaras entered, lets see if really should " + str(scenario_index) + " " + str(started) +" "+ body.get_class())
+	if scenario_index == 0 and started and is_player(body.get_class()):
+		print("Capivaras entered")
+		print("Pressed Capys")
+		$Dialogue.change_texture("res://img/capybara.png")
+		$Dialogue.change_label("Siga em frente para obter um presente.\nQuem sabe até onde você pode chegar?")	
+		$Dialogue.start_hide_timer()
+		$Dialogue.show()
+		$Dialogue.hide_interaction()
