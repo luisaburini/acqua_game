@@ -6,7 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://b2qwevhofpq0o" path="res://sounds/trilha aqua game trilha 1 previa.mp3" id="3_m6cy0"]
 [ext_resource type="PackedScene" uid="uid://ds7odrisj6q82" path="res://character_body_2d.tscn" id="7_kkwop"]
 [ext_resource type="PackedScene" uid="uid://djgyvbm6dglio" path="res://praca.tscn" id="7_s7ujm"]
-[ext_resource type="PackedScene" uid="uid://b8wk3pt07sp1m" path="res://sebo.tscn" id="8_rqt1b"]
 [ext_resource type="AudioStream" uid="uid://dk3bhy0mnaro5" path="res://sounds/trilha aqua game 3.wav" id="10_v6yaw"]
 [ext_resource type="PackedScene" uid="uid://doqpickhbibsx" path="res://balneario.tscn" id="11_7mojm"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="11_q3g2q"]
@@ -15,17 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://8yd5nesb4cdw" path="res://img/reset.png" id="13_16pxi"]
 [ext_resource type="PackedScene" uid="uid://dpe24lml0sq6u" path="res://city_map.tscn" id="13_p82sj"]
 [ext_resource type="AudioStream" uid="uid://br3s0cadfqmtn" path="res://sounds/atmosfera lua.wav" id="15_cf5ru"]
+[ext_resource type="PackedScene" uid="uid://b8wk3pt07sp1m" path="res://sebo.tscn" id="16_526j1"]
 [ext_resource type="AudioStream" uid="uid://drpr7ny4uujq3" path="res://sounds/som et.wav" id="16_ebr23"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ufh4c")
 
 [node name="Dialogue" parent="." instance=ExtResource("11_q3g2q")]
-
-[node name="Player" parent="." instance=ExtResource("7_kkwop")]
-z_index = 2000
-position = Vector2(700, 550)
-scale = Vector2(0.1, 0.1)
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -34,7 +29,7 @@ one_shot = true
 [node name="HUD" parent="." instance=ExtResource("3_4u6pc")]
 visible = false
 
-[node name="StartPosition" type="Marker2D" parent="."]
+[node name="SeboPosition" type="Marker2D" parent="."]
 position = Vector2(700, 550)
 
 [node name="HUDMusic" type="AudioStreamPlayer2D" parent="."]
@@ -44,8 +39,7 @@ stream = ExtResource("3_m6cy0")
 [node name="CityMap" parent="." instance=ExtResource("13_p82sj")]
 visible = false
 
-[node name="Sebo" parent="." instance=ExtResource("8_rqt1b")]
-layer = -1
+[node name="Sebo" parent="." instance=ExtResource("16_526j1")]
 
 [node name="SeboMusic" type="AudioStreamPlayer2D" parent="."]
 visible = false
@@ -70,12 +64,12 @@ visible = false
 stream = ExtResource("3_m6cy0")
 
 [node name="Fim" type="TextureRect" parent="."]
-visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("12_o4f8d")
 
 [node name="Reset" type="TouchScreenButton" parent="Fim"]
+position = Vector2(298, 379)
 texture_normal = ExtResource("13_16pxi")
 
 [node name="Label" type="Label" parent="Fim"]
@@ -101,20 +95,23 @@ visible = false
 position = Vector2(550, 600)
 metadata/_edit_lock_ = true
 
+[node name="Player" parent="." instance=ExtResource("7_kkwop")]
+z_index = 2000
+position = Vector2(700, 550)
+scale = Vector2(0.1, 0.1)
+
 [connection signal="reset_pos_direito" from="." to="Player" method="_on_main_reset_pos_direito"]
 [connection signal="reset_pos_esquerdo" from="." to="Player" method="_on_main_reset_pos_esquerdo"]
-[connection signal="limite_direito" from="Player" to="." method="_on_player_limite_direito"]
-[connection signal="limite_esquerdo" from="Player" to="." method="_on_player_limite_esquerdo"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="finished" from="HUDMusic" to="." method="_on_hud_music_finished"]
 [connection signal="pressed_balneario" from="CityMap" to="." method="_on_city_map_pressed_balneario"]
 [connection signal="pressed_praca" from="CityMap" to="." method="_on_city_map_pressed_praca"]
 [connection signal="pressed_sebo" from="CityMap" to="." method="_on_city_map_pressed_sebo"]
+[connection signal="audiodica_finished" from="Sebo" to="." method="_on_sebo_audiodica_finished"]
 [connection signal="go_back_scene" from="Sebo" to="." method="_on_sebo_go_back_scene"]
 [connection signal="go_to_next_scene" from="Sebo" to="." method="_on_sebo_go_to_next_scene"]
 [connection signal="leave" from="Sebo" to="." method="_on_sebo_leave"]
 [connection signal="stop_music" from="Sebo" to="." method="_on_sebo_stop_music"]
-[connection signal="user_can_go_to" from="Sebo" to="." method="_on_sebo_user_can_go_to"]
 [connection signal="finished" from="SeboMusic" to="." method="_on_sebo_music_finished"]
 [connection signal="go_back_scene" from="Praca" to="." method="_on_praca_go_back_scene"]
 [connection signal="go_to_next_scene" from="Praca" to="." method="_on_praca_go_to_next_scene"]
@@ -125,3 +122,5 @@ metadata/_edit_lock_ = true
 [connection signal="leave" from="Balneario" to="." method="_on_balneario_leave"]
 [connection signal="finished" from="BalnearioMusic" to="." method="_on_balneario_music_finished"]
 [connection signal="pressed" from="Fim/Reset" to="." method="_on_reset_pressed"]
+[connection signal="limite_direito" from="Player" to="." method="_on_player_limite_direito"]
+[connection signal="limite_esquerdo" from="Player" to="." method="_on_player_limite_esquerdo"]

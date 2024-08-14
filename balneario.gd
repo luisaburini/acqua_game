@@ -149,7 +149,7 @@ func check_collision(o):
 	return o.begins_with("Collision")
 
 func check_button(b):
-	return b == "TextureButton"
+	return b.ends_with("Button")
 
 func _on_porta_pressed():
 	if started:

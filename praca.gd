@@ -156,7 +156,7 @@ func is_obstacle(o):
 	return o.begins_with("Obstaculo") or o.begins_with("Arvore")
 	
 func check_button(b):
-	return b == "TextureButton"
+	return b.ends_with("Button") 
 
 var start_positions = [ 	
 	Vector2(550, 650),

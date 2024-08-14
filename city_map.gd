@@ -41,8 +41,11 @@ func _on_city_map_music_finished():
 
 func show_button(showing, locations):
 	for loc in locations:
-		var l = get_node("Touch"+loc+"Button")
+		var button = get_node("Touch"+loc+"Button")
+		var label = get_node(loc+"Label")
 		if loc == showing:
-			l.show()
+			button.show()
+			label.show()
 		else:
-			l.hide()
+			label.hide()
+			button.hide()

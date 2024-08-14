@@ -22,12 +22,11 @@ func new_game():
 	$Fim.hide()
 	$Dialogue.hide()
 	$HUDMusic.stop()
-	$HUD.hide_all()
-	$SeboMusic.play()
+	$HUD.hide()
+	$Sebo.hide_all()
 	$Praca.hide_all()
 	$Balneario.hide_all()
-	$Sebo.start()
-	$Player.start($StartPosition.position)
+	$CityMap.start(locations[current_location], locations)
 
 func get_current_location_node():
 	var location = locations[current_location]
@@ -55,6 +54,8 @@ func _on_player_limite_esquerdo():
 func _on_sebo_leave():
 	$Sebo.end()
 	$SeboMusic.stop()
+	current_location = 1
+	print(locations[current_location])
 	$CityMap.start(locations[current_location], locations)
 
 
@@ -64,8 +65,9 @@ func _on_sebo_stop_music():
 
 func _on_city_map_pressed_sebo():
 	$CityMap.end()
-	$Sebo.show()
-	current_location = 0
+	$Player.start($SeboPosition.position)
+	$Player.show()
+	$Sebo.start()
 
 
 func _on_sebo_go_to_next_scene():
@@ -78,11 +80,11 @@ func _on_sebo_go_back_scene():
 func _on_city_map_pressed_praca():
 	if $Sebo.is_completed():
 		print("STARTING PRACA")
-		$Player.start($PracaPosition.position)
-		$Player.show()
 		current_location = 1
 		$CityMap.end()
 		$PracaMusic.play()
+		$Player.start($PracaPosition.position)
+		$Player.show()
 		$Praca.start()
 	else:
 		$Dialogue.change_label("Tem coisa para fazer no sebo! Volta lá!")
@@ -107,9 +109,9 @@ func _on_city_map_pressed_balneario():
 		$CityMap.end()
 		current_location = 2
 		$BalnearioMusic.play()
-		$Balneario.start()
 		$Player.start($BalnearioPosition.position)
 		$Player.show()
+		$Balneario.start()
 	else:
 		$Dialogue.change_label("Tem coisa para fazer na praça! Volta lá!")
 		$Dialogue.change_texture("res://img/praca-adhemar-de-barros.jpg")
@@ -122,6 +124,7 @@ func _on_praca_leave():
 	print("PRACA LEAVE")
 	$Praca.end()
 	$PracaMusic.stop()
+	current_location = 2
 	$CityMap.start(locations[current_location], locations)
 
 
@@ -174,4 +177,8 @@ func _on_reset_pressed():
 
 func _unhandled_input(event):
 	if event is InputEventScreenTouch and event.pressed == true:
-		$Player.walk_to_position(event.position)
+			$Player.walk_to_position(event.position)
+
+
+func _on_sebo_audiodica_finished():
+	$SeboMusic.play()

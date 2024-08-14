@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b8wk3pt07sp1m"]
+[gd_scene load_steps=52 format=3 uid="uid://b8wk3pt07sp1m"]
 
 [ext_resource type="Script" path="res://sebo.gd" id="1_mq8n6"]
 [ext_resource type="Texture2D" uid="uid://dqmbp68266r08" path="res://img/cenario/sebo/estante-sebo2.png" id="2_unok4"]
@@ -68,6 +68,10 @@ height = 542.222
 radius = 108.889
 height = 560.0
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_qti5t"]
+a = Vector2(431, 17)
+b = Vector2(4, 17)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6u35f"]
 radius = 24.0832
 
@@ -104,7 +108,7 @@ size = Vector2(414, 418.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2fre0"]
 size = Vector2(885, 444)
 
-[node name="Sebo" type="CanvasLayer"]
+[node name="Sebo" type="Node2D"]
 script = ExtResource("1_mq8n6")
 
 [node name="Chao" type="TextureRect" parent="."]
@@ -186,6 +190,7 @@ shape = SubResource("RectangleShape2D_yvdkb")
 one_way_collision_margin = 0.0
 
 [node name="Vitrola" type="Area2D" parent="."]
+visible = false
 z_index = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vitrola"]
@@ -281,6 +286,12 @@ shape = SubResource("CapsuleShape2D_lvai5")
 z_index = 115
 position = Vector2(20, 337.778)
 texture_normal = ExtResource("11_lvonl")
+
+[node name="Obstaculo2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo2"]
+position = Vector2(385, 558)
+shape = SubResource("SegmentShape2D_qti5t")
 
 [node name="Vinyl" type="Area2D" parent="."]
 visible = false
@@ -406,6 +417,7 @@ position = Vector2(986, 471)
 shape = SubResource("RectangleShape2D_e4qx2")
 
 [node name="Retorno4" type="Area2D" parent="."]
+visible = false
 position = Vector2(-30, -30)
 
 [node name="TextureRect" type="TextureRect" parent="Retorno4"]
@@ -428,9 +440,10 @@ texture_normal = ExtResource("5_ss7gp")
 position = Vector2(237, 233.75)
 shape = SubResource("RectangleShape2D_cwxw5")
 
-[node name="Obstaculo2" type="StaticBody2D" parent="."]
+[node name="Obstaculo4" type="StaticBody2D" parent="."]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo4"]
 position = Vector2(859.5, 212)
 shape = SubResource("RectangleShape2D_2fre0")
 

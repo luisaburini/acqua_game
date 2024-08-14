@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Node2D
 
 signal leave
 signal stop_music
@@ -100,9 +100,9 @@ func is_completed():
 func get_objs():
 	return [
 		["Ismael", "Porta1", "Obstaculo"],
-		[ "Vitrola", "Porta2", "Estante2", "Estante22" ,"Retorno2"],
+		[ "Vitrola", "Porta2", "Estante2", "Estante22" ,"Retorno2", "Obstaculo2"],
 		["Vinyl", "Porta3", "Estante3", "Retorno3"],
-		["Saida", "Retorno4", "Obstaculo2"]
+		["Saida", "Retorno4", "Obstaculo4"]
 	]
 
 func update_texture():
@@ -128,7 +128,7 @@ func update_objs_state(limit):
 					obj.show()
 					for c in obj.get_children():
 						c.show()
-						print(c.get_class())
+						# print(c.get_class())
 						if check_button(c.get_class()):
 							c.hide()
 						if check_collision(c.get_class()):
@@ -164,7 +164,7 @@ func is_obstacle(o):
 	return o.begins_with("Obstaculo") or o.begins_with("Estante")
 	
 func check_button(b):
-	return b == "TextureButton"
+	return b.ends_with("Button")
 
 func _on_dialogue_pressed_yes():
 	$LivroLongSound.play()
@@ -213,7 +213,6 @@ func _on_retorno_2_body_entered(body):
 
 
 func _on_vinyl_body_entered(body):
-	print("Vinyl entered, lets see if really " + str(scenario_index) + str(started))
 	if scenario_index == 2 and started and is_player(body.get_class()):
 		$ColetaSound.play()
 		$Vinyl.hide()
