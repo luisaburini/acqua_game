@@ -2,28 +2,29 @@ extends Node2D
 
 signal leave
 signal stop_music
-signal user_can_go_to(position)
 signal go_to_next_scene
 signal go_back_scene
 signal audiodica_finished
 
 var scenario_index = 0
 
+
+
 var start_positions = [ 	
-	Vector2(900, 450),
-	Vector2(900, 500),
-	Vector2(290, 450),
-	Vector2(150, 500) 
+	Vector2(900, 650),
+	Vector2(940, 460),
+	Vector2(300, 530),
+	Vector2(150, 580) 
 ]
 	
 func get_start_position():
 	return start_positions[scenario_index]
 
 var return_positions = [
+	Vector2(400, 600),
 	Vector2(900, 660),
-	Vector2(900, 660),
-	Vector2(900, 660),
-	Vector2(900, 660)
+	Vector2(450, 450),
+	Vector2(150, 580)
 ]
 
 func  get_return_position():
@@ -233,9 +234,9 @@ func is_player(p):
 
 
 func _on_vitrola_body_entered(body):
-	print(body.get_class() + " entered vitrola, lets see if really " + str(scenario_index))
+	# print(body.get_class() + " entered vitrola, lets see if really " + str(scenario_index))
 	if scenario_index == 1 and started and is_player(body.get_class()):
-		print("Entered vitrola")
+		# print("Entered vitrola")
 		$Dialogue.show()
 		$Dialogue.hide_interaction()
 		$Dialogue.start_hide_timer()

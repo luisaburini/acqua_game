@@ -288,33 +288,21 @@ visible = false
 position = Vector2(641.5, 128.5)
 shape = SubResource("RectangleShape2D_53q6s")
 
-[node name="Balao1" type="TextureButton" parent="."]
-visible = false
+[node name="Balao1" type="TouchScreenButton" parent="."]
 z_index = 10
-offset_left = 239.0
-offset_top = 27.0
-offset_right = 449.0
-offset_bottom = 358.0
+position = Vector2(234, 32)
 texture_normal = ExtResource("11_5qtc8")
 texture_pressed = ExtResource("12_72rim")
 
-[node name="Balao2" type="TextureButton" parent="."]
-visible = false
+[node name="Balao2" type="TouchScreenButton" parent="."]
 z_index = 100
-offset_left = 537.0
-offset_top = 25.0
-offset_right = 747.0
-offset_bottom = 356.0
+position = Vector2(514, 31)
 texture_normal = ExtResource("13_ff8ba")
 texture_pressed = ExtResource("14_lwes5")
 
-[node name="Balao3" type="TextureButton" parent="."]
-visible = false
+[node name="Balao3" type="TouchScreenButton" parent="."]
 z_index = 100
-offset_left = 832.0
-offset_top = 25.0
-offset_right = 1042.0
-offset_bottom = 356.0
+position = Vector2(768, 31)
 texture_normal = ExtResource("15_24yf3")
 texture_pressed = ExtResource("16_o0toj")
 

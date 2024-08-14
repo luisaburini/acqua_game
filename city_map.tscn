@@ -23,7 +23,8 @@ position = Vector2(730, 73)
 texture_normal = ExtResource("3_jn0u0")
 
 [node name="TouchPracaButton" type="TouchScreenButton" parent="."]
-position = Vector2(583, 371)
+position = Vector2(420, 370)
+scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("5_1bmcs")
 
 [node name="TouchBalnearioButton" type="TouchScreenButton" parent="."]
@@ -46,10 +47,10 @@ theme_override_font_sizes/font_size = 100
 text = "Sebo do Ismael"
 
 [node name="PracaLabel" type="Label" parent="."]
-offset_left = 310.0
-offset_top = 357.0
-offset_right = 560.0
-offset_bottom = 457.0
+offset_left = 624.0
+offset_top = 392.0
+offset_right = 874.0
+offset_bottom = 492.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_knlvy")
 theme_override_font_sizes/font_size = 100

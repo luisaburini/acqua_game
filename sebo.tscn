@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://sebo.gd" id="1_mq8n6"]
 [ext_resource type="Texture2D" uid="uid://dqmbp68266r08" path="res://img/cenario/sebo/estante-sebo2.png" id="2_unok4"]
 [ext_resource type="Texture2D" uid="uid://b3uj1oy6r6xwf" path="res://img/cenario/sebo/estante3-sebo3.png" id="3_dwsj0"]
-[ext_resource type="Texture2D" uid="uid://c386dryicsg03" path="res://img/cenario/sebo/sebo3.png" id="3_y5idx"]
+[ext_resource type="Texture2D" uid="uid://bpmw3b8rvs5xd" path="res://img/cenario/sebo/sebo4.png" id="3_ln3tm"]
 [ext_resource type="Texture2D" uid="uid://leudbm0qttwb" path="res://img/cenario/sebo/porta-sebo2.png" id="5_1wea5"]
 [ext_resource type="Texture2D" uid="uid://c72xje3npegbk" path="res://img/cenario/sebo/porta-sebo3.png" id="5_70ggl"]
 [ext_resource type="Texture2D" uid="uid://c0jxeax1ghys3" path="res://img/cenario/sebo/seta-porta.png" id="5_ss7gp"]
@@ -97,7 +97,7 @@ height = 561.609
 size = Vector2(174, 620)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4qx2"]
-size = Vector2(408, 244)
+size = Vector2(189, 238)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pwhsw"]
 size = Vector2(382, 526)
@@ -124,7 +124,7 @@ offset_left = 7.0
 offset_right = 1287.0
 offset_bottom = 721.0
 mouse_filter = 2
-texture = ExtResource("3_y5idx")
+texture = ExtResource("3_ln3tm")
 
 [node name="Dialogue" parent="." instance=ExtResource("8_vfo1t")]
 
@@ -402,18 +402,18 @@ position = Vector2(1058, 408)
 stream = ExtResource("13_pf0ty")
 
 [node name="Saida" type="Area2D" parent="."]
-visible = false
 z_index = -2
+position = Vector2(-50, 100)
 
 [node name="TextureRect" type="TextureRect" parent="Saida"]
-offset_left = 838.0
-offset_top = 346.0
-offset_right = 986.0
-offset_bottom = 567.0
+offset_left = 889.0
+offset_top = 241.0
+offset_right = 1037.0
+offset_bottom = 462.0
 texture = ExtResource("18_p4o6h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Saida"]
-position = Vector2(986, 471)
+position = Vector2(967, 356)
 shape = SubResource("RectangleShape2D_e4qx2")
 
 [node name="Retorno4" type="Area2D" parent="."]

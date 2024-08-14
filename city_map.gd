@@ -11,13 +11,20 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+var ended = true
 
 func start(location, locations):
+	ended = false
 	$CityMapMusic.play()
 	show_button(location, locations)
 	show()
 	
+func has_ended():
+	return ended
+	
 func end():
+	ended = true
 	$CityMapMusic.stop()
 	hide()
 

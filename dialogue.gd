@@ -15,7 +15,7 @@ func hide():
 	is_hidden = true
 	$TextureRect.hide()
 	$Label.hide()
-	$TextureButton.hide()
+	$Image.hide()
 	$TouchYesButton.hide()
 	$TouchNoButton.hide()
 	
@@ -23,7 +23,7 @@ func show():
 	is_hidden = false
 	$TextureRect.show()
 	$Label.show()
-	$TextureButton.show()
+	$Image.show()
 	$TouchYesButton.show()
 	$TouchNoButton.show()
 
@@ -31,7 +31,7 @@ func change_label(text):
 	$Label.text = text
 
 func change_texture(texture_path):
-	$TextureButton.texture_normal = load(texture_path)
+	$Image.texture = load(texture_path)
 	
 func toggle_visibility():
 	if is_hidden:

@@ -6,9 +6,6 @@ var target_position = position
 var clicked_position = position
 signal limite_direito
 signal limite_esquerdo
-
-var screen_size
-var troca_cenario = true
 var walking = false
 
 func _physics_process(delta):
@@ -26,34 +23,45 @@ func _physics_process(delta):
 		walking = true
 		move_and_slide()
 	for i in get_slide_collision_count():
-		walk_to_position(position)
+		walk_to(position)
 		
 	
 func start(pos):
-	go_to_position(pos)
+	go_to(pos)
 	show()
 			
 			
 func _ready():
-	screen_size = get_viewport_rect().size
+	pass
 
 
 func _on_main_reset_pos_direito(pos):
-	go_to_position(pos)
+	go_to(pos)
 
 
 func _on_main_reset_pos_esquerdo(pos):
-	go_to_position(pos)
+	go_to(pos)
 
 func is_walking():
 	return walking
 
-func walk_to_position(pos):
-	clicked_position = pos
+func walk_to(pos):
+	# print("Walk to position " + str(pos.x) + " " + str(pos.y))
+	clicked_position.x = pos.x
+	clicked_position.y = pos.y
 
-func go_to_position(pos):
-	walking = false
-	position = pos
-	target_position = pos
-	clicked_position = pos
+func go_to(pos):
+	print("Go to position " + str(pos.x) + " " + str(pos.y))
+	
+	target_position.x = pos.x
+	target_position.y = pos.y
+	
+	clicked_position.x = pos.x
+	clicked_position.y = pos.y
+	
+	position.x = pos.x 
+	position.y = pos.y
+	
+	velocity = Vector2(0,0)
+	walking = false		
 	

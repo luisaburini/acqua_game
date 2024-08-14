@@ -2,8 +2,6 @@ extends Node
 
 var locations = ["Sebo", "Praca", "Balneario"]
 var current_location = 0					
-signal reset_pos_esquerdo(pos)
-signal reset_pos_direito(pos)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,7 +12,6 @@ func _ready():
 		var loc_node = get_node(loc)
 		loc_node.hide()
 		loc_node.reset()
-	$CityMap.end()
 	$HUDMusic.play()
 	$HUD.show()
 
@@ -39,16 +36,14 @@ func _on_player_limite_direito():
 	var loc = get_current_location_node()
 	if loc != null:
 		loc.update_objs_state(+1)
-		print(loc.get_start_position())
-		print(loc.get_start_position())
-		reset_pos_direito.emit(loc.get_start_position())
+		$Player.go_to(loc.get_start_position())
 
 
 func _on_player_limite_esquerdo():
 	var loc = get_current_location_node()
 	if loc != null:
 		loc.update_objs_state(-1)
-		reset_pos_esquerdo.emit(loc.get_return_position())
+		$Player.go_to(loc.get_start_position())
 
 
 func _on_sebo_leave():
@@ -65,9 +60,8 @@ func _on_sebo_stop_music():
 
 func _on_city_map_pressed_sebo():
 	$CityMap.end()
-	$Player.start($SeboPosition.position)
-	$Player.show()
 	$Sebo.start()
+	$Player.start($SeboPosition.position)
 
 
 func _on_sebo_go_to_next_scene():
@@ -79,12 +73,10 @@ func _on_sebo_go_back_scene():
 
 func _on_city_map_pressed_praca():
 	if $Sebo.is_completed():
-		print("STARTING PRACA")
 		current_location = 1
 		$CityMap.end()
 		$PracaMusic.play()
 		$Player.start($PracaPosition.position)
-		$Player.show()
 		$Praca.start()
 	else:
 		$Dialogue.change_label("Tem coisa para fazer no sebo! Volta lá!")
@@ -92,7 +84,6 @@ func _on_city_map_pressed_praca():
 		$Dialogue.start_hide_timer()
 		$Dialogue.show()
 		$Dialogue.hide_interaction()
-
 
 func _on_praca_go_back_scene():
 	print("On praca go back scene")
@@ -110,7 +101,6 @@ func _on_city_map_pressed_balneario():
 		current_location = 2
 		$BalnearioMusic.play()
 		$Player.start($BalnearioPosition.position)
-		$Player.show()
 		$Balneario.start()
 	else:
 		$Dialogue.change_label("Tem coisa para fazer na praça! Volta lá!")
@@ -118,7 +108,6 @@ func _on_city_map_pressed_balneario():
 		$Dialogue.start_hide_timer()
 		$Dialogue.show()
 		$Dialogue.hide_interaction()
-
 
 func _on_praca_leave():
 	print("PRACA LEAVE")
@@ -174,11 +163,13 @@ func _on_reset_pressed():
 	$EtMusic.stop()
 	_ready()
 	new_game()
-
-func _unhandled_input(event):
-	if event is InputEventScreenTouch and event.pressed == true:
-			$Player.walk_to_position(event.position)
+		
 
 
 func _on_sebo_audiodica_finished():
 	$SeboMusic.play()
+
+
+func _unhandled_input(event):
+	if event is InputEventScreenTouch and event.pressed == true:
+		$Player.walk_to(event.position)

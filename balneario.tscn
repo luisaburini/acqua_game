@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://balneario.gd" id="1_js21y"]
 [ext_resource type="Texture2D" uid="uid://de5n0eqdi465i" path="res://img/cenario/balneario/senhora.png" id="2_xbuj5"]
 [ext_resource type="Texture2D" uid="uid://dwtpytvfpas2a" path="res://img/cenario/balneario/chao-cena1A.png" id="3_5b2h3"]
-[ext_resource type="Texture2D" uid="uid://dft0pulannwm4" path="res://img/cenario/balneario/balneario-cena2B.png" id="4_0ixu3"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="4_s4g8n"]
+[ext_resource type="Texture2D" uid="uid://im6djd27cgas" path="res://img/cenario/balneario/balneario-cena1A.png" id="5_l1rmk"]
 [ext_resource type="Texture2D" uid="uid://cfgpovi8255d7" path="res://img/cenario/balneario/guarda-sol.png" id="6_d1tob"]
 [ext_resource type="Texture2D" uid="uid://dun5sumea0me" path="res://img/cenario/balneario/porta.png" id="7_dsvga"]
 [ext_resource type="Texture2D" uid="uid://dlou21knliyvf" path="res://img/cenario/balneario/retorno.png" id="8_0txry"]
@@ -100,12 +100,10 @@ texture = ExtResource("3_5b2h3")
 z_index = -100
 offset_right = 1280.0
 offset_bottom = 720.0
-texture = ExtResource("4_0ixu3")
+texture = ExtResource("5_l1rmk")
 
 [node name="Guardasol" type="StaticBody2D" parent="."]
-visible = false
-position = Vector2(2, 500)
-scale = Vector2(0.75, 0.75)
+position = Vector2(2, 400)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Guardasol"]
 position = Vector2(172, 218.667)
@@ -245,7 +243,6 @@ position = Vector2(641, 189.5)
 shape = SubResource("RectangleShape2D_8cjik")
 
 [node name="Fonte" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fonte"]
 position = Vector2(449, 389)
@@ -260,13 +257,13 @@ position = Vector2(352.466, 63.3594)
 rotation = -0.226893
 shape = SubResource("RectangleShape2D_qmkwn")
 
-[node name="TextureRect" type="TextureButton" parent="Fonte"]
+[node name="TextureRect" type="TextureRect" parent="Fonte"]
 z_index = -4
-offset_left = 92.0
-offset_top = 283.0
-offset_right = 815.0
-offset_bottom = 548.0
-texture_normal = ExtResource("9_2sxvp")
+offset_left = 136.0
+offset_top = 272.0
+offset_right = 136.0
+offset_bottom = 272.0
+texture = ExtResource("9_2sxvp")
 
 [node name="Lua" type="TouchScreenButton" parent="."]
 z_index = -3
@@ -286,7 +283,7 @@ shape = SubResource("CapsuleShape2D_3ybyd")
 
 [node name="TextureButton" type="TouchScreenButton" parent="Retorno"]
 z_index = -2
-position = Vector2(-8, 277)
+position = Vector2(-30, 277)
 texture_normal = ExtResource("8_0txry")
 
 [node name="Porta" type="Area2D" parent="."]
@@ -297,7 +294,7 @@ shape = SubResource("CapsuleShape2D_wj7hj")
 
 [node name="TextureButton" type="TouchScreenButton" parent="Porta"]
 z_index = -2
-position = Vector2(1100, 260)
+position = Vector2(1114, 276)
 texture_normal = ExtResource("7_dsvga")
 
 [node name="Arbusto" type="TextureRect" parent="."]
@@ -311,7 +308,6 @@ texture = ExtResource("15_lbpmf")
 [connection signal="body_entered" from="Senhora" to="." method="_on_senhora_body_entered"]
 [connection signal="body_entered" from="Placa" to="." method="_on_placa_body_entered"]
 [connection signal="body_entered" from="Fonte" to="." method="_on_fonte_body_entered"]
-[connection signal="pressed" from="Fonte/TextureRect" to="." method="_on_fonte_pressed"]
 [connection signal="pressed" from="Lua" to="." method="_on_lua_pressed"]
 [connection signal="body_entered" from="Retorno" to="." method="_on_retorno_body_entered"]
 [connection signal="body_exited" from="Retorno" to="." method="_on_retorno_body_exited"]

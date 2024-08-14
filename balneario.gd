@@ -209,9 +209,9 @@ func _on_retorno_pressed():
 
 
 func _on_retorno_body_entered(body):
-	print("Retorno body entered, lets see if really should " + str(started) + " " + str(is_player(body.get_class())))
+	# print("Retorno body entered, lets see if really should " + str(started) + " " + str(is_player(body.get_class())))
 	if started and is_player(body.get_class()):
-		print("Entered retorno")
+		# print("Entered retorno")
 		$Retorno/TextureButton.show()
 
 
@@ -221,9 +221,9 @@ func _on_retorno_body_exited(body):
 
 
 func _on_porta_body_entered(body):
-	print("Porta body entered, lets see if really should " + str(started) + " " + str(is_player(body.get_class())))
+	# print("Porta body entered, lets see if really should " + str(started) + " " + str(is_player(body.get_class())))
 	if started and is_player(body.get_class()):
-		print("Entered porta")
+		# print("Entered porta")
 		$Porta/TextureButton.show()
 
 

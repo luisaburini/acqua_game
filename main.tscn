@@ -30,7 +30,7 @@ one_shot = true
 visible = false
 
 [node name="SeboPosition" type="Marker2D" parent="."]
-position = Vector2(700, 550)
+position = Vector2(1180, 650)
 
 [node name="HUDMusic" type="AudioStreamPlayer2D" parent="."]
 visible = false
@@ -92,7 +92,7 @@ stream = ExtResource("16_ebr23")
 
 [node name="BalnearioPosition" type="Marker2D" parent="."]
 visible = false
-position = Vector2(550, 600)
+position = Vector2(600, 500)
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("7_kkwop")]
@@ -100,8 +100,6 @@ z_index = 2000
 position = Vector2(700, 550)
 scale = Vector2(0.1, 0.1)
 
-[connection signal="reset_pos_direito" from="." to="Player" method="_on_main_reset_pos_direito"]
-[connection signal="reset_pos_esquerdo" from="." to="Player" method="_on_main_reset_pos_esquerdo"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="finished" from="HUDMusic" to="." method="_on_hud_music_finished"]
 [connection signal="pressed_balneario" from="CityMap" to="." method="_on_city_map_pressed_balneario"]
