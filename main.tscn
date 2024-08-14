@@ -20,6 +20,13 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_ufh4c")
 
+[node name="Dialogue" parent="." instance=ExtResource("11_q3g2q")]
+
+[node name="Player" parent="." instance=ExtResource("7_kkwop")]
+z_index = 2000
+position = Vector2(700, 550)
+scale = Vector2(0.1, 0.1)
+
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -38,7 +45,7 @@ stream = ExtResource("3_m6cy0")
 visible = false
 
 [node name="Sebo" parent="." instance=ExtResource("8_rqt1b")]
-layer = -2
+layer = -1
 
 [node name="SeboMusic" type="AudioStreamPlayer2D" parent="."]
 visible = false
@@ -52,6 +59,7 @@ visible = false
 stream = ExtResource("10_v6yaw")
 
 [node name="PracaPosition" type="Marker2D" parent="."]
+visible = false
 position = Vector2(550, 650)
 
 [node name="Balneario" parent="." instance=ExtResource("11_7mojm")]
@@ -67,12 +75,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("12_o4f8d")
 
-[node name="Reset" type="TextureButton" parent="Fim"]
-layout_mode = 0
-offset_left = 298.0
-offset_top = 365.0
-offset_right = 405.0
-offset_bottom = 486.0
+[node name="Reset" type="TouchScreenButton" parent="Fim"]
 texture_normal = ExtResource("13_16pxi")
 
 [node name="Label" type="Label" parent="Fim"]
@@ -93,19 +96,15 @@ stream = ExtResource("15_cf5ru")
 visible = false
 stream = ExtResource("16_ebr23")
 
-[node name="Player" parent="." instance=ExtResource("7_kkwop")]
-z_index = 4000
-position = Vector2(700, 550)
-scale = Vector2(0.1, 0.1)
-
-[node name="Dialogue" parent="." instance=ExtResource("11_q3g2q")]
-
 [node name="BalnearioPosition" type="Marker2D" parent="."]
+visible = false
 position = Vector2(550, 600)
 metadata/_edit_lock_ = true
 
 [connection signal="reset_pos_direito" from="." to="Player" method="_on_main_reset_pos_direito"]
 [connection signal="reset_pos_esquerdo" from="." to="Player" method="_on_main_reset_pos_esquerdo"]
+[connection signal="limite_direito" from="Player" to="." method="_on_player_limite_direito"]
+[connection signal="limite_esquerdo" from="Player" to="." method="_on_player_limite_esquerdo"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="finished" from="HUDMusic" to="." method="_on_hud_music_finished"]
 [connection signal="pressed_balneario" from="CityMap" to="." method="_on_city_map_pressed_balneario"]
@@ -126,5 +125,3 @@ metadata/_edit_lock_ = true
 [connection signal="leave" from="Balneario" to="." method="_on_balneario_leave"]
 [connection signal="finished" from="BalnearioMusic" to="." method="_on_balneario_music_finished"]
 [connection signal="pressed" from="Fim/Reset" to="." method="_on_reset_pressed"]
-[connection signal="limite_direito" from="Player" to="." method="_on_player_limite_direito"]
-[connection signal="limite_esquerdo" from="Player" to="." method="_on_player_limite_esquerdo"]

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ctvqmhrg5xkhe" path="res://img/cenario/praca/sr-do-pedalinho.png" id="1_r65fp"]
 [ext_resource type="Texture2D" uid="uid://bg3a5uh20xkel" path="res://img/cenario/praca/sr-dos-baloes.png" id="1_xf8u4"]
 [ext_resource type="Texture2D" uid="uid://bci31ox8i5we3" path="res://img/cenario/praca/chao-cena1A.png" id="3_10ar6"]
-[ext_resource type="Texture2D" uid="uid://lm435y0fsaa0" path="res://img/cenario/praca/praca-cena1A.png" id="3_i32li"]
+[ext_resource type="Texture2D" uid="uid://cemtyh8b0xn73" path="res://img/cenario/praca/praca-cena3B.png" id="3_fynrn"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="5_45i88"]
 [ext_resource type="Texture2D" uid="uid://pgat8brosock" path="res://img/cenario/praca/sapo.png" id="5_en60o"]
 [ext_resource type="Texture2D" uid="uid://4dbwhrjlc3m6" path="res://img/cenario/praca/porta.png" id="6_vcmb7"]
@@ -54,12 +54,12 @@ height = 444.0
 radius = 53.0
 height = 296.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uytvl"]
-size = Vector2(1291, 263)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gcd27"]
 radius = 99.0741
 height = 908.051
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uytvl"]
+size = Vector2(1291, 263)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6rai3"]
 radius = 109.207
@@ -74,18 +74,18 @@ size = Vector2(1270, 516)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_upnfn"]
 radius = 91.0
-height = 332.0
+height = 314.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fpmm5"]
 radius = 40.0
 height = 262.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o54df"]
-size = Vector2(1292, 298)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_24lke"]
-radius = 55.576
-height = 340.261
+radius = 86.7793
+height = 394.791
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53q6s"]
+size = Vector2(1303, 277)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v8nws"]
 radius = 37.0
@@ -93,7 +93,7 @@ height = 610.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rnh0f"]
 radius = 40.0
-height = 470.0
+height = 580.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cx86i"]
 size = Vector2(138, 227)
@@ -115,31 +115,35 @@ offset_left = 2.0
 offset_right = 1282.0
 offset_bottom = 720.0
 mouse_filter = 2
-texture = ExtResource("3_i32li")
+texture = ExtResource("3_fynrn")
 
 [node name="Inventory" parent="." instance=ExtResource("17_hsapi")]
 
 [node name="Dialogue" parent="." instance=ExtResource("5_45i88")]
 
 [node name="Obstaculo" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo"]
 position = Vector2(642, 136)
 shape = SubResource("RectangleShape2D_rkh22")
 
 [node name="Arvore1" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arvore1"]
 position = Vector2(422, 395)
 shape = SubResource("CapsuleShape2D_qb82f")
 
 [node name="Arvore2" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arvore2"]
 position = Vector2(135, 390)
 shape = SubResource("CapsuleShape2D_myhba")
 
 [node name="Arvore3" type="StaticBody2D" parent="."]
+visible = false
 rotation = -0.226893
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arvore3"]
@@ -148,6 +152,7 @@ rotation = -0.226893
 shape = SubResource("CapsuleShape2D_3ebhi")
 
 [node name="Capivaras" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Capivaras"]
 position = Vector2(979, 394)
@@ -168,6 +173,8 @@ position = Vector2(640.5, 261.5)
 shape = SubResource("RectangleShape2D_t4op8")
 
 [node name="SrBaloes" type="Area2D" parent="."]
+z_index = -3
+position = Vector2(20, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SrBaloes"]
 position = Vector2(187, 418)
@@ -188,14 +195,6 @@ offset_right = 277.0
 offset_bottom = 606.0
 texture = ExtResource("1_xf8u4")
 
-[node name="Obstaculo3" type="StaticBody2D" parent="."]
-visible = false
-position = Vector2(0, -1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo3"]
-position = Vector2(635.5, 121.5)
-shape = SubResource("RectangleShape2D_uytvl")
-
 [node name="Obstaculo31" type="StaticBody2D" parent="."]
 visible = false
 
@@ -204,7 +203,16 @@ position = Vector2(857, 344)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gcd27")
 
+[node name="Obstaculo3" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo3"]
+position = Vector2(635.5, 121.5)
+shape = SubResource("RectangleShape2D_uytvl")
+
 [node name="Patos" type="Area2D" parent="."]
+z_index = -4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Patos"]
 position = Vector2(206, 381)
@@ -234,14 +242,14 @@ position = Vector2(645, 248)
 shape = SubResource("RectangleShape2D_miv8g")
 
 [node name="SrPedalinho" type="Area2D" parent="."]
-visible = false
+position = Vector2(-50, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SrPedalinho"]
-position = Vector2(1046, 469)
+position = Vector2(1051, 456)
 shape = SubResource("CapsuleShape2D_upnfn")
 
 [node name="TextureRect" type="TextureRect" parent="SrPedalinho"]
-z_index = 16
+z_index = -2
 offset_left = 970.0
 offset_top = 243.0
 offset_right = 1128.0
@@ -249,35 +257,36 @@ offset_bottom = 593.0
 mouse_default_cursor_shape = 16
 texture = ExtResource("1_r65fp")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="SrPedalinho/TextureRect"]
+[node name="StaticBody2D" type="StaticBody2D" parent="SrPedalinho"]
 z_index = 1
-position = Vector2(116, 242)
+position = Vector2(1086, 485)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SrPedalinho/TextureRect/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SrPedalinho/StaticBody2D"]
 z_index = 2
 position = Vector2(-36, -70)
 shape = SubResource("CapsuleShape2D_fpmm5")
 
-[node name="Obstaculo5" type="StaticBody2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo5"]
-position = Vector2(636, 139)
-shape = SubResource("RectangleShape2D_o54df")
-
 [node name="Sapo" type="Area2D" parent="."]
+z_index = -10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sapo"]
-position = Vector2(290, 292)
+position = Vector2(887, 436)
 rotation = 1.43641
 shape = SubResource("CapsuleShape2D_24lke")
 
 [node name="TextureRect" type="TextureRect" parent="Sapo"]
-offset_left = 110.0
-offset_top = 198.0
-offset_right = 460.0
-offset_bottom = 361.0
+offset_left = 700.0
+offset_top = 344.0
+offset_right = 1050.0
+offset_bottom = 507.0
 texture = ExtResource("5_en60o")
+
+[node name="Obstaculo6" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo6"]
+position = Vector2(641.5, 128.5)
+shape = SubResource("RectangleShape2D_53q6s")
 
 [node name="Balao1" type="TextureButton" parent="."]
 visible = false
@@ -312,34 +321,27 @@ texture_pressed = ExtResource("16_o0toj")
 [node name="Retorno" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Retorno"]
-position = Vector2(55, 436)
+position = Vector2(44, 415)
 shape = SubResource("CapsuleShape2D_v8nws")
 
-[node name="TextureButton" type="TextureButton" parent="Retorno"]
-z_index = 1000
-offset_left = -21.0
-offset_top = 353.0
-offset_right = 129.0
-offset_bottom = 503.0
-mouse_force_pass_scroll_events = false
+[node name="TextureButton" type="TouchScreenButton" parent="Retorno"]
+z_index = -2
+position = Vector2(-37, 307)
 texture_normal = ExtResource("7_6jmfg")
 
 [node name="Porta" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Porta"]
-position = Vector2(1260, 493)
+position = Vector2(1242, 429)
 shape = SubResource("CapsuleShape2D_rnh0f")
 
-[node name="TextureButton" type="TextureButton" parent="Porta"]
-z_index = 1000
-offset_left = 1163.0
-offset_top = 344.0
-offset_right = 1313.0
-offset_bottom = 494.0
-mouse_force_pass_scroll_events = false
+[node name="TextureButton" type="TouchScreenButton" parent="Porta"]
+z_index = -2
+position = Vector2(1121, 294)
 texture_normal = ExtResource("6_vcmb7")
 
 [node name="Saida" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Saida"]
 position = Vector2(1089, 602.5)

@@ -12,8 +12,9 @@ func _ready():
 func _process(delta):
 	pass
 
-func start():
+func start(location, locations):
 	$CityMapMusic.play()
+	show_button(location, locations)
 	show()
 	
 func end():
@@ -35,3 +36,13 @@ func _on_touch_balneario_button_pressed():
 
 func _on_city_map_music_finished():
 	$CityMapMusic.play()
+
+
+
+func show_button(showing, locations):
+	for loc in locations:
+		var l = get_node("Touch"+loc+"Button")
+		if loc == showing:
+			l.show()
+		else:
+			l.hide()

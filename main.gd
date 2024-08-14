@@ -41,12 +41,13 @@ func _on_player_limite_direito():
 	if loc != null:
 		loc.update_objs_state(+1)
 		print(loc.get_start_position())
+		print(loc.get_start_position())
 		reset_pos_direito.emit(loc.get_start_position())
 
 
 func _on_player_limite_esquerdo():
 	var loc = get_current_location_node()
-	if not $Player.is_walking() and loc != null:
+	if loc != null:
 		loc.update_objs_state(-1)
 		reset_pos_esquerdo.emit(loc.get_return_position())
 
@@ -54,7 +55,7 @@ func _on_player_limite_esquerdo():
 func _on_sebo_leave():
 	$Sebo.end()
 	$SeboMusic.stop()
-	$CityMap.start()
+	$CityMap.start(locations[current_location], locations)
 
 
 func _on_sebo_stop_music():
@@ -68,7 +69,6 @@ func _on_city_map_pressed_sebo():
 
 
 func _on_sebo_go_to_next_scene():
-	print("SEBO GO TO NEXT SCENE")
 	_on_player_limite_direito()
 	
 func _on_sebo_go_back_scene():
@@ -122,14 +122,16 @@ func _on_praca_leave():
 	print("PRACA LEAVE")
 	$Praca.end()
 	$PracaMusic.stop()
-	$CityMap.start()
+	$CityMap.start(locations[current_location], locations)
 
 
 func _on_balneario_go_back_scene():
+	print("Balneario go back scene")
 	_on_player_limite_esquerdo()
 
 
 func _on_balneario_go_to_next_scene():
+	print("Balneario go to next scene")
 	_on_player_limite_direito()
 
 
@@ -151,6 +153,8 @@ func _on_balneario_music_finished():
 
 func _on_balneario_leave():
 	$Balneario.hide_all()
+	$Praca.hide_all()
+	$Sebo.hide_all()
 	$BalnearioMusic.stop()
 	$Fim.show()
 	$FimMusic.play()

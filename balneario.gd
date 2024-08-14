@@ -38,20 +38,43 @@ func reset():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+var started = false
 
 func start():
-	show()
 	$Lua.hide()
+	$Porta/TextureButton.hide()
+	$Retorno/TextureButton.hide()
+	scenario_index = 0
+	show()
 	update_objs_state(0)
+	started = true
+
+func end():
+	started = false
+	var objs = get_objs()
+	for i in range(len(objs)):
+		for o in objs[i]:
+			var obj = get_node(o)
+			if obj != null:
+				obj.hide()
+				for c in obj.get_children():
+					if check_collision(c.get_class()):
+						# print(c.get_class())
+						c.disabled = true
+					for b in c.get_children():
+						if check_collision(b.get_class()):
+							b.disabled = true
+	hide()
 
 func get_objs():
 		return [
-		["Guardasol"],
-		["Senhora"],
-		[""],
-		[""],
-		["Placa"],
-		["Fonte"],
+		["Guardasol", "Obstaculo", "Piscina"],
+		["Senhora", "Obstaculo2", "Obstaculo21"],
+		["Obstaculo3", "Obstaculo31", "Obstaculo32"],
+		["Obstaculo4", "Arbusto"],
+		["Placa", "Obstaculo5"],
+		["Fonte", "Obstaculo6"],
 	]
 	
 
@@ -62,13 +85,13 @@ func hide_all():
 			var obj = get_node(o)
 			if obj != null:
 				# print("Root Node: "+ o)
-				if check_collision(o):
-					obj.disabled = true
 				for c in obj.get_children():
+					c.hide()
 					if check_collision(c.get_class()):
-						# print(c.get_class())
+						print(c.get_class())
 						c.disabled = true
 					for b in c.get_children():
+						b.hide()
 						if check_collision(b.get_class()):
 							b.disabled = true
 	
@@ -78,65 +101,68 @@ func update_texture():
 	$Chao.texture = load(chao_balneario[scenario_index])
 
 
+func is_player(p):
+	return p == "CharacterBody2D"
+
 func update_objs_state(limit):
 	scenario_index = abs(scenario_index+limit)
 	scenario_index = scenario_index%len(balneario_scenarios)
 
 	update_texture()
-	
+
 	var objs = get_objs()
 	for i in range(len(objs)):
 		for o in objs[i]:
 			var obj = get_node(o)
 			if obj != null:
 				if scenario_index == i:
+					# print("Root obj " + o)
 					obj.show()
-					if check_collision(o):
-						obj.disabled = false
 					for c in obj.get_children():
+						c.show()
+						if check_button(c.get_class()):
+							c.hide()
 						if check_collision(c.get_class()):
+							# print("Enabled " + c.get_class())
 							c.disabled = false
 						for b in c.get_children():
+							b.show()
 							if check_collision(b.get_class()):
+								# print("Enabled " + b.get_class())
 								b.disabled = false
 				else:
+					# print("Root obj " + o)
 					obj.hide()
-					if check_collision(o):
-						obj.disabled = true
 					for c in obj.get_children():
+						c.hide()
 						if check_collision(c.get_class()):
+							# print("Disabled " + c.get_class())
 							c.disabled = true
 						for b in c.get_children():
+							b.hide()
 							if check_collision(b.get_class()):
+								# print("Disabled " + b.get_class())
 								b.disabled = true
 
+
 func check_collision(o):
-	return o == "CollisionShape2D" or o == "CollisionPolygon2D"
+	return o.begins_with("Collision")
 
-func _on_retorno_pressed():
-	go_back_scene.emit()
-
+func check_button(b):
+	return b == "TextureButton"
 
 func _on_porta_pressed():
-	go_to_next_scene.emit()
+	if started:
+		go_to_next_scene.emit()
 
 
-func _on_senhora_pressed():
-	$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
-	$Dialogue.change_label("Você já tem a garrafa,\nagora só falta a água.\nOnde poderia estar?")
-	$Dialogue.show()
-	$Dialogue.hide_interaction()
-	$Dialogue.start_hide_timer()
-	$Inventory.add_item("senhora")
-	$ColetaSound.play()
-	
 var start_positions = [ 	
 	Vector2(600, 500),
 	Vector2(600, 500),
 	Vector2(600, 500),
 	Vector2(400, 500),
 	Vector2(600, 500),
-	Vector2(600, 500) 
+	Vector2(100, 600) 
 ]
 	
 func get_start_position():
@@ -146,7 +172,7 @@ var return_positions = [
 	Vector2(900, 500),
 	Vector2(900, 500),
 	Vector2(900, 500),
-	Vector2(900, 500),
+	Vector2(1000, 500),
 	Vector2(900, 500),
 	Vector2(900, 500) 
 ]
@@ -155,20 +181,8 @@ func  get_return_position():
 	return return_positions[scenario_index]			
 
 
-func _on_fonte_pressed():
-	if is_completed():
-		$AguaSound.play()
-		$Lua.show()
-		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
-		$Dialogue.change_label("Enchendo a garrafa...")
-	else:
-		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
-		$Dialogue.change_label("Ainda tem coisa para fazer...")
-	$Dialogue.show()
-	$Dialogue.hide_interaction()
-	$Dialogue.start_hide_timer()
-
 func _on_lua_pressed():
+	$Dialogue.hide()
 	$AguaSound.stop()
 	leave.emit()
 	
@@ -178,11 +192,67 @@ func is_completed():
 	return interagiu_com_senhora and leu_placa
 
 
-func _on_placa_pressed():
-	$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
-	$Dialogue.change_label("Temos muito orgulho de ter matado a sede\ndos astronautas da missão Apollo 11.")
-	$Dialogue.show()
-	$Dialogue.hide_interaction()
-	$Dialogue.start_hide_timer()
-	$Inventory.add_item("placa")
-	$ColetaSound.play()
+func _on_senhora_body_entered(body):
+	if is_player(body.get_class()) and scenario_index == 1 and started:
+		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
+		$Dialogue.change_label("Você já tem a garrafa,\nagora só falta a água.\nOnde poderia estar?")
+		$Dialogue.show()
+		$Dialogue.hide_interaction()
+		$Dialogue.start_hide_timer()
+		$Inventory.add_item("senhora")
+		$ColetaSound.play()
+
+
+func _on_retorno_pressed():
+	if started:
+		go_back_scene.emit()
+
+
+func _on_retorno_body_entered(body):
+	print("Retorno body entered, lets see if really should " + str(started) + " " + str(is_player(body.get_class())))
+	if started and is_player(body.get_class()):
+		print("Entered retorno")
+		$Retorno/TextureButton.show()
+
+
+func _on_retorno_body_exited(body):
+	if started and is_player(body.get_class()):
+		$Retorno/TextureButton.hide()
+
+
+func _on_porta_body_entered(body):
+	print("Porta body entered, lets see if really should " + str(started) + " " + str(is_player(body.get_class())))
+	if started and is_player(body.get_class()):
+		print("Entered porta")
+		$Porta/TextureButton.show()
+
+
+func _on_porta_body_exited(body):
+	if started and is_player(body.get_class()):
+		$Porta/TextureButton.hide()
+
+
+func _on_placa_body_entered(body):
+	if is_player(body.get_class()) and scenario_index == 4 and started:
+		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
+		$Dialogue.change_label("Temos muito orgulho de ter matado a sede\ndos astronautas da missão Apollo 11.")
+		$Dialogue.show()
+		$Dialogue.hide_interaction()
+		$Dialogue.start_hide_timer()
+		$Inventory.add_item("placa")
+		$ColetaSound.play()
+
+
+func _on_fonte_body_entered(body):
+	if is_player(body.get_class()) and started and scenario_index == 5:
+		if is_completed():
+			$AguaSound.play()
+			$Lua.show()
+			$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
+			$Dialogue.change_label("Enchendo a garrafa...")
+		else:
+			$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
+			$Dialogue.change_label("Ainda tem coisa para fazer...")
+		$Dialogue.show()
+		$Dialogue.hide_interaction()
+		$Dialogue.start_hide_timer()

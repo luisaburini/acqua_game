@@ -20,10 +20,10 @@ func get_start_position():
 	return start_positions[scenario_index]
 
 var return_positions = [
-	Vector2(600, 660),
-	Vector2(600, 660),
-	Vector2(800, 660),
-	Vector2(600, 660)
+	Vector2(900, 660),
+	Vector2(900, 660),
+	Vector2(900, 660),
+	Vector2(900, 660)
 ]
 
 func  get_return_position():
@@ -38,8 +38,6 @@ var chao_sebo = ["res://img/cenario/sebo/chao-sebo1.png",
 			 	 "res://*/img/cenario/sebo/chao-sebo2.png",
 				 "res://img/cenario/sebo/chao-sebo3.png",
 				 "res://img/cenario/sebo/chao-sebo1.png"]
-				
-var played_vinyl = false
 					
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,7 +46,6 @@ func _ready():
 
 func reset():
 	scenario_index = 0
-	played_vinyl = false
 	$Inventory.reset()
 	$Dialogue.hide()
 
@@ -71,6 +68,10 @@ func start():
 func end():
 	started = false
 	scenario_index = 0
+	hide_all()
+	hide()
+	
+func hide_all():
 	var objs = get_objs()
 	for i in range(len(objs)):
 		for o in objs[i]:
@@ -80,22 +81,26 @@ func end():
 				if check_collision(o):
 					obj.disabled = true
 				for c in obj.get_children():
+					c.hide()
 					if check_collision(c.get_class()):
 						# print(c.get_class())
 						c.disabled = true
 					for b in c.get_children():
+						b.hide()
 						if check_collision(b.get_class()):
 							b.disabled = true
-	hide()
 	
 		
 func is_completed():
-	return played_vinyl and $Inventory.check_if_item_exists("livro_magico")
+	var pegou_livro = $Inventory.check_if_item_exists("livro_magico")
+	var pegou_vinyl = $Inventory.check_if_item_exists("vinyl")
+	var tocou_vinyl = $Inventory.check_if_item_exists("vitrola")
+	return pegou_livro and pegou_vinyl and tocou_vinyl
 
 func get_objs():
 	return [
 		["Ismael", "Porta1", "Obstaculo"],
-		[ "Vitrola", "Porta2", "Estante2", "Retorno2"],
+		[ "Vitrola", "Porta2", "Estante2", "Estante22" ,"Retorno2"],
 		["Vinyl", "Porta3", "Estante3", "Retorno3"],
 		["Saida", "Retorno4", "Obstaculo2"]
 	]
@@ -119,28 +124,33 @@ func update_objs_state(limit):
 			var obj = get_node(o)
 			if obj != null:
 				if scenario_index == i:
-					print("Root obj " + o)
+					# print("Root obj " + o)
 					obj.show()
 					for c in obj.get_children():
+						c.show()
+						print(c.get_class())
 						if check_button(c.get_class()):
 							c.hide()
 						if check_collision(c.get_class()):
-							print("Enabled " + c.get_class())
+							# print("Enabled " + c.get_class())
 							c.disabled = false
 						for b in c.get_children():
+							b.show()
 							if check_collision(b.get_class()):
-								print("Enabled " + b.get_class())
+								# print("Enabled " + b.get_class())
 								b.disabled = false
 				else:
-					print("Root obj " + o)
+					# print("Root obj " + o)
 					obj.hide()
 					for c in obj.get_children():
+						c.hide()
 						if check_collision(c.get_class()):
-							print("Disabled " + c.get_class())
+							# print("Disabled " + c.get_class())
 							c.disabled = true
 						for b in c.get_children():
+							b.hide()
 							if check_collision(b.get_class()):
-								print("Disabled " + b.get_class())
+								# print("Disabled " + b.get_class())
 								b.disabled = true
 					
 	if $Inventory.check_if_item_exists("vinyl"):
@@ -224,17 +234,24 @@ func is_player(p):
 
 
 func _on_vitrola_body_entered(body):
+	print(body.get_class() + " entered vitrola, lets see if really " + str(scenario_index))
 	if scenario_index == 1 and started and is_player(body.get_class()):
+		print("Entered vitrola")
 		$Dialogue.show()
 		$Dialogue.hide_interaction()
 		$Dialogue.start_hide_timer()
 		$Dialogue.change_texture("res://img/cenario/sebo/vinyl-detalhe.png")	
-		if $Inventory.check_if_item_exists("vinyl") and !played_vinyl:
-			$Dialogue.change_label("Tocando o vinyl!")
-			stop_music.emit()
-			$AudioDica.play()
-			played_vinyl = true
-		if !$Inventory.check_if_item_exists("vinyl"):
+		var pegou_vinyl = $Inventory.check_if_item_exists("vinyl")
+		var tocou_vinyl = $Inventory.check_if_item_exists("vitrola")
+		if pegou_vinyl :
+			if tocou_vinyl:
+				$Dialogue.change_label("Já tocou o vinyl.\nNovas aventuras te aguardam!")
+			else:
+				$Dialogue.change_label("Tocando o vinyl!")
+				stop_music.emit()
+				$AudioDica.play()
+				$Inventory.add_item("vitrola")
+		else:
 			$Dialogue.change_label("Você precisa do vinyl")
 
 
@@ -294,7 +311,10 @@ func _on_retorno_2_body_exited(body):
 
 func _on_saida_body_entered(body):
 	if scenario_index == 3 and started and is_player(body.get_class()):
-		if $Inventory.check_if_item_exists("vinyl") and $Inventory.check_if_item_exists("livro_magico") and played_vinyl:
+		var pegou_vinyl = $Inventory.check_if_item_exists("vinyl")
+		var pegou_livro = $Inventory.check_if_item_exists("livro_magico")
+		var tocou_vinyl = $Inventory.check_if_item_exists("vitrola")
+		if pegou_vinyl and pegou_livro and tocou_vinyl:
 			leave.emit()
 			$AudioDica.stop()
 		else:

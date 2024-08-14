@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu1bgakec7t74"
-path="res://.godot/imported/bilhete.png-935e5e35226e0a97d3cf4dc38a45f1f1.ctex"
+uid="uid://cbfcfffgvinuq"
+path="res://.godot/imported/arbusto.png-3cdae292cb68adf713f518b1d768fa9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/cenario/praca/bilhete.png"
-dest_files=["res://.godot/imported/bilhete.png-935e5e35226e0a97d3cf4dc38a45f1f1.ctex"]
+source_file="res://img/cenario/balneario/arbusto.png"
+dest_files=["res://.godot/imported/arbusto.png-3cdae292cb68adf713f518b1d768fa9c.ctex"]
 
 [params]
 
