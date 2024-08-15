@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cq31pdmkbm52d" path="res://img/not_ok.png" id="4_2fred"]
 [ext_resource type="Texture2D" uid="uid://bn2t3i8f3dwkh" path="res://img/bg-dialogue.png" id="5_o3mks"]
 
-[node name="Dialogue" type="Node"]
+[node name="Dialogue" type="CanvasLayer"]
 script = ExtResource("1_nq3vc")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -15,18 +15,15 @@ offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("5_o3mks")
 
-[node name="HideInteractionTimer" type="Timer" parent="."]
-wait_time = 7.0
-
 [node name="TouchYesButton" type="TouchScreenButton" parent="."]
 process_priority = 500
 z_index = 4096
-position = Vector2(760, 573)
+position = Vector2(1158, 597)
 texture_normal = ExtResource("3_gelhn")
 
 [node name="TouchNoButton" type="TouchScreenButton" parent="."]
 z_index = 4096
-position = Vector2(408, 576)
+position = Vector2(8, 614)
 texture_normal = ExtResource("4_2fred")
 
 [node name="Image" type="TextureRect" parent="."]
@@ -45,7 +42,7 @@ z_index = 4096
 offset_left = 5.0
 offset_top = 340.0
 offset_right = 1274.0
-offset_bottom = 572.0
+offset_bottom = 585.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("2_o6e56")
@@ -53,6 +50,5 @@ theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[connection signal="timeout" from="HideInteractionTimer" to="." method="_on_hide_interaction_timer_timeout"]
 [connection signal="pressed" from="TouchYesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="TouchNoButton" to="." method="_on_no_button_pressed"]

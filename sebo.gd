@@ -5,6 +5,7 @@ signal stop_music
 signal go_to_next_scene
 signal go_back_scene
 signal audiodica_finished
+signal player_go_to(pos)
 
 var scenario_index = 0
 
@@ -42,35 +43,38 @@ var chao_sebo = ["res://img/cenario/sebo/chao-sebo1.png",
 					
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Dialogue.hide()
-	$Dialogue.hide_interaction()
+	get_viewport().physics_object_picking_sort = true
+	$Dialogue.hide_all()
 
 func reset():
 	scenario_index = 0
 	$Inventory.reset()
-	$Dialogue.hide()
+	$Dialogue.hide_all()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 func hide_dialogue():
-	$Dialogue.hide()
+	$Dialogue.hide_all()
 
 
 var started = false
 
 func start():
+	get_viewport().physics_object_picking_sort = true
 	reset()
 	update_objs_state(0)
+	print("Sebo started")
 	started = true
 	show()
 	
 func end():
+	get_viewport().physics_object_picking_sort = true
 	started = false
 	scenario_index = 0
 	hide_all()
-	hide()
+	
 	
 func hide_all():
 	var objs = get_objs()
@@ -90,7 +94,7 @@ func hide_all():
 						b.hide()
 						if check_collision(b.get_class()):
 							b.disabled = true
-	
+	hide()
 		
 func is_completed():
 	var pegou_livro = $Inventory.check_if_item_exists("livro_magico")
@@ -108,7 +112,7 @@ func get_objs():
 
 func update_texture():
 	# print("Sebo: update texture scenario index " + str(scenario_index))
-	$Dialogue.hide() 
+	$Dialogue.hide_all() 
 	$Background.texture = load(sebo_scenarios[scenario_index])
 	$Chao.texture = load(chao_sebo[scenario_index])
 	
@@ -168,35 +172,40 @@ func check_button(b):
 	return b.ends_with("Button")
 
 func _on_dialogue_pressed_yes():
-	$LivroLongSound.play()
-	$Dialogue.hide_interaction()
-	$Dialogue.change_label("O Balneário Municipal exibe uma nota fiscal, emitida em 02 de abril de 1969, três meses e meio antes do homem chegar a lua pela primeira vez a bordo da Apolo 11. A pedido da NASA, foram embarcadas 100 dúzias de garrafas com 500 ml contendo água mineral de Águas de Lindóia.")
-	$Dialogue.start_hide_timer()
-	$Inventory.add_item("livro_magico")
-	$ColetaSound.play()
-
-
-func _on_dialogue_pressed_no():
-	$Dialogue.hide()
+	if started:
+		print("Should ignore this click")
+		ignore_click = true	
+	
+		if ofereceu_livro:
+			$LivroLongSound.play()
+			$Dialogue.change_label("O Balneário Municipal exibe uma nota fiscal, emitida em 02 de abril de 1969, três meses e meio antes do homem chegar a lua pela primeira vez a bordo da Apolo 11. A pedido da NASA, foram embarcadas 100 dúzias de garrafas com 500 ml contendo água mineral de Águas de Lindóia.")
+			$Inventory.add_item("livro_magico")
+			$ColetaSound.play()
+			$Dialogue.show_all()
+			$Dialogue.hide_interaction()
+			ofereceu_livro = false
+	
 
 
 func _on_audio_dica_finished():
 	audiodica_finished.emit()
 
 
+var ofereceu_livro = false
+
 func _on_ismael_body_entered(body):
 	if scenario_index == 0 and started and is_player(body.get_class()):
-		$Dialogue.show()
+		$Dialogue.show_all()
 		if $Inventory.check_if_item_exists("livro_magico"):
 			$Dialogue.hide_interaction()
-			$Dialogue.start_hide_timer()
 			$Dialogue.change_texture("res://img/gcapybara.png")
 			$Dialogue.change_label("Estou ocupado, vá se ocupar também.")
 		else:
 			$LivroShortSound.play()
 			$Dialogue.change_texture("res://img/livro.png")
 			$Dialogue.change_label("Gostaria de ganhar um livro mágico?")
-			$Dialogue.show()
+			ofereceu_livro = true
+			$Dialogue.show_all()
 
 func _on_porta_1_body_entered(body):
 	if scenario_index == 0 and started and is_player(body.get_class()):
@@ -237,9 +246,8 @@ func _on_vitrola_body_entered(body):
 	# print(body.get_class() + " entered vitrola, lets see if really " + str(scenario_index))
 	if scenario_index == 1 and started and is_player(body.get_class()):
 		# print("Entered vitrola")
-		$Dialogue.show()
+		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
-		$Dialogue.start_hide_timer()
 		$Dialogue.change_texture("res://img/cenario/sebo/vinyl-detalhe.png")	
 		var pegou_vinyl = $Inventory.check_if_item_exists("vinyl")
 		var tocou_vinyl = $Inventory.check_if_item_exists("vitrola")
@@ -257,18 +265,21 @@ func _on_vitrola_body_entered(body):
 
 func _on_texture_button_pressed():
 	$PortaSound.play()
+	ignore_click = true
 	go_to_next_scene.emit()
 	$Porta1/TextureButton.hide()
 
 
 func _on_texture_button2_pressed():
 	$PortaSound.play()
+	ignore_click = true
 	go_to_next_scene.emit()
 	$Porta2/TextureButton.hide()
 
 
 func _on_texture_button_ret2_pressed():
 	$PortaSound.play()
+	ignore_click = true
 	go_back_scene.emit()
 
 
@@ -291,6 +302,7 @@ func _on_retorno_3_body_exited(body):
 func _on_texture_button_ret3_pressed():
 	if scenario_index == 2 and started:
 		$PortaSound.play()
+		ignore_click = true
 		go_back_scene.emit()
 
 
@@ -320,14 +332,14 @@ func _on_saida_body_entered(body):
 		else:
 			$Dialogue.change_texture("res://img/capybara.png")
 			$Dialogue.change_label("Ainda tem coisa pra fazer aqui")
-			$Dialogue.show()
+			$Dialogue.show_all()
 			$Dialogue.hide_interaction()
-			$Dialogue.start_hide_timer()
 
 
 func _on_texture_button_ret4_pressed():
 	if scenario_index == 3 and started:
 		$PortaSound.play()
+		ignore_click = true
 		go_back_scene.emit()
 
 
@@ -339,4 +351,29 @@ func _on_retorno_4_body_exited(body):
 func _on_texture_button3_pressed():
 	if scenario_index == 2 and started:
 		$PortaSound.play()
+		ignore_click = true
 		go_to_next_scene.emit()
+
+var ignore_click = false
+
+func _on_dialogue_pressed_no():
+	if started:
+		ignore_click = true
+		if ofereceu_livro:
+			ofereceu_livro = false
+
+
+
+func _on_dialogue_player_go_to(pos):
+	if started:
+		if ignore_click:
+			print("You shall ignore this click")
+			ignore_click = false
+		else:
+			print("SEBO: Dialog is telling you to go there")
+			player_go_to.emit(pos)
+	
+		
+func _unhandled_input(event):
+	if started:
+		get_viewport().set_input_as_handled()

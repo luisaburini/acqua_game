@@ -2,9 +2,9 @@ extends Node2D
 
 signal go_to_next_scene
 signal go_back_scene
-signal user_can_go_to(position)
+signal player_go_to(pos)
 signal leave
-
+var ignore_click = false
 var scenario_index = 0
 
 var balneario_scenarios = ["res://img/cenario/balneario/balneario-cena1A.png",
@@ -24,15 +24,15 @@ var chao_balneario = ["res://img/cenario/balneario/chao-cena1A.png",
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_viewport().physics_object_picking_sort = true
 	$Lua.hide()
-	$Dialogue.hide()
-	update_objs_state(0)
+	$Dialogue.hide_all()
 
 func reset():
 	scenario_index = 0
 	$Inventory.reset()
 	$Lua.hide()
-	$Dialogue.hide()
+	$Dialogue.hide_all()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,20 +52,8 @@ func start():
 
 func end():
 	started = false
-	var objs = get_objs()
-	for i in range(len(objs)):
-		for o in objs[i]:
-			var obj = get_node(o)
-			if obj != null:
-				obj.hide()
-				for c in obj.get_children():
-					if check_collision(c.get_class()):
-						# print(c.get_class())
-						c.disabled = true
-					for b in c.get_children():
-						if check_collision(b.get_class()):
-							b.disabled = true
-	hide()
+	scenario_index = 0
+	hide_all()
 
 func get_objs():
 		return [
@@ -88,15 +76,17 @@ func hide_all():
 				for c in obj.get_children():
 					c.hide()
 					if check_collision(c.get_class()):
-						print(c.get_class())
+						# print(c.get_class())
 						c.disabled = true
 					for b in c.get_children():
 						b.hide()
 						if check_collision(b.get_class()):
 							b.disabled = true
+	hide()	
 	
+
 func update_texture():
-	$Dialogue.hide()
+	$Dialogue.hide_all()
 	$Background.texture = load(balneario_scenarios[scenario_index])
 	$Chao.texture = load(chao_balneario[scenario_index])
 
@@ -152,14 +142,15 @@ func check_button(b):
 	return b.ends_with("Button")
 
 func _on_porta_pressed():
+	ignore_click = true
 	if started:
 		go_to_next_scene.emit()
 
 
 var start_positions = [ 	
 	Vector2(600, 500),
-	Vector2(600, 500),
-	Vector2(600, 500),
+	Vector2(400, 500),
+	Vector2(400, 500),
 	Vector2(400, 500),
 	Vector2(600, 500),
 	Vector2(100, 600) 
@@ -182,7 +173,7 @@ func  get_return_position():
 
 
 func _on_lua_pressed():
-	$Dialogue.hide()
+	$Dialogue.hide_all()
 	$AguaSound.stop()
 	leave.emit()
 	
@@ -196,9 +187,8 @@ func _on_senhora_body_entered(body):
 	if is_player(body.get_class()) and scenario_index == 1 and started:
 		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
 		$Dialogue.change_label("Você já tem a garrafa,\nagora só falta a água.\nOnde poderia estar?")
-		$Dialogue.show()
+		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
-		$Dialogue.start_hide_timer()
 		$Inventory.add_item("senhora")
 		$ColetaSound.play()
 
@@ -236,9 +226,8 @@ func _on_placa_body_entered(body):
 	if is_player(body.get_class()) and scenario_index == 4 and started:
 		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
 		$Dialogue.change_label("Temos muito orgulho de ter matado a sede\ndos astronautas da missão Apollo 11.")
-		$Dialogue.show()
+		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
-		$Dialogue.start_hide_timer()
 		$Inventory.add_item("placa")
 		$ColetaSound.play()
 
@@ -253,6 +242,29 @@ func _on_fonte_body_entered(body):
 		else:
 			$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
 			$Dialogue.change_label("Ainda tem coisa para fazer...")
-		$Dialogue.show()
+		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
-		$Dialogue.start_hide_timer()
+
+
+func _on_dialogue_player_go_to(pos):
+	if started:
+		if ignore_click:
+			print("BALNEARIO: You shall ignore this click")
+			ignore_click = false
+		else:
+			print("BALNEARIO: Dialogue is telling you to go there")
+			player_go_to.emit(pos)
+
+
+func _on_dialogue_pressed_no():
+	if started:
+		ignore_click = true
+
+
+func _on_dialogue_pressed_yes():
+	if started:
+		ignore_click = true
+	
+func _unhandled_input(event):
+	if started:
+		get_viewport().set_input_as_handled()

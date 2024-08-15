@@ -82,8 +82,8 @@ size = Vector2(203, 177)
 size = Vector2(888, 269)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qob3j"]
-radius = 59.5514
-height = 344.808
+radius = 74.584
+height = 390.029
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q432j"]
 radius = 74.0
@@ -237,6 +237,7 @@ position = Vector2(1273, 373)
 shape = SubResource("CapsuleShape2D_k40nu")
 
 [node name="Estante2" type="StaticBody2D" parent="."]
+visible = false
 z_index = -2
 position = Vector2(20, 20)
 
@@ -253,6 +254,7 @@ offset_bottom = 217.5
 texture = ExtResource("6_w6u6d")
 
 [node name="Estante22" type="TextureRect" parent="."]
+visible = false
 z_index = 4000
 offset_left = 386.0
 offset_top = 412.0
@@ -288,9 +290,10 @@ position = Vector2(20, 337.778)
 texture_normal = ExtResource("11_lvonl")
 
 [node name="Obstaculo2" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo2"]
-position = Vector2(385, 558)
+position = Vector2(385, 565)
 shape = SubResource("SegmentShape2D_qti5t")
 
 [node name="Vinyl" type="Area2D" parent="."]
@@ -338,12 +341,11 @@ position = Vector2(399, 243)
 texture_normal = ExtResource("5_ss7gp")
 
 [node name="Estante3" type="StaticBody2D" parent="."]
-visible = false
 z_index = -2
 position = Vector2(400, 250)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Estante3"]
-position = Vector2(252, 232)
+position = Vector2(231, 224)
 rotation = 0.523599
 scale = Vector2(0.8, 0.8)
 shape = SubResource("CapsuleShape2D_qob3j")
@@ -351,10 +353,10 @@ disabled = true
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="TextureRect" type="TextureRect" parent="Estante3/CollisionShape2D"]
-offset_left = -254.557
-offset_top = -98.4053
-offset_right = 104.443
-offset_bottom = 334.595
+offset_left = -233.319
+offset_top = -99.1201
+offset_right = 125.681
+offset_bottom = 333.88
 rotation = -0.546288
 scale = Vector2(0.75, 1)
 texture = ExtResource("2_unok4")
@@ -462,6 +464,7 @@ stream = ExtResource("23_lqee2")
 [node name="LivroShortSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("21_7e5k5")
 
+[connection signal="player_go_to" from="Dialogue" to="." method="_on_dialogue_player_go_to"]
 [connection signal="pressed_no" from="Dialogue" to="." method="_on_dialogue_pressed_no"]
 [connection signal="pressed_yes" from="Dialogue" to="." method="_on_dialogue_pressed_yes"]
 [connection signal="body_entered" from="Porta1" to="." method="_on_porta_1_body_entered"]

@@ -1,26 +1,31 @@
-extends Node
+extends CanvasLayer
 
-var is_hidden = false
+
 signal pressed_yes
 signal pressed_no
+var started = false
+signal player_go_to(pos)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-func hide():
-	is_hidden = true
+func hide_all():
+	get_viewport().physics_object_picking_sort = false
+	started = false
 	$TextureRect.hide()
 	$Label.hide()
 	$Image.hide()
 	$TouchYesButton.hide()
 	$TouchNoButton.hide()
 	
-func show():
-	is_hidden = false
+func show_all():
+	get_viewport().physics_object_picking_sort = true
+	started = true
 	$TextureRect.show()
 	$Label.show()
 	$Image.show()
@@ -33,30 +38,35 @@ func change_label(text):
 func change_texture(texture_path):
 	$Image.texture = load(texture_path)
 	
-func toggle_visibility():
-	if is_hidden:
-		show()
-	else:
-		hide()
-		
-func start_hide_timer():
-	$HideInteractionTimer.start()
-	
 func hide_interaction():
-	$TouchYesButton.hide()
 	$TouchNoButton.hide()
 	
 func show_interaction():
 	$TouchYesButton.show()
 	$TouchNoButton.show()
 
+var ignore_click = false
+
 func _on_yes_button_pressed():
+	ignore_click = true
+	hide_all()
 	pressed_yes.emit()
 	
 func _on_no_button_pressed():
+	ignore_click = true
+	hide_all()
 	pressed_no.emit()
-	hide()
+	
 
 
-func _on_hide_interaction_timer_timeout():
-	hide()
+func _unhandled_input(event):
+	if event is InputEventScreenTouch and event.pressed == true:
+		if started:
+			get_viewport().set_input_as_handled()
+		else:
+			if ignore_click:
+				get_viewport().set_input_as_handled()
+				ignore_click = false
+			else:
+				print("Dialogue: Player go to " + str(event.position.x) + " " + str(event.position.y))
+				player_go_to.emit(event.position)

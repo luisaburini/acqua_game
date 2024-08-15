@@ -12,38 +12,45 @@ func _ready():
 func _process(delta):
 	pass
 	
-var ended = true
+var started = false
 
 func start(location, locations):
-	ended = false
+	print("City Map starting")
+	started = true
 	$CityMapMusic.play()
 	show_button(location, locations)
 	show()
 	
-func has_ended():
-	return ended
 	
 func end():
-	ended = true
+	print("CityMap ended")
+	started = false
 	$CityMapMusic.stop()
 	hide()
 
 func _on_touch_sebo_button_pressed():
+	get_viewport().set_input_as_handled()
 	$CityMapMusic.stop()
 	pressed_sebo.emit()
 
 func _on_touch_praca_button_pressed():
+	get_viewport().set_input_as_handled()
 	$CityMapMusic.stop()
 	pressed_praca.emit()
 
 func _on_touch_balneario_button_pressed():
+	get_viewport().set_input_as_handled()
 	$CityMapMusic.stop()
 	pressed_balneario.emit()
+
+func _unhandled_input(event):
+	if event is InputEventScreenTouch and event.pressed == true:
+		if started:
+			get_viewport().set_input_as_handled()
 
 
 func _on_city_map_music_finished():
 	$CityMapMusic.play()
-
 
 
 func show_button(showing, locations):

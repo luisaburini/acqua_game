@@ -305,6 +305,9 @@ offset_right = 683.0
 offset_bottom = 638.0
 texture = ExtResource("15_lbpmf")
 
+[connection signal="player_go_to" from="Dialogue" to="." method="_on_dialogue_player_go_to"]
+[connection signal="pressed_no" from="Dialogue" to="." method="_on_dialogue_pressed_no"]
+[connection signal="pressed_yes" from="Dialogue" to="." method="_on_dialogue_pressed_yes"]
 [connection signal="body_entered" from="Senhora" to="." method="_on_senhora_body_entered"]
 [connection signal="body_entered" from="Placa" to="." method="_on_placa_body_entered"]
 [connection signal="body_entered" from="Fonte" to="." method="_on_fonte_body_entered"]

@@ -362,6 +362,8 @@ stream = ExtResource("21_hbmqr")
 visible = false
 stream = ExtResource("22_ei27n")
 
+[connection signal="player_go_to" from="Dialogue" to="." method="_on_dialogue_player_go_to"]
+[connection signal="pressed_no" from="Dialogue" to="." method="_on_dialogue_pressed_no"]
 [connection signal="pressed_yes" from="Dialogue" to="." method="_on_dialogue_pressed_yes"]
 [connection signal="body_entered" from="Capivaras" to="." method="_on_capivaras_body_entered"]
 [connection signal="body_entered" from="SrBaloes" to="." method="_on_sr_baloes_body_entered"]

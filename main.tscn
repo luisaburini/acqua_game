@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://csx22cryo0iv0"]
+[gd_scene load_steps=16 format=3 uid="uid://csx22cryo0iv0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ufh4c"]
 [ext_resource type="PackedScene" uid="uid://b2mryi4ci1g35" path="res://hud.tscn" id="3_4u6pc"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://djgyvbm6dglio" path="res://praca.tscn" id="7_s7ujm"]
 [ext_resource type="AudioStream" uid="uid://dk3bhy0mnaro5" path="res://sounds/trilha aqua game 3.wav" id="10_v6yaw"]
 [ext_resource type="PackedScene" uid="uid://doqpickhbibsx" path="res://balneario.tscn" id="11_7mojm"]
-[ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="11_q3g2q"]
 [ext_resource type="Texture2D" uid="uid://d3okdu2d10qc1" path="res://img/fim.png" id="12_o4f8d"]
 [ext_resource type="FontFile" uid="uid://gg6nhd2pel50" path="res://fonts/iknowaghost.ttf" id="12_ywc2t"]
 [ext_resource type="Texture2D" uid="uid://8yd5nesb4cdw" path="res://img/reset.png" id="13_16pxi"]
@@ -20,14 +19,11 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_ufh4c")
 
-[node name="Dialogue" parent="." instance=ExtResource("11_q3g2q")]
-
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource("3_4u6pc")]
-visible = false
 
 [node name="SeboPosition" type="Marker2D" parent="."]
 position = Vector2(1180, 650)
@@ -109,15 +105,18 @@ scale = Vector2(0.1, 0.1)
 [connection signal="go_back_scene" from="Sebo" to="." method="_on_sebo_go_back_scene"]
 [connection signal="go_to_next_scene" from="Sebo" to="." method="_on_sebo_go_to_next_scene"]
 [connection signal="leave" from="Sebo" to="." method="_on_sebo_leave"]
+[connection signal="player_go_to" from="Sebo" to="." method="_on_sebo_player_go_to"]
 [connection signal="stop_music" from="Sebo" to="." method="_on_sebo_stop_music"]
 [connection signal="finished" from="SeboMusic" to="." method="_on_sebo_music_finished"]
 [connection signal="go_back_scene" from="Praca" to="." method="_on_praca_go_back_scene"]
 [connection signal="go_to_next_scene" from="Praca" to="." method="_on_praca_go_to_next_scene"]
 [connection signal="leave" from="Praca" to="." method="_on_praca_leave"]
+[connection signal="player_go_to" from="Praca" to="." method="_on_praca_player_go_to"]
 [connection signal="finished" from="PracaMusic" to="." method="_on_praca_music_finished"]
 [connection signal="go_back_scene" from="Balneario" to="." method="_on_balneario_go_back_scene"]
 [connection signal="go_to_next_scene" from="Balneario" to="." method="_on_balneario_go_to_next_scene"]
 [connection signal="leave" from="Balneario" to="." method="_on_balneario_leave"]
+[connection signal="player_go_to" from="Balneario" to="." method="_on_balneario_player_go_to"]
 [connection signal="finished" from="BalnearioMusic" to="." method="_on_balneario_music_finished"]
 [connection signal="pressed" from="Fim/Reset" to="." method="_on_reset_pressed"]
 [connection signal="limite_direito" from="Player" to="." method="_on_player_limite_direito"]

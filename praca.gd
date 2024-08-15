@@ -3,7 +3,9 @@ extends Node2D
 signal go_to_next_scene
 signal go_back_scene
 signal leave
-signal user_can_go_to(position)
+signal player_go_to(pos)
+
+var ignore_click = false
 var started = false
 
 var scenario_index = 0
@@ -28,8 +30,8 @@ var chao_praca = ["res://img/cenario/praca/chao-cena1A.png",
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Dialogue.hide()
-	update_objs_state(0)
+	get_viewport().physics_object_picking_sort = true
+	$Dialogue.hide_all()
 	
 func reset():
 	scenario_index = 0
@@ -37,7 +39,7 @@ func reset():
 	balao_premiado = rng.randi_range(1, 3)
 	baloes_estourados = []
 	$Inventory.reset()
-	$Dialogue.hide()
+	$Dialogue.hide_all()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -55,20 +57,9 @@ func start():
 	
 func end():
 	started = false
-	var objs = get_objs()
-	for i in range(len(objs)):
-		for o in objs[i]:
-			var obj = get_node(o)
-			if obj != null:
-				obj.hide()
-				for c in obj.get_children():
-					if check_collision(c.get_class()):
-						# print(c.get_class())
-						c.disabled = true
-					for b in c.get_children():
-						if check_collision(b.get_class()):
-							b.disabled = true
-	hide()
+	scenario_index = 0
+	hide_all()
+	
 	
 func get_objs():
 		return [
@@ -86,6 +77,7 @@ func hide_all():
 		for o in objs[i]:
 			var obj = get_node(o)
 			if obj != null:
+				obj.hide()
 				# print("Root Node: "+ o)
 				for c in obj.get_children():
 					c.hide()
@@ -95,9 +87,10 @@ func hide_all():
 						b.hide()
 						if check_collision(b.get_class()):
 							b.disabled = true
+	hide()
 	
 func update_texture():
-	$Dialogue.hide()
+	$Dialogue.hide_all()
 	$Background.texture = load(praca_scenarios[scenario_index])
 	$Chao.texture = load(chao_praca[scenario_index])
 
@@ -159,12 +152,12 @@ func check_button(b):
 	return b.ends_with("Button") 
 
 var start_positions = [ 	
-	Vector2(550, 650),
-	Vector2(550, 650),
-	Vector2(550, 650),
-	Vector2(550, 650),
-	Vector2(550, 650),
-	Vector2(550, 650)
+	Vector2(250, 650),
+	Vector2(450, 650),
+	Vector2(250, 650),
+	Vector2(250, 650),
+	Vector2(250, 650),
+	Vector2(250, 650)
 ]
 	
 func get_start_position():
@@ -184,6 +177,7 @@ func  get_return_position():
 	
 
 func _on_porta_pressed():
+	ignore_click = true
 	go_to_next_scene.emit()
 
 
@@ -198,16 +192,22 @@ func toggle_visibility_balloons(visible):
 			
 
 func _on_dialogue_pressed_yes():
-	$Dialogue.hide()
-	toggle_visibility_balloons(true)
+	if started:
+		ignore_click = true
+		if ofereceu_premio:
+			toggle_visibility_balloons(true)
+			ofereceu_premio = false
 
 func _on_balao_1_pressed():
+	ignore_click = true
 	_on_balao_pressed("1")
 
 func _on_balao_2_pressed():
+	ignore_click = true
 	_on_balao_pressed("2")
 
 func _on_balao_3_pressed():
+	ignore_click = true
 	_on_balao_pressed("3")
 	
 		
@@ -225,10 +225,7 @@ func _on_balao_pressed(numero):
 		var balao_estourado = "res://img/cenario/praca/balao" + numero + "-detalhe.png"
 		$Dialogue.change_texture(balao_estourado)
 		$Dialogue.change_label("Nada aqui dentro...")
-		
-	
-	$Dialogue.start_hide_timer()
-	$Dialogue.show()
+	$Dialogue.show_all()
 	$Dialogue.hide_interaction()
 	toggle_visibility_balloons(false)
 	
@@ -239,26 +236,28 @@ func is_completed():
 	var andou_pedalinho = $Inventory.check_if_item_exists("pedalinho")
 	return andou_pedalinho and achou_ingresso and achou_garrafa
 
+var ofereceu_premio = false
 
 func _on_sr_baloes_body_entered(body):
 	# print("Sr Baloes entered, lets see if really should " + str(scenario_index) + " " + str(started) + " " + str(is_player(body.get_class())))
 	if started and scenario_index == 1 and is_player(body.get_class()):
 		# print("Sr Baloes entered")
-		$Dialogue.show()
+		$Dialogue.show_all()
 		if $Inventory.check_if_item_exists("ingresso"):
 			$Dialogue.change_label("Vai lá andar no pedalinho")
 			$Dialogue.change_texture("res://img/cenario/praca/pedalinho.png")
-			$Dialogue.start_hide_timer()
 			$Dialogue.hide_interaction()
 		else:
+			ofereceu_premio = true
 			$Dialogue.change_label("Gostaria de estourar bexigas\npara concorrer a um prêmio?")
 			$Dialogue.change_texture("res://img/cenario/praca/baloes.png")
-			$Dialogue.show()
+			$Dialogue.show_all()
 
 
 
 
 func _on_retorno_pressed():
+	ignore_click = true
 	go_back_scene.emit()
 
 
@@ -283,9 +282,8 @@ func _on_saida_body_entered(body):
 		else:
 			$Dialogue.change_texture("res://img/cenario/praca/sa")
 			$Dialogue.change_label("Ainda tem coisa pra fazer aqui")
-			$Dialogue.show()
+			$Dialogue.show_all()
 			$Dialogue.hide_interaction()
-			$Dialogue.start_hide_timer()
 
 
 func is_player(p):
@@ -304,9 +302,7 @@ func _on_sapo_body_entered(body):
 		else:
 			$Dialogue.change_texture("res://img/cenario/praca/sapo-detalhe.png")
 			$Dialogue.change_label("Ainda tem coisa pra fazer aqui...")	
-		
-		$Dialogue.start_hide_timer()
-		$Dialogue.show()
+		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
 
 
@@ -325,9 +321,8 @@ func _on_sr_pedalinho_body_entered(body):
 			else:
 				$Dialogue.change_label("Para andar no pedalinho é necessário ter o ingresso.")
 		$Dialogue.change_texture("res://img/cenario/praca/pedalinho.png")
-		$Dialogue.show()
+		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
-		$Dialogue.start_hide_timer()
 
 
 func _on_patos_body_entered(body):
@@ -337,9 +332,8 @@ func _on_patos_body_entered(body):
 		$Dialogue.change_label("Quaquaraquaqua")
 		$PatoSound.play()
 		$Dialogue.change_texture("res://img/cenario/praca/pato-detalhe.png")
-		$Dialogue.show()
+		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
-		$Dialogue.start_hide_timer()
 
 
 func _on_retorno_body_entered(body):
@@ -360,6 +354,26 @@ func _on_capivaras_body_entered(body):
 		# print("Capivaras entered")
 		$Dialogue.change_texture("res://img/capybara.png")
 		$Dialogue.change_label("Siga em frente para obter um presente.\nQuem sabe até onde você pode chegar?")	
-		$Dialogue.start_hide_timer()
-		$Dialogue.show()
+		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
+
+
+func _on_dialogue_pressed_no():
+	if started:
+		ignore_click = true
+		if ofereceu_premio:
+			ofereceu_premio = false
+
+func _unhandled_input(event):
+	if started:
+		get_viewport().set_input_as_handled()
+
+
+func _on_dialogue_player_go_to(pos):
+	if started:
+		if ignore_click:
+			print("PRACA: You shall ignore this click")
+			ignore_click = false
+		else:
+			print("PRACA: Dialogue is telling you to go there")
+			player_go_to.emit(pos)
