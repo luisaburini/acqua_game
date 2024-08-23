@@ -54,12 +54,12 @@ func is_walking():
 	return walking
 
 func walk_to(pos):
-	print("Walk to position " + str(pos.x) + " " + str(pos.y))
+	# print("Walk to position " + str(pos.x) + " " + str(pos.y))
 	clicked_position.x = pos.x
 	clicked_position.y = pos.y
 
 func go_to(pos):
-	print("Player go to position " + str(pos.x) + " " + str(pos.y))
+	# print("Player go to position " + str(pos.x) + " " + str(pos.y))
 	
 	target_position.x = pos.x
 	target_position.y = pos.y

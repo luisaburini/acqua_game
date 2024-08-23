@@ -1,21 +1,17 @@
-[gd_scene load_steps=52 format=3 uid="uid://b8wk3pt07sp1m"]
+[gd_scene load_steps=47 format=3 uid="uid://b8wk3pt07sp1m"]
 
 [ext_resource type="Script" path="res://sebo.gd" id="1_mq8n6"]
 [ext_resource type="Texture2D" uid="uid://dqmbp68266r08" path="res://img/cenario/sebo/estante-sebo2.png" id="2_unok4"]
 [ext_resource type="Texture2D" uid="uid://b3uj1oy6r6xwf" path="res://img/cenario/sebo/estante3-sebo3.png" id="3_dwsj0"]
-[ext_resource type="Texture2D" uid="uid://bpmw3b8rvs5xd" path="res://img/cenario/sebo/sebo4.png" id="3_ln3tm"]
-[ext_resource type="Texture2D" uid="uid://leudbm0qttwb" path="res://img/cenario/sebo/porta-sebo2.png" id="5_1wea5"]
+[ext_resource type="Texture2D" uid="uid://dm6pujhfqvsmj" path="res://img/cenario/sebo/sebo2.png" id="3_sguqi"]
 [ext_resource type="Texture2D" uid="uid://c72xje3npegbk" path="res://img/cenario/sebo/porta-sebo3.png" id="5_70ggl"]
 [ext_resource type="Texture2D" uid="uid://c0jxeax1ghys3" path="res://img/cenario/sebo/seta-porta.png" id="5_ss7gp"]
-[ext_resource type="Texture2D" uid="uid://dcswf8kjsrbnx" path="res://img/cenario/sebo/estante4-sebo3.png" id="6_w6u6d"]
-[ext_resource type="Texture2D" uid="uid://cnfjcs38dxbkp" path="res://img/cenario/sebo/retorno2-sebo2.png" id="7_701o8"]
 [ext_resource type="Texture2D" uid="uid://bd0jwuqexw7vw" path="res://img/cenario/sebo/ismael-sebo1.png" id="8_brlfp"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="8_vfo1t"]
 [ext_resource type="Texture2D" uid="uid://4dbwhrjlc3m6" path="res://img/cenario/praca/porta.png" id="9_2mh8a"]
-[ext_resource type="Texture2D" uid="uid://dhn2ysl12m863" path="res://img/cenario/sebo/vitrola-sebo3.png" id="9_6blqc"]
 [ext_resource type="PackedScene" uid="uid://46blvwif58os" path="res://inventory.tscn" id="9_hjf6q"]
+[ext_resource type="Texture2D" uid="uid://b4l2nlltmwdf6" path="res://img/cenario/sebo/vitrola-sebo3-fechada.png" id="9_jin5a"]
 [ext_resource type="Texture2D" uid="uid://cvsscrkk2s2y1" path="res://img/cenario/sebo/vinyl.png" id="9_obf22"]
-[ext_resource type="Texture2D" uid="uid://drylxilsb0qba" path="res://img/cenario/sebo/estante-sebo3.png" id="10_dc2ro"]
 [ext_resource type="Texture2D" uid="uid://d38segdx1vmpr" path="res://img/cenario/praca/retorno.png" id="11_lvonl"]
 [ext_resource type="Texture2D" uid="uid://smcugduypyn0" path="res://img/cenario/sebo/chao-sebo1.png" id="11_mhncv"]
 [ext_resource type="Texture2D" uid="uid://x0t1rcibmyqn" path="res://img/cenario/sebo/porta-sebo1.png" id="13_by46i"]
@@ -34,8 +30,9 @@ size = Vector2(188.25, 409.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uy5f"]
 size = Vector2(502, 228.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pebxm"]
-size = Vector2(181, 340)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fjtn6"]
+radius = 71.0
+height = 324.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wkd7g"]
 radius = 45.0
@@ -44,11 +41,8 @@ height = 300.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvdkb"]
 size = Vector2(881, 450)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_brjq4"]
-size = Vector2(257, 171)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_o37uk"]
-radius = 84.7231
+[sub_resource type="CircleShape2D" id="CircleShape2D_bxj3i"]
+radius = 80.3057
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7aet"]
 size = Vector2(161, 560.25)
@@ -58,19 +52,18 @@ radius = 86.0
 height = 440.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qybjb"]
-size = Vector2(1276, 383)
+size = Vector2(1276, 363)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1x26"]
+size = Vector2(556.25, 207.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pqb1x"]
-radius = 138.889
-height = 542.222
+radius = 157.777
+height = 806.667
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lvai5"]
 radius = 108.889
-height = 560.0
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_qti5t"]
-a = Vector2(431, 17)
-b = Vector2(4, 17)
+height = 931.112
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6u35f"]
 radius = 24.0832
@@ -124,7 +117,7 @@ offset_left = 7.0
 offset_right = 1287.0
 offset_bottom = 721.0
 mouse_filter = 2
-texture = ExtResource("3_ln3tm")
+texture = ExtResource("3_sguqi")
 
 [node name="Dialogue" parent="." instance=ExtResource("8_vfo1t")]
 
@@ -158,12 +151,11 @@ position = Vector2(304, 292)
 texture_normal = ExtResource("5_ss7gp")
 
 [node name="Ismael" type="Area2D" parent="."]
-visible = false
 z_index = -2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ismael"]
-position = Vector2(98.5, 495)
-shape = SubResource("RectangleShape2D_pebxm")
+position = Vector2(103, 510)
+shape = SubResource("CapsuleShape2D_fjtn6")
 
 [node name="TextureRect" type="TextureRect" parent="Ismael"]
 offset_top = 322.0
@@ -190,25 +182,18 @@ shape = SubResource("RectangleShape2D_yvdkb")
 one_way_collision_margin = 0.0
 
 [node name="Vitrola" type="Area2D" parent="."]
-visible = false
 z_index = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vitrola"]
-position = Vector2(131.5, 631.5)
-shape = SubResource("RectangleShape2D_brjq4")
+position = Vector2(536, 650)
+shape = SubResource("CircleShape2D_bxj3i")
 
 [node name="TextureRect" type="TextureRect" parent="Vitrola"]
-offset_left = 14.0
-offset_top = 518.0
-offset_right = 261.0
-offset_bottom = 716.0
-texture = ExtResource("9_6blqc")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Vitrola"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vitrola/StaticBody2D"]
-position = Vector2(110, 611)
-shape = SubResource("CircleShape2D_o37uk")
+offset_left = 380.0
+offset_top = 131.0
+offset_right = 680.0
+offset_bottom = 431.0
+texture = ExtResource("9_jin5a")
 
 [node name="Porta2" type="Area2D" parent="."]
 visible = false
@@ -218,13 +203,6 @@ position = Vector2(-50, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Porta2"]
 position = Vector2(1251.5, 440.875)
 shape = SubResource("RectangleShape2D_f7aet")
-
-[node name="TextureRect" type="TextureRect" parent="Porta2"]
-offset_left = 1161.0
-offset_top = 129.0
-offset_right = 1325.0
-offset_bottom = 720.0
-texture = ExtResource("5_1wea5")
 
 [node name="TextureButton" type="TouchScreenButton" parent="Porta2"]
 position = Vector2(1158, 356)
@@ -243,24 +221,16 @@ position = Vector2(20, 20)
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Estante2"]
 z_index = -6
-position = Vector2(623, 176.5)
+position = Vector2(623, 166.5)
 shape = SubResource("RectangleShape2D_qybjb")
 
-[node name="TextureRect" type="TextureRect" parent="Estante2/CollisionPolygon2D"]
-offset_left = -637.0
-offset_top = -195.5
-offset_right = 206.0
-offset_bottom = 217.5
-texture = ExtResource("6_w6u6d")
-
-[node name="Estante22" type="TextureRect" parent="."]
+[node name="Estante22" type="StaticBody2D" parent="."]
 visible = false
 z_index = 4000
-offset_left = 386.0
-offset_top = 412.0
-offset_right = 824.0
-offset_bottom = 601.0
-texture = ExtResource("10_dc2ro")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Estante22"]
+position = Vector2(542.125, 424.75)
+shape = SubResource("RectangleShape2D_b1x26")
 
 [node name="Retorno2" type="Area2D" parent="."]
 visible = false
@@ -270,31 +240,16 @@ scale = Vector2(0.9, 0.9)
 position = Vector2(115.556, 418.889)
 shape = SubResource("CapsuleShape2D_pqb1x")
 
-[node name="TextureRect" type="TextureRect" parent="Retorno2"]
-z_index = -4
-offset_left = 3.33333
-offset_top = 150.0
-offset_right = 181.333
-offset_bottom = 659.0
-texture = ExtResource("7_701o8")
-
 [node name="StaticBody2D" type="StaticBody2D" parent="Retorno2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Retorno2/StaticBody2D"]
-position = Vector2(95.5556, 274.444)
+position = Vector2(105.556, 304.444)
 shape = SubResource("CapsuleShape2D_lvai5")
 
 [node name="TextureButton" type="TouchScreenButton" parent="Retorno2"]
 z_index = 115
 position = Vector2(20, 337.778)
 texture_normal = ExtResource("11_lvonl")
-
-[node name="Obstaculo2" type="StaticBody2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo2"]
-position = Vector2(385, 565)
-shape = SubResource("SegmentShape2D_qti5t")
 
 [node name="Vinyl" type="Area2D" parent="."]
 visible = false
@@ -341,6 +296,7 @@ position = Vector2(399, 243)
 texture_normal = ExtResource("5_ss7gp")
 
 [node name="Estante3" type="StaticBody2D" parent="."]
+visible = false
 z_index = -2
 position = Vector2(400, 250)
 
@@ -404,6 +360,7 @@ position = Vector2(1058, 408)
 stream = ExtResource("13_pf0ty")
 
 [node name="Saida" type="Area2D" parent="."]
+visible = false
 z_index = -2
 position = Vector2(-50, 100)
 

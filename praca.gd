@@ -192,6 +192,7 @@ func toggle_visibility_balloons(visible):
 			
 
 func _on_dialogue_pressed_yes():
+	$PedalinhoSound.stop()
 	if started:
 		ignore_click = true
 		if ofereceu_premio:
@@ -222,7 +223,7 @@ func _on_balao_pressed(numero):
 		$Dialogue.change_label("Achou o balão premiado!")
 	else:
 		$BalaoSound.play()
-		var balao_estourado = "res://img/cenario/praca/balao" + numero + "-detalhe.png"
+		var balao_estourado = "res://img/cenario/praca/balao" + numero + "-pressed.png"
 		$Dialogue.change_texture(balao_estourado)
 		$Dialogue.change_label("Nada aqui dentro...")
 	$Dialogue.show_all()
@@ -359,6 +360,7 @@ func _on_capivaras_body_entered(body):
 
 
 func _on_dialogue_pressed_no():
+	$PedalinhoSound.stop()
 	if started:
 		ignore_click = true
 		if ofereceu_premio:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://csx22cryo0iv0"]
+[gd_scene load_steps=17 format=3 uid="uid://csx22cryo0iv0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ufh4c"]
 [ext_resource type="PackedScene" uid="uid://b2mryi4ci1g35" path="res://hud.tscn" id="3_4u6pc"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ds7odrisj6q82" path="res://character_body_2d.tscn" id="7_kkwop"]
 [ext_resource type="PackedScene" uid="uid://djgyvbm6dglio" path="res://praca.tscn" id="7_s7ujm"]
 [ext_resource type="AudioStream" uid="uid://dk3bhy0mnaro5" path="res://sounds/trilha aqua game 3.wav" id="10_v6yaw"]
+[ext_resource type="AudioStream" uid="uid://comh7fk73sya5" path="res://sounds/micuim 8bit.mp3" id="10_x4r1v"]
 [ext_resource type="PackedScene" uid="uid://doqpickhbibsx" path="res://balneario.tscn" id="11_7mojm"]
 [ext_resource type="Texture2D" uid="uid://d3okdu2d10qc1" path="res://img/fim.png" id="12_o4f8d"]
 [ext_resource type="FontFile" uid="uid://gg6nhd2pel50" path="res://fonts/iknowaghost.ttf" id="12_ywc2t"]
@@ -57,7 +58,7 @@ visible = false
 
 [node name="BalnearioMusic" type="AudioStreamPlayer2D" parent="."]
 visible = false
-stream = ExtResource("3_m6cy0")
+stream = ExtResource("10_x4r1v")
 
 [node name="Fim" type="TextureRect" parent="."]
 offset_right = 40.0

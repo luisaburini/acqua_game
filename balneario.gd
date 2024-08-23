@@ -149,7 +149,7 @@ func _on_porta_pressed():
 
 var start_positions = [ 	
 	Vector2(600, 500),
-	Vector2(400, 500),
+	Vector2(100, 500),
 	Vector2(400, 500),
 	Vector2(400, 500),
 	Vector2(600, 500),
@@ -184,7 +184,9 @@ func is_completed():
 
 
 func _on_senhora_body_entered(body):
+	print(body.get_class() + " entered, lets see if really " + str(scenario_index) + " " + str(started))
 	if is_player(body.get_class()) and scenario_index == 1 and started:
+		print(body.get_class() + " entered " + str(body.position.x) + " " + str(body.position.y))
 		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
 		$Dialogue.change_label("Você já tem a garrafa,\nagora só falta a água.\nOnde poderia estar?")
 		$Dialogue.show_all()

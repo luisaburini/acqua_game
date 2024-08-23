@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://de5n0eqdi465i" path="res://img/cenario/balneario/senhora.png" id="2_xbuj5"]
 [ext_resource type="Texture2D" uid="uid://dwtpytvfpas2a" path="res://img/cenario/balneario/chao-cena1A.png" id="3_5b2h3"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="4_s4g8n"]
-[ext_resource type="Texture2D" uid="uid://im6djd27cgas" path="res://img/cenario/balneario/balneario-cena1A.png" id="5_l1rmk"]
+[ext_resource type="Texture2D" uid="uid://ca4qbpy8yn6rk" path="res://img/cenario/balneario/balneario-cena1B.png" id="5_x5hel"]
 [ext_resource type="Texture2D" uid="uid://cfgpovi8255d7" path="res://img/cenario/balneario/guarda-sol.png" id="6_d1tob"]
 [ext_resource type="Texture2D" uid="uid://dun5sumea0me" path="res://img/cenario/balneario/porta.png" id="7_dsvga"]
 [ext_resource type="Texture2D" uid="uid://dlou21knliyvf" path="res://img/cenario/balneario/retorno.png" id="8_0txry"]
@@ -27,13 +27,11 @@ size = Vector2(1312, 327)
 radius = 40.0
 height = 838.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4jfrm"]
-radius = 113.0
-height = 346.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_468ot"]
+radius = 74.3303
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mb0g3"]
-radius = 80.0
-height = 218.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_f05e5"]
+radius = 96.7988
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0mvnf"]
 size = Vector2(1296, 305)
@@ -100,7 +98,7 @@ texture = ExtResource("3_5b2h3")
 z_index = -100
 offset_right = 1280.0
 offset_bottom = 720.0
-texture = ExtResource("5_l1rmk")
+texture = ExtResource("5_x5hel")
 
 [node name="Guardasol" type="StaticBody2D" parent="."]
 position = Vector2(2, 400)
@@ -133,18 +131,18 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_07hub")
 
 [node name="Senhora" type="Area2D" parent="."]
-visible = false
+position = Vector2(-150, -30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Senhora"]
-position = Vector2(1080, 475)
-shape = SubResource("CapsuleShape2D_4jfrm")
+position = Vector2(1032, 575)
+shape = SubResource("CircleShape2D_468ot")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Senhora"]
 position = Vector2(1002, 344)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Senhora/StaticBody2D"]
 position = Vector2(82, 119)
-shape = SubResource("CapsuleShape2D_mb0g3")
+shape = SubResource("CircleShape2D_f05e5")
 
 [node name="TextureRect" type="TextureRect" parent="Senhora"]
 z_index = 200

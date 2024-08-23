@@ -21,7 +21,6 @@ func new_game():
 		var loc_node = get_node(loc)
 		loc_node.hide_all()
 	$Fim.hide()
-	$HUDMusic.stop()
 	$HUD.end()
 	$CityMap.start(locations[current_location], locations)
 
@@ -53,6 +52,7 @@ func _on_sebo_leave():
 	$Sebo.end()
 	$SeboMusic.stop()
 	current_location = 1
+	$HUDMusic.play()
 	$CityMap.start(locations[current_location], locations)
 
 
@@ -62,6 +62,8 @@ func _on_sebo_stop_music():
 
 func _on_city_map_pressed_sebo():
 	$CityMap.end()
+	$HUDMusic.stop()
+	$SeboMusic.play()
 	$Sebo.start()
 	$Player.start($SeboPosition.position)
 
@@ -77,6 +79,8 @@ func _on_city_map_pressed_praca():
 	if $Sebo.is_completed():
 		current_location = 1
 		$CityMap.end()
+		$HUDMusic.stop()
+		$SeboMusic.stop()
 		$PracaMusic.play()
 		$Player.start($PracaPosition.position)
 		$Praca.start()
@@ -94,6 +98,7 @@ func _on_praca_go_to_next_scene():
 func _on_city_map_pressed_balneario():
 	if $Praca.is_completed():
 		$CityMap.end()
+		$HUDMusic.stop()
 		current_location = 2
 		$BalnearioMusic.play()
 		$Player.start($BalnearioPosition.position)
@@ -106,6 +111,7 @@ func _on_praca_leave():
 	$Praca.end()
 	$PracaMusic.stop()
 	current_location = 2
+	$HUDMusic.play()
 	$CityMap.start(locations[current_location], locations)
 
 
@@ -135,6 +141,8 @@ func _on_balneario_music_finished():
 	$BalnearioMusic.play()
 
 
+var started_fim = false
+
 func _on_balneario_leave():
 	for loc in locations:
 		var loc_node = get_node(loc)
@@ -142,11 +150,13 @@ func _on_balneario_leave():
 	$BalnearioMusic.stop()
 	$Balneario.end()
 	$Fim.show()
+	started_fim = true
 	$FimMusic.play()
 	$EtMusic.play()
 
 
 func _on_reset_pressed():
+	started_fim = false
 	current_location = 0	
 	$SeboMusic.stop()
 	$PracaMusic.stop()
@@ -166,9 +176,9 @@ func _on_sebo_audiodica_finished():
 func _unhandled_input(event):
 	if event is InputEventScreenTouch and event.pressed == true:
 		if !$CityMap.started and !$HUD.started:
-			if $Sebo.started or $Praca.started or $Balneario.started:
+			if $Sebo.started or $Praca.started or $Balneario.started or started_fim:
 				get_viewport().set_input_as_handled()
-				print("Main: clicked position " + str(event.position.x) + " " + str(event.position.y))
+				# print("Main: clicked position " + str(event.position.x) + " " + str(event.position.y))
 				$Player.walk_to(event.position)
 				
 

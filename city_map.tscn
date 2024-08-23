@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpe24lml0sq6u"]
+[gd_scene load_steps=7 format=3 uid="uid://dpe24lml0sq6u"]
 
 [ext_resource type="Script" path="res://city_map.gd" id="1_ggjlf"]
 [ext_resource type="Texture2D" uid="uid://qjpseo0k1glk" path="res://img/city_map.png" id="2_q14x6"]
 [ext_resource type="Texture2D" uid="uid://dbj7kkshl6c0b" path="res://img/sebo-detalhe.jpeg" id="3_jn0u0"]
 [ext_resource type="Texture2D" uid="uid://b4emr0htn3oe0" path="res://img/praca-adhemar-de-barros.jpg" id="5_1bmcs"]
 [ext_resource type="Texture2D" uid="uid://b6j307kdhqb1g" path="res://img/balneario-detalhe.png" id="5_e3nec"]
-[ext_resource type="AudioStream" uid="uid://b2qwevhofpq0o" path="res://sounds/trilha aqua game trilha 1 previa.mp3" id="6_f32ai"]
 [ext_resource type="FontFile" uid="uid://gg6nhd2pel50" path="res://fonts/iknowaghost.ttf" id="7_knlvy"]
 
 [node name="CityMap" type="CanvasLayer"]
@@ -30,9 +29,6 @@ texture_normal = ExtResource("5_1bmcs")
 [node name="TouchBalnearioButton" type="TouchScreenButton" parent="."]
 position = Vector2(654, 555)
 texture_normal = ExtResource("5_e3nec")
-
-[node name="CityMapMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_f32ai")
 
 [node name="SeboLabel" type="Label" parent="."]
 offset_left = 10.0
@@ -69,4 +65,3 @@ text = "Balneário"
 [connection signal="pressed" from="TouchSeboButton" to="." method="_on_touch_sebo_button_pressed"]
 [connection signal="pressed" from="TouchPracaButton" to="." method="_on_touch_praca_button_pressed"]
 [connection signal="pressed" from="TouchBalnearioButton" to="." method="_on_touch_balneario_button_pressed"]
-[connection signal="finished" from="CityMapMusic" to="." method="_on_city_map_music_finished"]

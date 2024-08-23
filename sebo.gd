@@ -50,6 +50,7 @@ func reset():
 	scenario_index = 0
 	$Inventory.reset()
 	$Dialogue.hide_all()
+	$Vitrola/TextureRect.texture = load("res://img/cenario/sebo/vitrola-sebo3-fechada.png")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -105,7 +106,7 @@ func is_completed():
 func get_objs():
 	return [
 		["Ismael", "Porta1", "Obstaculo"],
-		[ "Vitrola", "Porta2", "Estante2", "Estante22" ,"Retorno2", "Obstaculo2"],
+		[ "Vitrola", "Porta2", "Estante2", "Estante22" ,"Retorno2"],
 		["Vinyl", "Porta3", "Estante3", "Retorno3"],
 		["Saida", "Retorno4", "Obstaculo4"]
 	]
@@ -129,7 +130,7 @@ func update_objs_state(limit):
 			var obj = get_node(o)
 			if obj != null:
 				if scenario_index == i:
-					# print("Root obj " + o)
+					print("Root obj " + o)
 					obj.show()
 					for c in obj.get_children():
 						c.show()
@@ -137,12 +138,12 @@ func update_objs_state(limit):
 						if check_button(c.get_class()):
 							c.hide()
 						if check_collision(c.get_class()):
-							# print("Enabled " + c.get_class())
+							print("Enabled " + c.get_class())
 							c.disabled = false
 						for b in c.get_children():
 							b.show()
 							if check_collision(b.get_class()):
-								# print("Enabled " + b.get_class())
+								print("Enabled " + b.get_class())
 								b.disabled = false
 				else:
 					# print("Root obj " + o)
@@ -184,6 +185,9 @@ func _on_dialogue_pressed_yes():
 			$Dialogue.show_all()
 			$Dialogue.hide_interaction()
 			ofereceu_livro = false
+		else:
+			$LivroLongSound.stop()
+			$LivroShortSound.stop()
 	
 
 
@@ -243,15 +247,17 @@ func is_player(p):
 
 
 func _on_vitrola_body_entered(body):
-	# print(body.get_class() + " entered vitrola, lets see if really " + str(scenario_index))
+	print(body.get_class() + " entered vitrola, lets see if really " + str(scenario_index))
 	if scenario_index == 1 and started and is_player(body.get_class()):
-		# print("Entered vitrola")
+		print("Entered vitrola")
 		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
 		$Dialogue.change_texture("res://img/cenario/sebo/vinyl-detalhe.png")	
 		var pegou_vinyl = $Inventory.check_if_item_exists("vinyl")
 		var tocou_vinyl = $Inventory.check_if_item_exists("vitrola")
 		if pegou_vinyl :
+			$Vitrola/TextureRect.texture = load("res://img/cenario/sebo/vitrola-sebo3.png")
+			
 			if tocou_vinyl:
 				$Dialogue.change_label("Já tocou o vinyl.\nNovas aventuras te aguardam!")
 			else:
@@ -357,6 +363,8 @@ func _on_texture_button3_pressed():
 var ignore_click = false
 
 func _on_dialogue_pressed_no():
+	$LivroLongSound.stop()
+	$LivroShortSound.stop()
 	if started:
 		ignore_click = true
 		if ofereceu_livro:
