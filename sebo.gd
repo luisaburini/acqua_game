@@ -228,9 +228,12 @@ func _on_retorno_2_body_entered(body):
 
 func _on_vinyl_body_entered(body):
 	if scenario_index == 2 and started and is_player(body.get_class()):
-		$ColetaSound.play()
-		$Vinyl.hide()
-		$Inventory.add_item("vinyl")
+		if $Inventory.check_if_item_exists("vinyl"):
+			print("Ja pegou!")
+		else:
+			$ColetaSound.play()
+			$Vinyl.hide()
+			$Inventory.add_item("vinyl")
 
 
 func _on_retorno_4_body_entered(body):
