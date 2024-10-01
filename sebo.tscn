@@ -37,8 +37,9 @@ height = 300.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvdkb"]
 size = Vector2(881, 450)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bxj3i"]
-radius = 80.3057
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bskvs"]
+radius = 88.1149
+height = 461.472
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7aet"]
 size = Vector2(161, 560.25)
@@ -179,12 +180,13 @@ shape = SubResource("RectangleShape2D_yvdkb")
 one_way_collision_margin = 0.0
 
 [node name="Vitrola" type="Area2D" parent="."]
-visible = false
 z_index = 1000
+position = Vector2(-20, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vitrola"]
-position = Vector2(536, 650)
-shape = SubResource("CircleShape2D_bxj3i")
+position = Vector2(524, 648)
+rotation = 1.55509
+shape = SubResource("CapsuleShape2D_bskvs")
 
 [node name="TextureRect" type="TextureRect" parent="Vitrola"]
 offset_left = 380.0

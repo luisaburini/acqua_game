@@ -1,0 +1,12 @@
+CollisionShape2D
+StaticBody2D
+TextureRect
+TouchScreenButton
+Label
+Node2D
+Area2D
+TextureButton
+Marker2D
+AudioStreamPlayer2D
+CanvasLayer
+CollisionPolygon2D

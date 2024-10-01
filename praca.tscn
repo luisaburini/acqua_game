@@ -1,8 +1,9 @@
-[gd_scene load_steps=44 format=3 uid="uid://djgyvbm6dglio"]
+[gd_scene load_steps=45 format=3 uid="uid://djgyvbm6dglio"]
 
 [ext_resource type="Script" path="res://praca.gd" id="1_cpsnw"]
 [ext_resource type="Texture2D" uid="uid://ctvqmhrg5xkhe" path="res://img/cenario/praca/sr-do-pedalinho.png" id="1_r65fp"]
 [ext_resource type="Texture2D" uid="uid://bg3a5uh20xkel" path="res://img/cenario/praca/sr-dos-baloes.png" id="1_xf8u4"]
+[ext_resource type="Texture2D" uid="uid://b4li8r406lep0" path="res://img/cenario/praca/capys.png" id="2_75ejj"]
 [ext_resource type="Texture2D" uid="uid://bci31ox8i5we3" path="res://img/cenario/praca/chao-cena1A.png" id="3_10ar6"]
 [ext_resource type="Texture2D" uid="uid://cemtyh8b0xn73" path="res://img/cenario/praca/praca-cena3B.png" id="3_fynrn"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="5_45i88"]
@@ -24,6 +25,10 @@
 [ext_resource type="AudioStream" uid="uid://x8ex3h5p1h1g" path="res://sounds/mixkit-fairy-arcade-sparkle-866.wav" id="22_ei27n"]
 [ext_resource type="Texture2D" uid="uid://dk73e5x84gq8j" path="res://img/cenario/praca/patos.png" id="24_viruo"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k3sx2"]
+radius = 50.9253
+height = 346.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkh22"]
 size = Vector2(1304, 292)
 
@@ -38,10 +43,6 @@ height = 262.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ebhi"]
 radius = 25.5164
 height = 236.091
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k3sx2"]
-radius = 50.9253
-height = 346.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4op8"]
 size = Vector2(1301, 543)
@@ -101,6 +102,20 @@ size = Vector2(138, 227)
 [node name="Praca" type="Node2D"]
 script = ExtResource("1_cpsnw")
 
+[node name="Capivaras" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Capivaras"]
+position = Vector2(979, 394)
+rotation = 1.58476
+shape = SubResource("CapsuleShape2D_k3sx2")
+
+[node name="TextureRect" type="TextureRect" parent="Capivaras"]
+offset_left = 823.0
+offset_top = 328.0
+offset_right = 1142.0
+offset_bottom = 447.0
+texture = ExtResource("2_75ejj")
+
 [node name="Chao" type="TextureRect" parent="."]
 z_index = -1000
 y_sort_enabled = true
@@ -150,20 +165,6 @@ rotation = -0.226893
 position = Vector2(164.631, 438.267)
 rotation = -0.226893
 shape = SubResource("CapsuleShape2D_3ebhi")
-
-[node name="Capivaras" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Capivaras"]
-position = Vector2(979, 394)
-rotation = 1.58476
-shape = SubResource("CapsuleShape2D_k3sx2")
-
-[node name="TextureRect" type="TextureRect" parent="Capivaras"]
-offset_left = 823.0
-offset_top = 328.0
-offset_right = 1142.0
-offset_bottom = 447.0
 
 [node name="Obstaculo2" type="StaticBody2D" parent="."]
 visible = false
@@ -362,10 +363,10 @@ stream = ExtResource("21_hbmqr")
 visible = false
 stream = ExtResource("22_ei27n")
 
+[connection signal="body_entered" from="Capivaras" to="." method="_on_capivaras_body_entered"]
 [connection signal="player_go_to" from="Dialogue" to="." method="_on_dialogue_player_go_to"]
 [connection signal="pressed_no" from="Dialogue" to="." method="_on_dialogue_pressed_no"]
 [connection signal="pressed_yes" from="Dialogue" to="." method="_on_dialogue_pressed_yes"]
-[connection signal="body_entered" from="Capivaras" to="." method="_on_capivaras_body_entered"]
 [connection signal="body_entered" from="SrBaloes" to="." method="_on_sr_baloes_body_entered"]
 [connection signal="body_entered" from="Patos" to="." method="_on_patos_body_entered"]
 [connection signal="body_entered" from="SrPedalinho" to="." method="_on_sr_pedalinho_body_entered"]
