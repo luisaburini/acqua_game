@@ -134,7 +134,6 @@ func update_objs_state(limit):
 					obj.show()
 					for c in obj.get_children():
 						c.show()
-						# print(c.get_class())
 						if check_button(c.get_class()):
 							c.hide()
 						if check_collision(c.get_class()):
@@ -151,12 +150,10 @@ func update_objs_state(limit):
 					for c in obj.get_children():
 						c.hide()
 						if check_collision(c.get_class()):
-							# print("Disabled " + c.get_class())
 							c.disabled = true
 						for b in c.get_children():
 							b.hide()
 							if check_collision(b.get_class()):
-								# print("Disabled " + b.get_class())
 								b.disabled = true
 					
 	if $Inventory.check_if_item_exists("vinyl"):
@@ -206,7 +203,7 @@ func _on_ismael_body_entered(body):
 			$Dialogue.change_label("Estou ocupado, vá se ocupar também.")
 		else:
 			$LivroShortSound.play()
-			$Dialogue.change_texture("res://img/livro.png")
+			$Dialogue.change_texture("res://img/cenario/sebo/livro.png")
 			$Dialogue.change_label("Gostaria de ganhar um livro mágico?")
 			ofereceu_livro = true
 			$Dialogue.show_all()
@@ -339,7 +336,7 @@ func _on_saida_body_entered(body):
 			leave.emit()
 			$AudioDica.stop()
 		else:
-			$Dialogue.change_texture("res://img/capybara.png")
+			$Dialogue.change_texture("res://img/cenario/sebo/capybara.png")
 			$Dialogue.change_label("Ainda tem coisa pra fazer aqui")
 			$Dialogue.show_all()
 			$Dialogue.hide_interaction()

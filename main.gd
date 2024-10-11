@@ -36,6 +36,7 @@ func _on_player_limite_direito():
 		loc.update_objs_state(+1)
 		$Player.end()
 		$Player.start(loc.get_start_position())
+		$Player.flip_horizontal(true)
 		
 
 
@@ -83,6 +84,7 @@ func _on_city_map_pressed_praca():
 		$SeboMusic.stop()
 		$PracaMusic.play()
 		$Player.start($PracaPosition.position)
+		$Player.flip_horizontal(true)
 		$Praca.start()
 
 func _on_praca_go_back_scene():
@@ -102,6 +104,7 @@ func _on_city_map_pressed_balneario():
 		current_location = 2
 		$BalnearioMusic.play()
 		$Player.start($BalnearioPosition.position)
+		$Player.flip_horizontal(true)
 		$Balneario.start()
 
 
@@ -178,13 +181,13 @@ func _unhandled_input(event):
 		if !$CityMap.started and !$HUD.started:
 			if $Sebo.started or $Praca.started or $Balneario.started or started_fim:
 				get_viewport().set_input_as_handled()
-				# print("Main: clicked position " + str(event.position.x) + " " + str(event.position.y))
 				$Player.walk_to(event.position)
 				
 
 
 func _on_sebo_player_go_to(pos):
 	print("Main: Sebo told you to go there")
+	print(pos)
 	if $Sebo.started:
 		$Player.walk_to(pos)
 

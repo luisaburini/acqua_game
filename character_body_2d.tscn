@@ -1,36 +1,48 @@
-[gd_scene load_steps=25 format=3 uid="uid://ds7odrisj6q82"]
+[gd_scene load_steps=13 format=3 uid="uid://ds7odrisj6q82"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_savun"]
-[ext_resource type="Texture2D" uid="uid://b6cnns0o4sbex" path="res://img/Orange Fat Cat/Idle/CAT IDLE0001.png" id="2_aog55"]
-[ext_resource type="Texture2D" uid="uid://madeqc6ej4le" path="res://img/Orange Fat Cat/Idle/CAT IDLE0002.png" id="3_j6ljv"]
-[ext_resource type="Texture2D" uid="uid://co04cptm064gp" path="res://img/Orange Fat Cat/Walk/CAT WALK0001.png" id="4_iffx2"]
-[ext_resource type="Texture2D" uid="uid://b7137bd1oe2p5" path="res://img/Orange Fat Cat/Walk/CAT WALK0002.png" id="5_iyjx2"]
-[ext_resource type="Texture2D" uid="uid://dkf0bvtxt0er3" path="res://img/Orange Fat Cat/Walk/CAT WALK0003.png" id="6_hwi61"]
-[ext_resource type="Texture2D" uid="uid://c4d67iv8r3852" path="res://img/Orange Fat Cat/Walk/CAT WALK0004.png" id="7_as824"]
-[ext_resource type="Texture2D" uid="uid://y5pnmaivmux3" path="res://img/Orange Fat Cat/Walk/CAT WALK0005.png" id="8_vh3o2"]
-[ext_resource type="Texture2D" uid="uid://bu2m4aiinjrd3" path="res://img/Orange Fat Cat/Walk/CAT WALK0006.png" id="9_ytjvh"]
-[ext_resource type="Texture2D" uid="uid://2ffdodm26f1h" path="res://img/Orange Fat Cat/Walk/CAT WALK0007.png" id="10_iv35w"]
-[ext_resource type="Texture2D" uid="uid://hqkyl6vqi0wc" path="res://img/Orange Fat Cat/Walk/CAT WALK0008.png" id="11_oxv1b"]
-[ext_resource type="Texture2D" uid="uid://dwx2plf84uf54" path="res://img/Orange Fat Cat/Walk/CAT WALK0009.png" id="12_vpsrs"]
-[ext_resource type="Texture2D" uid="uid://hxrevinuaqlw" path="res://img/Orange Fat Cat/Walk/CAT WALK0010.png" id="13_ifc5f"]
-[ext_resource type="Texture2D" uid="uid://m615i1fsgxrj" path="res://img/Orange Fat Cat/Walk/CAT WALK0011.png" id="14_m1xbu"]
-[ext_resource type="Texture2D" uid="uid://wdwrsorrurud" path="res://img/Orange Fat Cat/Walk/CAT WALK0012.png" id="15_p3xx1"]
-[ext_resource type="Texture2D" uid="uid://b5mct8eiqdyvo" path="res://img/Orange Fat Cat/Walk/CAT WALK0013.png" id="16_3oljg"]
-[ext_resource type="Texture2D" uid="uid://4g540iargtjp" path="res://img/Orange Fat Cat/Walk/CAT WALK0014.png" id="17_nlx5q"]
-[ext_resource type="Texture2D" uid="uid://x7i5m2ym6iax" path="res://img/Orange Fat Cat/Walk/CAT WALK0015.png" id="18_x0cd4"]
-[ext_resource type="Texture2D" uid="uid://b6oximyg4s5jl" path="res://img/Orange Fat Cat/Walk/CAT WALK0016.png" id="19_tp61k"]
-[ext_resource type="Texture2D" uid="uid://cat3fuxqf3sc1" path="res://img/Orange Fat Cat/Walk/CAT WALK0017.png" id="20_g4fhq"]
-[ext_resource type="Texture2D" uid="uid://bhnfh8g1vuppw" path="res://img/Orange Fat Cat/Walk/CAT WALK0018.png" id="21_ncmbm"]
-[ext_resource type="Texture2D" uid="uid://cjxrtva56cy50" path="res://img/Orange Fat Cat/Walk/CAT WALK0019.png" id="22_1ukc2"]
+[ext_resource type="Texture2D" uid="uid://v6a8ivk4nfac" path="res://img/protagonista/idle.png" id="2_tslwq"]
+[ext_resource type="Texture2D" uid="uid://cb50nd2mtoxgi" path="res://img/protagonista/walk.png" id="3_im22m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukm52"]
+atlas = ExtResource("2_tslwq")
+region = Rect2(0, 0, 101, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s46h"]
+atlas = ExtResource("2_tslwq")
+region = Rect2(101, 0, 101, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pmga"]
+atlas = ExtResource("2_tslwq")
+region = Rect2(202, 0, 101, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1fxk"]
+atlas = ExtResource("3_im22m")
+region = Rect2(0, 0, 99, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny40r"]
+atlas = ExtResource("3_im22m")
+region = Rect2(99, 0, 99, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxvox"]
+atlas = ExtResource("3_im22m")
+region = Rect2(198, 0, 99, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_maqn8"]
+atlas = ExtResource("3_im22m")
+region = Rect2(297, 0, 99, 150)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ng0qm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_aog55")
+"texture": SubResource("AtlasTexture_ukm52")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_j6ljv")
+"texture": SubResource("AtlasTexture_5s46h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pmga")
 }],
 "loop": true,
 "name": &"idle",
@@ -38,61 +50,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_iffx2")
+"texture": SubResource("AtlasTexture_v1fxk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_iyjx2")
+"texture": SubResource("AtlasTexture_ny40r")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_hwi61")
+"texture": SubResource("AtlasTexture_xxvox")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_as824")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_vh3o2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_ytjvh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_iv35w")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_oxv1b")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_vpsrs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_ifc5f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_m1xbu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_p3xx1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_3oljg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_nlx5q")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_x0cd4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_tp61k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_g4fhq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_ncmbm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_1ukc2")
+"texture": SubResource("AtlasTexture_maqn8")
 }],
 "loop": true,
 "name": &"walk",
@@ -100,8 +67,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e8jgy"]
-radius = 310.0
-height = 876.0
+radius = 23.0
+height = 86.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_savun")
@@ -112,4 +79,5 @@ animation = &"walk"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 14)
 shape = SubResource("CapsuleShape2D_e8jgy")
