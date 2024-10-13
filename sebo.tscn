@@ -39,7 +39,7 @@ size = Vector2(881, 450)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bskvs"]
 radius = 70.9912
-height = 312.213
+height = 288.059
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7aet"]
 size = Vector2(161, 560.25)
@@ -184,7 +184,7 @@ z_index = 1000
 position = Vector2(-20, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vitrola"]
-position = Vector2(480, 648)
+position = Vector2(461, 648)
 rotation = 1.55509
 shape = SubResource("CapsuleShape2D_bskvs")
 

@@ -68,5 +68,4 @@ func _unhandled_input(event):
 				get_viewport().set_input_as_handled()
 				ignore_click = false
 			else:
-				# print("Dialogue: Player go to " + str(event.position.x) + " " + str(event.position.y))
 				player_go_to.emit(event.position)

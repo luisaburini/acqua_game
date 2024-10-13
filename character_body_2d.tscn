@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://v6a8ivk4nfac" path="res://img/protagonista/idle.png" id="2_tslwq"]
 [ext_resource type="Texture2D" uid="uid://cb50nd2mtoxgi" path="res://img/protagonista/walk.png" id="3_im22m"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ukm52"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_atu2w"]
 atlas = ExtResource("2_tslwq")
-region = Rect2(0, 0, 101, 150)
+region = Rect2(0, 0, 54, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5s46h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkfj0"]
 atlas = ExtResource("2_tslwq")
-region = Rect2(101, 0, 101, 150)
+region = Rect2(54, 0, 54, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0pmga"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3e7m"]
 atlas = ExtResource("2_tslwq")
-region = Rect2(202, 0, 101, 150)
+region = Rect2(108, 0, 54, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1fxk"]
 atlas = ExtResource("3_im22m")
@@ -36,13 +36,13 @@ region = Rect2(297, 0, 99, 150)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ukm52")
+"texture": SubResource("AtlasTexture_atu2w")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5s46h")
+"texture": SubResource("AtlasTexture_lkfj0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0pmga")
+"texture": SubResource("AtlasTexture_v3e7m")
 }],
 "loop": true,
 "name": &"idle",
@@ -68,16 +68,16 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e8jgy"]
 radius = 23.0
-height = 86.0
+height = 74.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_savun")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ng0qm")
-animation = &"walk"
+animation = &"idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 14)
+position = Vector2(2, 19)
 shape = SubResource("CapsuleShape2D_e8jgy")

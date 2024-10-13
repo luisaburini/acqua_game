@@ -26,7 +26,6 @@ func new_game():
 
 func get_current_location_node():
 	var location = locations[current_location]
-	print("Main: get_current location node " + location)
 	return get_node(location)
 	
 
@@ -88,12 +87,10 @@ func _on_city_map_pressed_praca():
 		$Praca.start()
 
 func _on_praca_go_back_scene():
-	print("On praca go back scene")
 	_on_player_limite_esquerdo()
 
 
 func _on_praca_go_to_next_scene():
-	print("On praca go next scene")
 	_on_player_limite_direito()
 
 
@@ -109,7 +106,6 @@ func _on_city_map_pressed_balneario():
 
 
 func _on_praca_leave():
-	print("PRACA LEAVE")
 	$Player.end()
 	$Praca.end()
 	$PracaMusic.stop()
@@ -119,12 +115,10 @@ func _on_praca_leave():
 
 
 func _on_balneario_go_back_scene():
-	print("Balneario go back scene")
 	_on_player_limite_esquerdo()
 
 
 func _on_balneario_go_to_next_scene():
-	print("Balneario go to next scene")
 	_on_player_limite_direito()
 
 
@@ -186,8 +180,6 @@ func _unhandled_input(event):
 
 
 func _on_sebo_player_go_to(pos):
-	print("Main: Sebo told you to go there")
-	print(pos)
 	if $Sebo.started:
 		$Player.walk_to(pos)
 

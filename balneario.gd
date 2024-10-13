@@ -72,11 +72,9 @@ func hide_all():
 		for o in objs[i]:
 			var obj = get_node(o)
 			if obj != null:
-				# print("Root Node: "+ o)
 				for c in obj.get_children():
 					c.hide()
 					if check_collision(c.get_class()):
-						# print(c.get_class())
 						c.disabled = true
 					for b in c.get_children():
 						b.hide()
@@ -106,32 +104,26 @@ func update_objs_state(limit):
 			var obj = get_node(o)
 			if obj != null:
 				if scenario_index == i:
-					# print("Root obj " + o)
 					obj.show()
 					for c in obj.get_children():
 						c.show()
 						if check_button(c.get_class()):
 							c.hide()
 						if check_collision(c.get_class()):
-							# print("Enabled " + c.get_class())
 							c.disabled = false
 						for b in c.get_children():
 							b.show()
 							if check_collision(b.get_class()):
-								# print("Enabled " + b.get_class())
 								b.disabled = false
 				else:
-					# print("Root obj " + o)
 					obj.hide()
 					for c in obj.get_children():
 						c.hide()
 						if check_collision(c.get_class()):
-							# print("Disabled " + c.get_class())
 							c.disabled = true
 						for b in c.get_children():
 							b.hide()
 							if check_collision(b.get_class()):
-								# print("Disabled " + b.get_class())
 								b.disabled = true
 
 
@@ -184,9 +176,7 @@ func is_completed():
 
 
 func _on_senhora_body_entered(body):
-	print(body.get_class() + " entered, lets see if really " + str(scenario_index) + " " + str(started))
 	if is_player(body.get_class()) and scenario_index == 1 and started:
-		print(body.get_class() + " entered " + str(body.position.x) + " " + str(body.position.y))
 		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
 		$Dialogue.change_label("Você já tem a garrafa,\nagora só falta a água.\nOnde poderia estar?")
 		$Dialogue.show_all()
@@ -201,9 +191,7 @@ func _on_retorno_pressed():
 
 
 func _on_retorno_body_entered(body):
-	# print("Retorno body entered, lets see if really should " + str(started) + " " + str(is_player(body.get_class())))
 	if started and is_player(body.get_class()):
-		# print("Entered retorno")
 		$Retorno/TextureButton.show()
 
 
@@ -213,9 +201,7 @@ func _on_retorno_body_exited(body):
 
 
 func _on_porta_body_entered(body):
-	# print("Porta body entered, lets see if really should " + str(started) + " " + str(is_player(body.get_class())))
 	if started and is_player(body.get_class()):
-		# print("Entered porta")
 		$Porta/TextureButton.show()
 
 
@@ -251,10 +237,8 @@ func _on_fonte_body_entered(body):
 func _on_dialogue_player_go_to(pos):
 	if started:
 		if ignore_click:
-			print("BALNEARIO: You shall ignore this click")
 			ignore_click = false
 		else:
-			print("BALNEARIO: Dialogue is telling you to go there")
 			player_go_to.emit(pos)
 
 
