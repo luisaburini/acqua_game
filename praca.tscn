@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://pgat8brosock" path="res://img/cenario/praca/sapo.png" id="5_en60o"]
 [ext_resource type="Texture2D" uid="uid://4dbwhrjlc3m6" path="res://img/cenario/praca/porta.png" id="6_vcmb7"]
 [ext_resource type="Texture2D" uid="uid://d38segdx1vmpr" path="res://img/cenario/praca/retorno.png" id="7_6jmfg"]
-[ext_resource type="Texture2D" uid="uid://nrxqclrilwgl" path="res://img/cenario/sebo/saida.png" id="10_kdfbs"]
 [ext_resource type="Texture2D" uid="uid://nodn63553np5" path="res://img/cenario/praca/balao1.png" id="11_5qtc8"]
 [ext_resource type="Texture2D" uid="uid://car1qj4od21ho" path="res://img/cenario/praca/balao1-pressed.png" id="12_72rim"]
 [ext_resource type="Texture2D" uid="uid://8lk0wfan3t4u" path="res://img/cenario/praca/balao2.png" id="13_ff8ba"]
@@ -19,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://d0fh2vjrxywua" path="res://img/cenario/praca/balao3-pressed.png" id="16_o0toj"]
 [ext_resource type="PackedScene" uid="uid://46blvwif58os" path="res://inventory.tscn" id="17_hsapi"]
 [ext_resource type="AudioStream" uid="uid://c2jrm4sqeuryy" path="res://sounds/bexiga estourando.wav" id="18_a7s6e"]
+[ext_resource type="Texture2D" uid="uid://da8pldvlb036g" path="res://img/cenario/praca/saida.png" id="19_c8pwd"]
 [ext_resource type="AudioStream" uid="uid://jys8fp8cu6ve" path="res://sounds/varios pato.wav" id="19_vtyrt"]
 [ext_resource type="AudioStream" uid="uid://tcsnjxxibcvq" path="res://sounds/pedalinho andando completo.wav" id="20_leak2"]
 [ext_resource type="AudioStream" uid="uid://cjhxrg03d8c48" path="res://sounds/sapo freesound.mp3" id="21_hbmqr"]
@@ -330,18 +330,17 @@ position = Vector2(1121, 294)
 texture_normal = ExtResource("6_vcmb7")
 
 [node name="Saida" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Saida"]
 position = Vector2(1089, 602.5)
 shape = SubResource("RectangleShape2D_cx86i")
 
 [node name="TextureRect" type="TextureRect" parent="Saida"]
-offset_left = 1021.0
-offset_top = 483.0
-offset_right = 1169.0
-offset_bottom = 704.0
-texture = ExtResource("10_kdfbs")
+offset_left = 1010.0
+offset_top = 334.0
+offset_right = 1205.0
+offset_bottom = 695.0
+texture = ExtResource("19_c8pwd")
 
 [node name="BalaoSound" type="AudioStreamPlayer2D" parent="."]
 visible = false

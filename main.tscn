@@ -6,8 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://b2qwevhofpq0o" path="res://sounds/trilha aqua game trilha 1 previa.mp3" id="3_m6cy0"]
 [ext_resource type="PackedScene" uid="uid://ds7odrisj6q82" path="res://character_body_2d.tscn" id="7_kkwop"]
 [ext_resource type="PackedScene" uid="uid://djgyvbm6dglio" path="res://praca.tscn" id="7_s7ujm"]
+[ext_resource type="AudioStream" uid="uid://lnum31e7yfgx" path="res://sounds/trilha lunar.wav" id="10_qc6wh"]
 [ext_resource type="AudioStream" uid="uid://dk3bhy0mnaro5" path="res://sounds/trilha aqua game 3.wav" id="10_v6yaw"]
-[ext_resource type="AudioStream" uid="uid://comh7fk73sya5" path="res://sounds/micuim 8bit.mp3" id="10_x4r1v"]
 [ext_resource type="PackedScene" uid="uid://doqpickhbibsx" path="res://balneario.tscn" id="11_7mojm"]
 [ext_resource type="Texture2D" uid="uid://d3okdu2d10qc1" path="res://img/fim.png" id="12_o4f8d"]
 [ext_resource type="FontFile" uid="uid://gg6nhd2pel50" path="res://fonts/iknowaghost.ttf" id="12_ywc2t"]
@@ -58,7 +58,7 @@ visible = false
 
 [node name="BalnearioMusic" type="AudioStreamPlayer2D" parent="."]
 visible = false
-stream = ExtResource("10_x4r1v")
+stream = ExtResource("10_qc6wh")
 
 [node name="Fim" type="TextureRect" parent="."]
 offset_right = 40.0
@@ -95,7 +95,7 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." instance=ExtResource("7_kkwop")]
 z_index = 2000
 position = Vector2(700, 550)
-scale = Vector2(1.7, 1.7)
+scale = Vector2(0.65, 0.65)
 
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="finished" from="HUDMusic" to="." method="_on_hud_music_finished"]

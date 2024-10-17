@@ -63,7 +63,7 @@ radius = 108.889
 height = 931.112
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6u35f"]
-radius = 24.0832
+radius = 70.1142
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7tfo"]
 size = Vector2(203, 177)
@@ -181,7 +181,8 @@ one_way_collision_margin = 0.0
 
 [node name="Vitrola" type="Area2D" parent="."]
 z_index = 1000
-position = Vector2(-20, 0)
+position = Vector2(20, 130)
+scale = Vector2(0.8, 0.8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vitrola"]
 position = Vector2(461, 648)
@@ -252,22 +253,23 @@ position = Vector2(20, 337.778)
 texture_normal = ExtResource("11_lvonl")
 
 [node name="Vinyl" type="Area2D" parent="."]
-visible = false
 z_index = 55
-scale = Vector2(2, 2)
+position = Vector2(100, 80)
+scale = Vector2(0.85, 0.85)
 
 [node name="TextureRect" type="TextureRect" parent="Vinyl"]
-offset_left = 413.5
-offset_top = 284.0
-offset_right = 453.5
-offset_bottom = 324.0
+offset_left = 728.5
+offset_top = 518.0
+offset_right = 888.5
+offset_bottom = 678.0
 texture = ExtResource("9_obf22")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vinyl"]
-position = Vector2(434.5, 303.5)
+position = Vector2(809, 598)
 shape = SubResource("CircleShape2D_6u35f")
 
 [node name="Porta3" type="Area2D" parent="."]
+visible = false
 z_index = 2
 priority = 10
 
