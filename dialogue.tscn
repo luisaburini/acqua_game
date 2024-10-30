@@ -31,10 +31,10 @@ z_index = 4096
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -108.5
-offset_top = 54.0
-offset_right = 108.5
-offset_bottom = 287.0
+offset_left = -146.0
+offset_top = 3.0
+offset_right = 157.0
+offset_bottom = 310.0
 grow_horizontal = 2
 
 [node name="Label" type="Label" parent="."]

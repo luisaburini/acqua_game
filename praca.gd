@@ -350,10 +350,8 @@ func _on_retorno_body_exited(body):
 
 
 func _on_capivaras_body_entered(body):
-	# print("Capivaras entered, lets see if really should " + str(scenario_index) + " " + str(started) +" "+ body.get_class())
 	if scenario_index == 0 and started and is_player(body.get_class()):
-		# print("Capivaras entered")
-		$Dialogue.change_texture("res://img/capybara.png")
+		$Dialogue.change_texture("res://img/cenario/praca/capybara.png")
 		$Dialogue.change_label("Siga em frente para obter um presente.\nQuem sabe até onde você pode chegar?")	
 		$Dialogue.show_all()
 		$Dialogue.hide_interaction()

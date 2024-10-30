@@ -1,7 +1,7 @@
 [gd_scene load_steps=43 format=3 uid="uid://b8wk3pt07sp1m"]
 
 [ext_resource type="Script" path="res://sebo.gd" id="1_mq8n6"]
-[ext_resource type="Texture2D" uid="uid://c386dryicsg03" path="res://img/cenario/sebo/sebo3.png" id="3_24y5j"]
+[ext_resource type="Texture2D" uid="uid://dm6pujhfqvsmj" path="res://img/cenario/sebo/sebo2.png" id="3_y7ydh"]
 [ext_resource type="Texture2D" uid="uid://c0jxeax1ghys3" path="res://img/cenario/sebo/seta-porta.png" id="5_ss7gp"]
 [ext_resource type="Texture2D" uid="uid://bd0jwuqexw7vw" path="res://img/cenario/sebo/ismael-sebo1.png" id="8_brlfp"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="8_vfo1t"]
@@ -38,7 +38,7 @@ height = 300.0
 size = Vector2(881, 450)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bskvs"]
-radius = 70.9912
+radius = 103.024
 height = 288.059
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7aet"]
@@ -114,7 +114,7 @@ offset_left = 7.0
 offset_right = 1287.0
 offset_bottom = 721.0
 mouse_filter = 2
-texture = ExtResource("3_24y5j")
+texture = ExtResource("3_y7ydh")
 
 [node name="Dialogue" parent="." instance=ExtResource("8_vfo1t")]
 
@@ -181,19 +181,19 @@ one_way_collision_margin = 0.0
 
 [node name="Vitrola" type="Area2D" parent="."]
 z_index = 1000
-position = Vector2(20, 130)
-scale = Vector2(0.8, 0.8)
+position = Vector2(100, 140)
+scale = Vector2(0.7, 0.7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vitrola"]
-position = Vector2(461, 648)
+position = Vector2(490, 710)
 rotation = 1.55509
 shape = SubResource("CapsuleShape2D_bskvs")
 
 [node name="TextureRect" type="TextureRect" parent="Vitrola"]
-offset_left = 380.0
-offset_top = 131.0
-offset_right = 680.0
-offset_bottom = 431.0
+offset_left = 387.143
+offset_top = 119.571
+offset_right = 717.143
+offset_bottom = 419.571
 texture = ExtResource("9_jin5a")
 
 [node name="Porta2" type="Area2D" parent="."]
@@ -234,7 +234,6 @@ position = Vector2(542.125, 424.75)
 shape = SubResource("RectangleShape2D_b1x26")
 
 [node name="Retorno2" type="Area2D" parent="."]
-visible = false
 scale = Vector2(0.9, 0.9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Retorno2"]
@@ -289,6 +288,7 @@ position = Vector2(340, 243)
 texture_normal = ExtResource("5_ss7gp")
 
 [node name="Estante3" type="StaticBody2D" parent="."]
+visible = false
 z_index = -2
 position = Vector2(400, 250)
 
