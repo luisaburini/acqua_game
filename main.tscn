@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://b2qwevhofpq0o" path="res://sounds/trilha aqua game trilha 1 previa.mp3" id="3_m6cy0"]
 [ext_resource type="PackedScene" uid="uid://ds7odrisj6q82" path="res://character_body_2d.tscn" id="7_kkwop"]
 [ext_resource type="PackedScene" uid="uid://djgyvbm6dglio" path="res://praca.tscn" id="7_s7ujm"]
-[ext_resource type="AudioStream" uid="uid://lnum31e7yfgx" path="res://sounds/trilha lunar.wav" id="10_qc6wh"]
+[ext_resource type="AudioStream" uid="uid://5mju1hhsm71m" path="res://sounds/trilha balneario.wav" id="10_4i3it"]
 [ext_resource type="AudioStream" uid="uid://dk3bhy0mnaro5" path="res://sounds/trilha aqua game 3.wav" id="10_v6yaw"]
 [ext_resource type="PackedScene" uid="uid://doqpickhbibsx" path="res://balneario.tscn" id="11_7mojm"]
 [ext_resource type="Texture2D" uid="uid://d3okdu2d10qc1" path="res://img/fim.png" id="12_o4f8d"]
@@ -58,7 +58,7 @@ visible = false
 
 [node name="BalnearioMusic" type="AudioStreamPlayer2D" parent="."]
 visible = false
-stream = ExtResource("10_qc6wh")
+stream = ExtResource("10_4i3it")
 
 [node name="Fim" type="TextureRect" parent="."]
 offset_right = 40.0

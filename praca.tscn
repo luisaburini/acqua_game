@@ -79,7 +79,7 @@ height = 314.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fpmm5"]
 radius = 40.0
-height = 262.0
+height = 226.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_24lke"]
 radius = 86.7793
@@ -103,6 +103,7 @@ size = Vector2(138, 227)
 script = ExtResource("1_cpsnw")
 
 [node name="Capivaras" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Capivaras"]
 position = Vector2(979, 394)
@@ -174,6 +175,7 @@ position = Vector2(640.5, 261.5)
 shape = SubResource("RectangleShape2D_t4op8")
 
 [node name="SrBaloes" type="Area2D" parent="."]
+visible = false
 z_index = -3
 position = Vector2(20, 0)
 
@@ -213,6 +215,7 @@ position = Vector2(635.5, 121.5)
 shape = SubResource("RectangleShape2D_uytvl")
 
 [node name="Patos" type="Area2D" parent="."]
+visible = false
 z_index = -4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Patos"]
@@ -264,10 +267,11 @@ position = Vector2(1086, 485)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SrPedalinho/StaticBody2D"]
 z_index = 2
-position = Vector2(-36, -70)
+position = Vector2(-44, -98)
 shape = SubResource("CapsuleShape2D_fpmm5")
 
 [node name="Sapo" type="Area2D" parent="."]
+visible = false
 z_index = -10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sapo"]
@@ -330,6 +334,7 @@ position = Vector2(1121, 294)
 texture_normal = ExtResource("6_vcmb7")
 
 [node name="Saida" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Saida"]
 position = Vector2(1089, 602.5)
