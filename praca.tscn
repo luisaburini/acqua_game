@@ -254,10 +254,10 @@ shape = SubResource("CapsuleShape2D_upnfn")
 
 [node name="TextureRect" type="TextureRect" parent="SrPedalinho"]
 z_index = -2
-offset_left = 970.0
-offset_top = 243.0
-offset_right = 1128.0
-offset_bottom = 593.0
+offset_left = 895.0
+offset_top = 175.0
+offset_right = 1198.0
+offset_bottom = 617.0
 mouse_default_cursor_shape = 16
 texture = ExtResource("1_r65fp")
 

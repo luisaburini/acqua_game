@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://doqpickhbibsx"]
+[gd_scene load_steps=33 format=3 uid="uid://doqpickhbibsx"]
 
 [ext_resource type="Script" path="res://balneario.gd" id="1_js21y"]
 [ext_resource type="Texture2D" uid="uid://de5n0eqdi465i" path="res://img/cenario/balneario/senhora.png" id="2_xbuj5"]
@@ -8,10 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cfgpovi8255d7" path="res://img/cenario/balneario/guarda-sol.png" id="6_d1tob"]
 [ext_resource type="Texture2D" uid="uid://dun5sumea0me" path="res://img/cenario/balneario/porta.png" id="7_dsvga"]
 [ext_resource type="Texture2D" uid="uid://dlou21knliyvf" path="res://img/cenario/balneario/retorno.png" id="8_0txry"]
-[ext_resource type="Texture2D" uid="uid://b478ifmjehrps" path="res://img/cenario/balneario/fonte.png" id="9_2sxvp"]
 [ext_resource type="Texture2D" uid="uid://boh8n0oq7eexu" path="res://img/cenario/balneario/lua.png" id="10_tibdl"]
 [ext_resource type="PackedScene" uid="uid://46blvwif58os" path="res://inventory.tscn" id="11_5x4vn"]
-[ext_resource type="Texture2D" uid="uid://cxit1wbnrgir" path="res://img/cenario/balneario/placa.png" id="12_c3syb"]
 [ext_resource type="AudioStream" uid="uid://c5nx4kmu8ltf1" path="res://sounds/ambiencia agua.wav" id="13_juypa"]
 [ext_resource type="AudioStream" uid="uid://x8ex3h5p1h1g" path="res://sounds/mixkit-fairy-arcade-sparkle-866.wav" id="14_mheyc"]
 [ext_resource type="Texture2D" uid="uid://cbfcfffgvinuq" path="res://img/cenario/balneario/arbusto.png" id="15_lbpmf"]
@@ -144,10 +142,10 @@ shape = SubResource("CircleShape2D_f05e5")
 
 [node name="TextureRect" type="TextureRect" parent="Senhora"]
 z_index = 200
-offset_left = 990.0
-offset_top = 287.0
-offset_right = 1180.0
-offset_bottom = 626.0
+offset_left = 550.0
+offset_top = -109.0
+offset_right = 1574.0
+offset_bottom = 915.0
 texture = ExtResource("2_xbuj5")
 
 [node name="Obstaculo2" type="StaticBody2D" parent="."]
@@ -223,14 +221,6 @@ position = Vector2(149, 190)
 position = Vector2(129, 132.75)
 shape = SubResource("RectangleShape2D_7s5ag")
 
-[node name="TextureRect" type="TextureRect" parent="Placa"]
-z_index = -2
-offset_left = 149.0
-offset_top = 190.0
-offset_right = 390.0
-offset_bottom = 519.0
-texture = ExtResource("12_c3syb")
-
 [node name="Obstaculo6" type="StaticBody2D" parent="."]
 visible = false
 
@@ -253,15 +243,8 @@ position = Vector2(352.466, 63.3594)
 rotation = -0.226893
 shape = SubResource("RectangleShape2D_qmkwn")
 
-[node name="TextureRect" type="TextureRect" parent="Fonte"]
-z_index = -4
-offset_left = 136.0
-offset_top = 272.0
-offset_right = 136.0
-offset_bottom = 272.0
-texture = ExtResource("9_2sxvp")
-
 [node name="Lua" type="TouchScreenButton" parent="."]
+visible = false
 z_index = -3
 position = Vector2(888, 10)
 scale = Vector2(0.8075, 0.7925)

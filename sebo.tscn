@@ -1,7 +1,7 @@
 [gd_scene load_steps=43 format=3 uid="uid://b8wk3pt07sp1m"]
 
 [ext_resource type="Script" path="res://sebo.gd" id="1_mq8n6"]
-[ext_resource type="Texture2D" uid="uid://dm6pujhfqvsmj" path="res://img/cenario/sebo/sebo2.png" id="3_y7ydh"]
+[ext_resource type="Texture2D" uid="uid://cop4e6sy0hsnu" path="res://img/cenario/sebo/sebo1.png" id="3_vrqpu"]
 [ext_resource type="Texture2D" uid="uid://c0jxeax1ghys3" path="res://img/cenario/sebo/seta-porta.png" id="5_ss7gp"]
 [ext_resource type="Texture2D" uid="uid://bd0jwuqexw7vw" path="res://img/cenario/sebo/ismael-sebo1.png" id="8_brlfp"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="8_vfo1t"]
@@ -27,12 +27,12 @@ size = Vector2(188.25, 409.75)
 size = Vector2(502, 228.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fjtn6"]
-radius = 71.0
-height = 324.0
+radius = 99.0
+height = 214.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wkd7g"]
-radius = 45.0
-height = 300.0
+radius = 61.0
+height = 416.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvdkb"]
 size = Vector2(881, 450)
@@ -114,7 +114,7 @@ offset_left = 7.0
 offset_right = 1287.0
 offset_bottom = 721.0
 mouse_filter = 2
-texture = ExtResource("3_y7ydh")
+texture = ExtResource("3_vrqpu")
 
 [node name="Dialogue" parent="." instance=ExtResource("8_vfo1t")]
 
@@ -148,23 +148,23 @@ position = Vector2(304, 292)
 texture_normal = ExtResource("5_ss7gp")
 
 [node name="Ismael" type="Area2D" parent="."]
-visible = false
 z_index = -2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ismael"]
-position = Vector2(103, 510)
+position = Vector2(122, 592)
 shape = SubResource("CapsuleShape2D_fjtn6")
 
 [node name="TextureRect" type="TextureRect" parent="Ismael"]
-offset_top = 322.0
-offset_right = 185.0
-offset_bottom = 671.0
+offset_left = -84.0
+offset_top = 264.0
+offset_right = 283.0
+offset_bottom = 714.0
 texture = ExtResource("8_brlfp")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Ismael"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ismael/StaticBody2D"]
-position = Vector2(88, 498)
+position = Vector2(91, 491)
 shape = SubResource("CapsuleShape2D_wkd7g")
 
 [node name="Obstaculo" type="StaticBody2D" parent="."]
@@ -180,6 +180,7 @@ shape = SubResource("RectangleShape2D_yvdkb")
 one_way_collision_margin = 0.0
 
 [node name="Vitrola" type="Area2D" parent="."]
+visible = false
 z_index = 1000
 position = Vector2(100, 140)
 scale = Vector2(0.7, 0.7)
@@ -234,6 +235,7 @@ position = Vector2(542.125, 424.75)
 shape = SubResource("RectangleShape2D_b1x26")
 
 [node name="Retorno2" type="Area2D" parent="."]
+visible = false
 scale = Vector2(0.9, 0.9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Retorno2"]
@@ -252,6 +254,7 @@ position = Vector2(20, 337.778)
 texture_normal = ExtResource("11_lvonl")
 
 [node name="Vinyl" type="Area2D" parent="."]
+visible = false
 z_index = 55
 position = Vector2(100, 80)
 scale = Vector2(0.85, 0.85)
@@ -306,6 +309,7 @@ rotation = -1.00182
 shape = SubResource("CapsuleShape2D_q432j")
 
 [node name="Retorno3" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Retorno3"]
 position = Vector2(166, 398)
