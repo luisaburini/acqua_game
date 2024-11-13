@@ -30,7 +30,6 @@ func _physics_process(delta):
 		show()
 	
 func start(pos):
-	print("Player started")
 	started = true 
 	go_to(pos)
 	$AnimatedSprite2D.animation = "idle"
@@ -39,7 +38,6 @@ func start(pos):
 	show()
 			
 func end():
-	print("Player ended")
 	started = false
 	hide()
 			

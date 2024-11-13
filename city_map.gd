@@ -15,14 +15,12 @@ func _process(delta):
 var started = false
 
 func start(location, locations):
-	print("City Map starting")
 	started = true
 	show_button(location, locations)
 	show()
 	
 	
 func end():
-	print("CityMap ended")
 	started = false
 	hide()
 
