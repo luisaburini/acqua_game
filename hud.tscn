@@ -2,8 +2,8 @@
 
 [ext_resource type="FontFile" uid="uid://gg6nhd2pel50" path="res://fonts/iknowaghost.ttf" id="1_3l1xg"]
 [ext_resource type="Script" path="res://hud.gd" id="1_lesg7"]
-[ext_resource type="Texture2D" uid="uid://qp2c13sqenqp" path="res://img/tela_inicial.jpg" id="3_c2hin"]
-[ext_resource type="Texture2D" uid="uid://bmw034rc8dfwt" path="res://img/cenario/sebo/capybara.png" id="4_opq0t"]
+[ext_resource type="Texture2D" uid="uid://lm435y0fsaa0" path="res://img/cenario/praca/praca-cena1A.png" id="3_n3xsi"]
+[ext_resource type="Texture2D" uid="uid://c1oxidywulpc5" path="res://img/protagonista/icon.png" id="4_tgynf"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_lesg7")
@@ -35,12 +35,12 @@ z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
-texture = ExtResource("3_c2hin")
+texture = ExtResource("3_n3xsi")
 
 [node name="StartButton" type="TouchScreenButton" parent="."]
-position = Vector2(783, 455)
-scale = Vector2(0.75, 0.75)
-texture_normal = ExtResource("4_opq0t")
+position = Vector2(761, 317)
+scale = Vector2(1.08093, 1.03333)
+texture_normal = ExtResource("4_tgynf")
 
 [node name="Label" type="Label" parent="."]
 offset_top = 20.0

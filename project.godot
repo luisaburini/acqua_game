@@ -14,7 +14,7 @@ config/name="AcquasGame"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 run/flush_stdout_on_print=true
-config/icon="res://executables/icon/icon_256.png"
+config/icon="res://Acqua-Game.144x144.png"
 
 [display]
 
