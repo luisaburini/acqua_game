@@ -31,7 +31,7 @@ radius = 99.0
 height = 214.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wkd7g"]
-radius = 61.0
+radius = 107.0
 height = 416.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvdkb"]
@@ -164,7 +164,7 @@ texture = ExtResource("8_brlfp")
 [node name="StaticBody2D" type="StaticBody2D" parent="Ismael"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ismael/StaticBody2D"]
-position = Vector2(91, 491)
+position = Vector2(98, 451)
 shape = SubResource("CapsuleShape2D_wkd7g")
 
 [node name="Obstaculo" type="StaticBody2D" parent="."]
