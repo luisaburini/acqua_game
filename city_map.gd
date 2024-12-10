@@ -45,10 +45,10 @@ func _unhandled_input(event):
 func show_button(showing, locations):
 	for loc in locations:
 		var button = get_node("Touch"+loc+"Button")
-		var label = get_node(loc+"Label")
+		var background = "res://img/mapa/"+loc+".png"
 		if loc == showing:
 			button.show()
-			label.show()
+			$TextureRect.texture = load(background)
+			print(background)
 		else:
-			label.hide()
 			button.hide()

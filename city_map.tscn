@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpe24lml0sq6u"]
+[gd_scene load_steps=6 format=3 uid="uid://dpe24lml0sq6u"]
 
 [ext_resource type="Script" path="res://city_map.gd" id="1_ggjlf"]
-[ext_resource type="Texture2D" uid="uid://qjpseo0k1glk" path="res://img/city_map.png" id="2_q14x6"]
-[ext_resource type="Texture2D" uid="uid://dbj7kkshl6c0b" path="res://img/sebo-detalhe.jpeg" id="3_jn0u0"]
-[ext_resource type="Texture2D" uid="uid://b4emr0htn3oe0" path="res://img/praca-adhemar-de-barros.jpg" id="5_1bmcs"]
-[ext_resource type="Texture2D" uid="uid://b6j307kdhqb1g" path="res://img/balneario-detalhe.png" id="5_e3nec"]
-[ext_resource type="FontFile" uid="uid://gg6nhd2pel50" path="res://fonts/iknowaghost.ttf" id="7_knlvy"]
+[ext_resource type="Texture2D" path="res://img/mapa/3.png" id="2_shvn7"]
+[ext_resource type="Texture2D" uid="uid://cmpwlw1wp6xh5" path="res://img/mapa/Sebo-detalhe.png" id="3_a3jug"]
+[ext_resource type="Texture2D" uid="uid://e26y88l8l4fg" path="res://img/mapa/Praca-detalhe.png" id="4_s6i5e"]
+[ext_resource type="Texture2D" uid="uid://13khtasroik1" path="res://img/mapa/Balneario-detalhe.png" id="5_utrdu"]
 
 [node name="CityMap" type="CanvasLayer"]
 script = ExtResource("1_ggjlf")
@@ -15,52 +14,20 @@ offset_left = -2.0
 offset_top = 2.0
 offset_right = 1278.0
 offset_bottom = 722.0
-texture = ExtResource("2_q14x6")
+texture = ExtResource("2_shvn7")
 
 [node name="TouchSeboButton" type="TouchScreenButton" parent="."]
-position = Vector2(730, 73)
-texture_normal = ExtResource("3_jn0u0")
+position = Vector2(609, 38)
+texture_normal = ExtResource("3_a3jug")
 
 [node name="TouchPracaButton" type="TouchScreenButton" parent="."]
-position = Vector2(420, 370)
-scale = Vector2(1.5, 1.5)
-texture_normal = ExtResource("5_1bmcs")
+position = Vector2(418, 213)
+scale = Vector2(1, 1)
+texture_normal = ExtResource("4_s6i5e")
 
 [node name="TouchBalnearioButton" type="TouchScreenButton" parent="."]
-position = Vector2(654, 555)
-texture_normal = ExtResource("5_e3nec")
-
-[node name="SeboLabel" type="Label" parent="."]
-offset_left = 10.0
-offset_top = 64.0
-offset_right = 691.0
-offset_bottom = 164.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("7_knlvy")
-theme_override_font_sizes/font_size = 100
-text = "Sebo do Ismael"
-
-[node name="PracaLabel" type="Label" parent="."]
-offset_left = 624.0
-offset_top = 392.0
-offset_right = 874.0
-offset_bottom = 492.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_knlvy")
-theme_override_font_sizes/font_size = 100
-text = "Praça"
-
-[node name="BalnearioLabel" type="Label" parent="."]
-offset_left = 231.0
-offset_top = 574.0
-offset_right = 641.0
-offset_bottom = 674.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_knlvy")
-theme_override_font_sizes/font_size = 100
-text = "Balneário"
+position = Vector2(596, 352)
+texture_normal = ExtResource("5_utrdu")
 
 [connection signal="pressed" from="TouchSeboButton" to="." method="_on_touch_sebo_button_pressed"]
 [connection signal="pressed" from="TouchPracaButton" to="." method="_on_touch_praca_button_pressed"]

@@ -66,7 +66,6 @@ func start():
 	get_viewport().physics_object_picking_sort = true
 	reset()
 	update_objs_state(0)
-	print("Sebo started")
 	started = true
 	show()
 	
@@ -89,7 +88,6 @@ func hide_all():
 				for c in obj.get_children():
 					c.hide()
 					if check_collision(c.get_class()):
-						# print(c.get_class())
 						c.disabled = true
 					for b in c.get_children():
 						b.hide()
@@ -112,7 +110,6 @@ func get_objs():
 	]
 
 func update_texture():
-	# print("Sebo: update texture scenario index " + str(scenario_index))
 	$Dialogue.hide_all() 
 	$Background.texture = load(sebo_scenarios[scenario_index])
 	$Chao.texture = load(chao_sebo[scenario_index])
@@ -130,22 +127,18 @@ func update_objs_state(limit):
 			var obj = get_node(o)
 			if obj != null:
 				if scenario_index == i:
-					print("Root obj " + o)
 					obj.show()
 					for c in obj.get_children():
 						c.show()
 						if check_button(c.get_class()):
 							c.hide()
 						if check_collision(c.get_class()):
-							print("Enabled " + c.get_class())
 							c.disabled = false
 						for b in c.get_children():
 							b.show()
 							if check_collision(b.get_class()):
-								print("Enabled " + b.get_class())
 								b.disabled = false
 				else:
-					# print("Root obj " + o)
 					obj.hide()
 					for c in obj.get_children():
 						c.hide()
@@ -163,7 +156,6 @@ func check_collision(o):
 	return o.begins_with("Collision")
 
 func is_obstacle(o):
-	# print("Is obstacle: " + o)
 	return o.begins_with("Obstaculo") or o.begins_with("Estante")
 	
 func check_button(b):
@@ -171,7 +163,6 @@ func check_button(b):
 
 func _on_dialogue_pressed_yes():
 	if started:
-		print("Should ignore this click")
 		ignore_click = true	
 	
 		if ofereceu_livro:
@@ -249,7 +240,6 @@ func is_player(p):
 func _on_vitrola_body_entered(body):
 	print(body.get_class() + " entered vitrola, lets see if really " + str(scenario_index))
 	if scenario_index == 1 and started and is_player(body.get_class()):
-		print("Entered vitrola")
 		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
 		$Dialogue.change_texture("res://img/cenario/sebo/vinyl-detalhe.png")	
@@ -375,10 +365,8 @@ func _on_dialogue_pressed_no():
 func _on_dialogue_player_go_to(pos):
 	if started:
 		if ignore_click:
-			print("You shall ignore this click")
 			ignore_click = false
 		else:
-			print("SEBO: Dialog is telling you to go there")
 			player_go_to.emit(pos)
 	
 		

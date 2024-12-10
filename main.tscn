@@ -9,9 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://5mju1hhsm71m" path="res://sounds/trilha balneario.wav" id="10_4i3it"]
 [ext_resource type="AudioStream" uid="uid://dk3bhy0mnaro5" path="res://sounds/trilha aqua game 3.wav" id="10_v6yaw"]
 [ext_resource type="PackedScene" uid="uid://doqpickhbibsx" path="res://balneario.tscn" id="11_7mojm"]
-[ext_resource type="Texture2D" uid="uid://d3okdu2d10qc1" path="res://img/fim.png" id="12_o4f8d"]
-[ext_resource type="FontFile" uid="uid://gg6nhd2pel50" path="res://fonts/iknowaghost.ttf" id="12_ywc2t"]
+[ext_resource type="Texture2D" uid="uid://bka3cqpw336qn" path="res://img/LUA.png" id="11_mwyqk"]
 [ext_resource type="Texture2D" uid="uid://8yd5nesb4cdw" path="res://img/reset.png" id="13_16pxi"]
+[ext_resource type="FontFile" uid="uid://bah84uqpyf84q" path="res://fonts/EmilysCandy-Regular.ttf" id="13_jsnqx"]
 [ext_resource type="PackedScene" uid="uid://dpe24lml0sq6u" path="res://city_map.tscn" id="13_p82sj"]
 [ext_resource type="AudioStream" uid="uid://br3s0cadfqmtn" path="res://sounds/atmosfera lua.wav" id="15_cf5ru"]
 [ext_resource type="PackedScene" uid="uid://b8wk3pt07sp1m" path="res://sebo.tscn" id="16_526j1"]
@@ -25,62 +25,61 @@ wait_time = 2.0
 one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource("3_4u6pc")]
+visible = false
 
 [node name="SeboPosition" type="Marker2D" parent="."]
 position = Vector2(1180, 650)
 
 [node name="HUDMusic" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = ExtResource("3_m6cy0")
 
 [node name="CityMap" parent="." instance=ExtResource("13_p82sj")]
 visible = false
 
 [node name="Sebo" parent="." instance=ExtResource("16_526j1")]
+visible = false
 
 [node name="SeboMusic" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = ExtResource("3_eip3a")
 
 [node name="Praca" parent="." instance=ExtResource("7_s7ujm")]
 visible = false
 
 [node name="PracaMusic" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = ExtResource("10_v6yaw")
 
 [node name="PracaPosition" type="Marker2D" parent="."]
-visible = false
 position = Vector2(550, 650)
 
 [node name="Balneario" parent="." instance=ExtResource("11_7mojm")]
 visible = false
 
 [node name="BalnearioMusic" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = ExtResource("10_4i3it")
 
 [node name="Fim" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("12_o4f8d")
+texture = ExtResource("11_mwyqk")
 
 [node name="Reset" type="TouchScreenButton" parent="Fim"]
-position = Vector2(298, 379)
+position = Vector2(512, 297)
 texture_normal = ExtResource("13_16pxi")
 
 [node name="Label" type="Label" parent="Fim"]
+z_index = 4069
 layout_mode = 0
-offset_left = 42.0
-offset_top = 637.0
-offset_right = 1252.0
-offset_bottom = 708.0
-theme_override_fonts/font = ExtResource("12_ywc2t")
+offset_left = 6.0
+offset_top = 21.0
+offset_right = 1276.0
+offset_bottom = 110.0
+theme_override_fonts/font = ExtResource("13_jsnqx")
 theme_override_font_sizes/font_size = 70
 text = "Obrigado por ajudar os astronautas!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="FimMusic" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = ExtResource("15_cf5ru")
 
 [node name="EtMusic" type="AudioStreamPlayer2D" parent="."]
