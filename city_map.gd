@@ -49,6 +49,5 @@ func show_button(showing, locations):
 		if loc == showing:
 			button.show()
 			$TextureRect.texture = load(background)
-			print(background)
 		else:
 			button.hide()

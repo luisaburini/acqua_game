@@ -9,12 +9,10 @@ func _ready():
 	get_viewport().physics_object_picking_sort = true
 	
 func start():
-	print("Started HUD")
 	started = true
 	show()
 	
 func end():
-	print("Ended HUD")
 	started = false
 	hide_all()
 	

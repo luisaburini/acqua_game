@@ -1,22 +1,16 @@
-[gd_scene load_steps=33 format=3 uid="uid://doqpickhbibsx"]
+[gd_scene load_steps=30 format=3 uid="uid://doqpickhbibsx"]
 
 [ext_resource type="Script" path="res://balneario.gd" id="1_js21y"]
 [ext_resource type="Texture2D" uid="uid://de5n0eqdi465i" path="res://img/cenario/balneario/senhora.png" id="2_xbuj5"]
 [ext_resource type="Texture2D" uid="uid://dwtpytvfpas2a" path="res://img/cenario/balneario/chao-cena1A.png" id="3_5b2h3"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="4_s4g8n"]
 [ext_resource type="Texture2D" uid="uid://ca4qbpy8yn6rk" path="res://img/cenario/balneario/balneario-cena1B.png" id="5_x5hel"]
-[ext_resource type="Texture2D" uid="uid://cfgpovi8255d7" path="res://img/cenario/balneario/guarda-sol.png" id="6_d1tob"]
 [ext_resource type="Texture2D" uid="uid://dun5sumea0me" path="res://img/cenario/balneario/porta.png" id="7_dsvga"]
 [ext_resource type="Texture2D" uid="uid://dlou21knliyvf" path="res://img/cenario/balneario/retorno.png" id="8_0txry"]
 [ext_resource type="Texture2D" uid="uid://boh8n0oq7eexu" path="res://img/cenario/balneario/lua.png" id="10_tibdl"]
 [ext_resource type="PackedScene" uid="uid://46blvwif58os" path="res://inventory.tscn" id="11_5x4vn"]
 [ext_resource type="AudioStream" uid="uid://c5nx4kmu8ltf1" path="res://sounds/ambiencia agua.wav" id="13_juypa"]
 [ext_resource type="AudioStream" uid="uid://x8ex3h5p1h1g" path="res://sounds/mixkit-fairy-arcade-sparkle-866.wav" id="14_mheyc"]
-[ext_resource type="Texture2D" uid="uid://cbfcfffgvinuq" path="res://img/cenario/balneario/arbusto.png" id="15_lbpmf"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yca5o"]
-radius = 66.1884
-height = 389.988
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7rw6g"]
 size = Vector2(1312, 327)
@@ -97,21 +91,6 @@ z_index = -100
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("5_x5hel")
-
-[node name="Guardasol" type="StaticBody2D" parent="."]
-position = Vector2(2, 400)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Guardasol"]
-position = Vector2(172, 218.667)
-rotation = 1.92161
-shape = SubResource("CapsuleShape2D_yca5o")
-
-[node name="TextureRect" type="TextureRect" parent="Guardasol"]
-offset_left = -5.33333
-offset_top = -2.66666
-offset_right = 449.667
-offset_bottom = 329.333
-texture = ExtResource("6_d1tob")
 
 [node name="Obstaculo" type="StaticBody2D" parent="."]
 
@@ -276,14 +255,6 @@ shape = SubResource("CapsuleShape2D_wj7hj")
 z_index = -2
 position = Vector2(1114, 276)
 texture_normal = ExtResource("7_dsvga")
-
-[node name="Arbusto" type="TextureRect" parent="."]
-z_index = 4090
-offset_left = 458.0
-offset_top = 468.0
-offset_right = 683.0
-offset_bottom = 638.0
-texture = ExtResource("15_lbpmf")
 
 [connection signal="player_go_to" from="Dialogue" to="." method="_on_dialogue_player_go_to"]
 [connection signal="pressed_no" from="Dialogue" to="." method="_on_dialogue_pressed_no"]

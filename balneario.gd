@@ -57,10 +57,10 @@ func end():
 
 func get_objs():
 		return [
-		["Guardasol", "Obstaculo", "Piscina"],
+		["Obstaculo", "Piscina"],
 		["Senhora", "Obstaculo2", "Obstaculo21"],
 		["Obstaculo3", "Obstaculo31", "Obstaculo32"],
-		["Obstaculo4", "Arbusto"],
+		["Obstaculo4"],
 		["Placa", "Obstaculo5"],
 		["Fonte", "Obstaculo6"],
 	]
