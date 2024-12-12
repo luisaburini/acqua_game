@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://djgyvbm6dglio"]
+[gd_scene load_steps=41 format=3 uid="uid://djgyvbm6dglio"]
 
 [ext_resource type="Script" path="res://praca.gd" id="1_cpsnw"]
 [ext_resource type="Texture2D" uid="uid://ctvqmhrg5xkhe" path="res://img/cenario/praca/sr-do-pedalinho.png" id="1_r65fp"]
@@ -19,11 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://46blvwif58os" path="res://inventory.tscn" id="17_hsapi"]
 [ext_resource type="AudioStream" uid="uid://c2jrm4sqeuryy" path="res://sounds/bexiga estourando.wav" id="18_a7s6e"]
 [ext_resource type="Texture2D" uid="uid://da8pldvlb036g" path="res://img/cenario/praca/saida.png" id="19_c8pwd"]
-[ext_resource type="AudioStream" uid="uid://jys8fp8cu6ve" path="res://sounds/varios pato.wav" id="19_vtyrt"]
 [ext_resource type="AudioStream" uid="uid://tcsnjxxibcvq" path="res://sounds/pedalinho andando completo.wav" id="20_leak2"]
 [ext_resource type="AudioStream" uid="uid://cjhxrg03d8c48" path="res://sounds/sapo freesound.mp3" id="21_hbmqr"]
 [ext_resource type="AudioStream" uid="uid://x8ex3h5p1h1g" path="res://sounds/mixkit-fairy-arcade-sparkle-866.wav" id="22_ei27n"]
-[ext_resource type="Texture2D" uid="uid://dk73e5x84gq8j" path="res://img/cenario/praca/patos.png" id="24_viruo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k3sx2"]
 radius = 50.9253
@@ -61,14 +59,6 @@ height = 908.051
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uytvl"]
 size = Vector2(1291, 263)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6rai3"]
-radius = 109.207
-height = 397.528
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_05mlu"]
-radius = 70.1359
-height = 498.904
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_miv8g"]
 size = Vector2(1270, 516)
@@ -215,29 +205,6 @@ position = Vector2(0, -1)
 position = Vector2(635.5, 121.5)
 shape = SubResource("RectangleShape2D_uytvl")
 
-[node name="Patos" type="Area2D" parent="."]
-visible = false
-z_index = -4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Patos"]
-position = Vector2(206, 381)
-rotation = 1.01927
-shape = SubResource("CapsuleShape2D_6rai3")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Patos"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Patos/StaticBody2D"]
-position = Vector2(219, 322)
-rotation = 1.35787
-shape = SubResource("CapsuleShape2D_05mlu")
-
-[node name="TextureRect" type="TextureRect" parent="Patos"]
-offset_left = 66.0
-offset_top = 282.0
-offset_right = 355.0
-offset_bottom = 502.0
-texture = ExtResource("24_viruo")
-
 [node name="Obstaculo4" type="StaticBody2D" parent="."]
 visible = false
 
@@ -356,10 +323,6 @@ texture = ExtResource("19_c8pwd")
 visible = false
 stream = ExtResource("18_a7s6e")
 
-[node name="PatoSound" type="AudioStreamPlayer2D" parent="."]
-visible = false
-stream = ExtResource("19_vtyrt")
-
 [node name="PedalinhoSound" type="AudioStreamPlayer2D" parent="."]
 visible = false
 stream = ExtResource("20_leak2")
@@ -377,7 +340,6 @@ stream = ExtResource("22_ei27n")
 [connection signal="pressed_no" from="Dialogue" to="." method="_on_dialogue_pressed_no"]
 [connection signal="pressed_yes" from="Dialogue" to="." method="_on_dialogue_pressed_yes"]
 [connection signal="body_entered" from="SrBaloes" to="." method="_on_sr_baloes_body_entered"]
-[connection signal="body_entered" from="Patos" to="." method="_on_patos_body_entered"]
 [connection signal="body_entered" from="SrPedalinho" to="." method="_on_sr_pedalinho_body_entered"]
 [connection signal="focus_entered" from="SrPedalinho/TextureRect" to="." method="_on_sr_pedalinho_focus_entered"]
 [connection signal="body_entered" from="Sapo" to="." method="_on_sapo_body_entered"]

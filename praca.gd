@@ -65,7 +65,7 @@ func get_objs():
 		return [
 		["Obstaculo", "Arvore1", "Arvore2", "Arvore3", "Capivaras"],
 		["SrBaloes", "Obstaculo2"],
-		["Obstaculo3", "Obstaculo31", "Patos"],
+		["Obstaculo3", "Obstaculo31"],
 		["SrPedalinho", "Obstaculo4"],
 		["Sapo"],
 		["Saida", "Obstaculo6"],
@@ -97,7 +97,6 @@ func update_texture():
 
 func update_objs_state(limit):
 	$PedalinhoSound.stop()
-	$PatoSound.stop()
 	
 	scenario_index = abs(scenario_index+limit)
 	scenario_index = scenario_index%len(praca_scenarios)
@@ -322,17 +321,6 @@ func _on_sr_pedalinho_body_entered(body):
 			else:
 				$Dialogue.change_label("Para andar no pedalinho é necessário ter o ingresso.")
 		$Dialogue.change_texture("res://img/cenario/praca/pedalinho.png")
-		$Dialogue.show_all()
-		$Dialogue.hide_interaction()
-
-
-func _on_patos_body_entered(body):
-	# print("Entered patos lets see if really " + str(scenario_index) + " " + str(body.get_class()) + " " + str(started))
-	if scenario_index == 2 and is_player(body.get_class()) and started:
-		# print("Patos body entered")
-		$Dialogue.change_label("Quaquaraquaqua")
-		$PatoSound.play()
-		$Dialogue.change_texture("res://img/cenario/praca/pato-detalhe.png")
 		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
 
