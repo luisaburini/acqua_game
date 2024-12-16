@@ -17,16 +17,13 @@ func end():
 	hide_all()
 	
 func hide_all():
-	$Message.hide()
 	$TextureRect.hide()
 	$StartButton.hide()
-	$Label.hide()
 	hide()
 
 func _on_touch_screen_button_pressed():
 	$StartButton.hide()
 	$TextureRect.hide()
-	$Label.hide()
 	start_game.emit()
 	
 	
