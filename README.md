@@ -1,5 +1,7 @@
 # AcquaGame
 
+Executáveis disponíveis no [LINK](https://drive.google.com/drive/folders/1UNtSBpgwHBbxbI6ZHLDuQvLaf2tj5dMA?usp=sharing)
+
 ## Fase 1 - Sebo
 
 * Tela 1 - Coleta livro mágico do Sebo com Ismael
