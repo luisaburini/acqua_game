@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfgpovi8255d7"
-path="res://.godot/imported/guarda-sol.png-a0650cee8d7aad997c30d526040dcea4.ctex"
+uid="uid://bl0bje5ndd3b6"
+path="res://.godot/imported/astronauta.png-2a08de84f276121e7b5b5ba641defc81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/cenario/balneario/guarda-sol.png"
-dest_files=["res://.godot/imported/guarda-sol.png-a0650cee8d7aad997c30d526040dcea4.ctex"]
+source_file="res://img/cenario/balneario/astronauta.png"
+dest_files=["res://.godot/imported/astronauta.png-2a08de84f276121e7b5b5ba641defc81.ctex"]
 
 [params]
 

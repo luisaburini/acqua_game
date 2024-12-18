@@ -9,12 +9,6 @@
 [node name="Dialogue" type="CanvasLayer"]
 script = ExtResource("1_nq3vc")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-z_index = 4090
-offset_right = 1280.0
-offset_bottom = 720.0
-texture = ExtResource("5_o3mks")
-
 [node name="TouchYesButton" type="TouchScreenButton" parent="."]
 process_priority = 500
 z_index = 4096
@@ -26,29 +20,45 @@ z_index = 4096
 position = Vector2(8, 614)
 texture_normal = ExtResource("4_2fred")
 
-[node name="Image" type="TextureRect" parent="."]
-z_index = 4096
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -146.0
-offset_top = 3.0
-offset_right = 157.0
-offset_bottom = 310.0
-grow_horizontal = 2
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 4090
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("5_o3mks")
 
-[node name="Label" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 100.0
+offset_top = 2.0
+offset_right = 1152.0
+offset_bottom = 721.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Image" type="TextureRect" parent="VBoxContainer"]
 z_index = 4096
-offset_left = 5.0
-offset_top = 340.0
-offset_right = 1274.0
-offset_bottom = 585.0
+layout_mode = 2
+stretch_mode = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer"]
+z_index = 4096
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("5_21nnh")
 theme_override_font_sizes/font_size = 38
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
+justification_flags = 131
+
+[node name="VScrollBar" type="VScrollBar" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
 
 [connection signal="pressed" from="TouchYesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="TouchNoButton" to="." method="_on_no_button_pressed"]

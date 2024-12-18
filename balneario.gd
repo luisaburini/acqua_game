@@ -177,7 +177,7 @@ func is_completed():
 
 func _on_senhora_body_entered(body):
 	if is_player(body.get_class()) and scenario_index == 1 and started:
-		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
+		$Dialogue.change_texture("res://img/cenario/praca/garrafa.png")	
 		$Dialogue.change_label("Você já tem a garrafa,\nagora só falta a água.\nOnde poderia estar?")
 		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
@@ -212,7 +212,7 @@ func _on_porta_body_exited(body):
 
 func _on_placa_body_entered(body):
 	if is_player(body.get_class()) and scenario_index == 4 and started:
-		$Dialogue.change_texture("res://img/cenario/balneario/gota.png")	
+		$Dialogue.change_texture("res://img/cenario/balneario/astronauta.png")	
 		$Dialogue.change_label("Temos muito orgulho de ter matado a sede\ndos astronautas da missão Apollo 11.")
 		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
