@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://x8ex3h5p1h1g" path="res://sounds/mixkit-fairy-arcade-sparkle-866.wav" id="14_mheyc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7rw6g"]
-size = Vector2(1312, 327)
+size = Vector2(1312, 386)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_07hub"]
 radius = 40.0
@@ -26,10 +26,10 @@ radius = 74.3303
 radius = 96.7988
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0mvnf"]
-size = Vector2(1296, 305)
+size = Vector2(1296, 399)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nc4s4"]
-size = Vector2(348, 174)
+size = Vector2(354.531, 253.269)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42qvd"]
 size = Vector2(1306, 260)
@@ -93,9 +93,10 @@ offset_bottom = 720.0
 texture = ExtResource("5_x5hel")
 
 [node name="Obstaculo" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo"]
-position = Vector2(646, 153.5)
+position = Vector2(646, 183)
 shape = SubResource("RectangleShape2D_7rw6g")
 
 [node name="Piscina" type="StaticBody2D" parent="."]
@@ -128,17 +129,16 @@ offset_bottom = 915.0
 texture = ExtResource("2_xbuj5")
 
 [node name="Obstaculo2" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo2"]
-position = Vector2(638, 142.5)
+position = Vector2(638, 189.5)
 shape = SubResource("RectangleShape2D_0mvnf")
 
 [node name="Obstaculo21" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo21"]
-position = Vector2(1113, 336)
+position = Vector2(1120.73, 375.365)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_nc4s4")
 
 [node name="AguaSound" type="AudioStreamPlayer2D" parent="."]

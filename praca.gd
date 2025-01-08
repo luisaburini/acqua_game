@@ -239,13 +239,11 @@ func is_completed():
 var ofereceu_premio = false
 
 func _on_sr_baloes_body_entered(body):
-	# print("Sr Baloes entered, lets see if really should " + str(scenario_index) + " " + str(started) + " " + str(is_player(body.get_class())))
 	if started and scenario_index == 1 and is_player(body.get_class()):
-		# print("Sr Baloes entered")
 		$Dialogue.show_all()
 		if $Inventory.check_if_item_exists("ingresso"):
 			$Dialogue.change_label("Vai lá andar no pedalinho")
-			$Dialogue.change_texture("res://img/cenario/praca/pedalinho.png")
+			$Dialogue.change_texture("res://img/cenario/praca/sr-dos-baloes-detalhe.png")
 			$Dialogue.hide_interaction()
 		else:
 			ofereceu_premio = true
@@ -308,7 +306,6 @@ func _on_sapo_body_entered(body):
 
 func _on_sr_pedalinho_body_entered(body):
 	if scenario_index == 3 and started and is_player(body.get_class()):
-		# print("Entered Sr Pedalinho")
 		if $Inventory.check_if_item_exists("pedalinho"):
 			$PedalinhoSound.play()
 			$Dialogue.change_label("O passeio de pedalinho foi ótimo.\nSiga a diante!")

@@ -167,7 +167,7 @@ func _on_dialogue_pressed_yes():
 	
 		if ofereceu_livro:
 			$LivroLongSound.play()
-			$Dialogue.change_label("O Balneário Municipal exibe uma nota fiscal, emitida em 02 de abril de 1969, três meses e meio antes do homem chegar a lua pela primeira vez a bordo da Apolo 11. A pedido da NASA, foram embarcadas 100 dúzias de garrafas com 500 ml contendo água mineral de Águas de Lindóia.")
+			$Dialogue.change_label("O Balneário Municipal exibe uma nota fiscal, emitida em 02 de abril de 1969. Três meses e meio antes, o homem chegou a lua pela primeira vez a bordo da Apolo 11. A pedido da NASA, foram embarcadas 100 dúzias de garrafas com 500 ml contendo água mineral de Águas de Lindóia.")
 			$Inventory.add_item("livro_magico")
 			$ColetaSound.play()
 			$Dialogue.show_all()
@@ -190,7 +190,7 @@ func _on_ismael_body_entered(body):
 		$Dialogue.show_all()
 		if $Inventory.check_if_item_exists("livro_magico"):
 			$Dialogue.hide_interaction()
-			$Dialogue.change_texture("res://img/gcapybara.png")
+			$Dialogue.change_texture("res://img/cenario/sebo/capybara.png")
 			$Dialogue.change_label("Estou ocupado, vá se ocupar também.")
 		else:
 			$LivroShortSound.play()

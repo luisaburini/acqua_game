@@ -64,6 +64,7 @@ texture = ExtResource("11_mwyqk")
 
 [node name="Reset" type="TouchScreenButton" parent="Fim"]
 position = Vector2(512, 297)
+scale = Vector2(0.686667, 0.690037)
 texture_normal = ExtResource("13_16pxi")
 
 [node name="Label" type="Label" parent="Fim"]
