@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://8yd5nesb4cdw" path="res://img/reset.png" id="13_16pxi"]
 [ext_resource type="FontFile" uid="uid://bah84uqpyf84q" path="res://fonts/EmilysCandy-Regular.ttf" id="13_jsnqx"]
 [ext_resource type="PackedScene" uid="uid://dpe24lml0sq6u" path="res://city_map.tscn" id="13_p82sj"]
-[ext_resource type="AudioStream" uid="uid://br3s0cadfqmtn" path="res://sounds/atmosfera lua.wav" id="15_cf5ru"]
+[ext_resource type="AudioStream" uid="uid://lnum31e7yfgx" path="res://sounds/trilha lunar.wav" id="14_uj1su"]
 [ext_resource type="PackedScene" uid="uid://b8wk3pt07sp1m" path="res://sebo.tscn" id="16_526j1"]
 [ext_resource type="AudioStream" uid="uid://drpr7ny4uujq3" path="res://sounds/som et.wav" id="16_ebr23"]
 
@@ -28,10 +28,11 @@ one_shot = true
 visible = false
 
 [node name="SeboPosition" type="Marker2D" parent="."]
-position = Vector2(1180, 650)
+position = Vector2(1180, 570)
 
 [node name="HUDMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_m6cy0")
+volume_db = 20.0
 
 [node name="CityMap" parent="." instance=ExtResource("13_p82sj")]
 visible = false
@@ -41,6 +42,7 @@ visible = false
 
 [node name="SeboMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_eip3a")
+volume_db = 20.0
 
 [node name="Praca" parent="." instance=ExtResource("7_s7ujm")]
 visible = false
@@ -49,13 +51,14 @@ visible = false
 stream = ExtResource("10_v6yaw")
 
 [node name="PracaPosition" type="Marker2D" parent="."]
-position = Vector2(550, 650)
+position = Vector2(550, 580)
 
 [node name="Balneario" parent="." instance=ExtResource("11_7mojm")]
 visible = false
 
 [node name="BalnearioMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_4i3it")
+volume_db = -10.0
 
 [node name="Fim" type="TextureRect" parent="."]
 offset_right = 40.0
@@ -81,11 +84,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FimMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("15_cf5ru")
+stream = ExtResource("14_uj1su")
 
 [node name="EtMusic" type="AudioStreamPlayer2D" parent="."]
 visible = false
 stream = ExtResource("16_ebr23")
+volume_db = 10.0
 
 [node name="BalnearioPosition" type="Marker2D" parent="."]
 visible = false

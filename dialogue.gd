@@ -6,6 +6,10 @@ signal pressed_no
 var started = false
 signal player_go_to(pos)
 
+
+func has_started():
+	return started
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

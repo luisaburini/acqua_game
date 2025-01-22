@@ -96,4 +96,3 @@ func _process(delta):
 		position.x = 100
 		troca_cenario = false
 	position.y = clamp_position.y
-

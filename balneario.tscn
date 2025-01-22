@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://balneario.gd" id="1_js21y"]
 [ext_resource type="Texture2D" uid="uid://de5n0eqdi465i" path="res://img/cenario/balneario/senhora.png" id="2_xbuj5"]
-[ext_resource type="Texture2D" uid="uid://dwtpytvfpas2a" path="res://img/cenario/balneario/chao-cena1A.png" id="3_5b2h3"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="4_s4g8n"]
-[ext_resource type="Texture2D" uid="uid://ca4qbpy8yn6rk" path="res://img/cenario/balneario/balneario-cena1B.png" id="5_x5hel"]
+[ext_resource type="Texture2D" uid="uid://dft0pulannwm4" path="res://img/cenario/balneario/balneario-cena2B.png" id="5_r61mq"]
+[ext_resource type="Texture2D" uid="uid://im6djd27cgas" path="res://img/cenario/balneario/balneario-cena1A.png" id="5_wjnhn"]
 [ext_resource type="Texture2D" uid="uid://dun5sumea0me" path="res://img/cenario/balneario/porta.png" id="7_dsvga"]
 [ext_resource type="Texture2D" uid="uid://dlou21knliyvf" path="res://img/cenario/balneario/retorno.png" id="8_0txry"]
 [ext_resource type="Texture2D" uid="uid://boh8n0oq7eexu" path="res://img/cenario/balneario/lua.png" id="10_tibdl"]
@@ -20,29 +20,28 @@ radius = 40.0
 height = 838.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_468ot"]
-radius = 74.3303
+radius = 102.078
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f05e5"]
-radius = 96.7988
+radius = 65.7647
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0mvnf"]
-size = Vector2(1296, 399)
+size = Vector2(1296, 358)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nc4s4"]
 size = Vector2(354.531, 253.269)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42qvd"]
-size = Vector2(1306, 260)
+size = Vector2(1306, 61)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8dn4k"]
-radius = 69.1158
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4tf52"]
-radius = 44.8839
-height = 248.143
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8r1uc"]
+size = Vector2(1316, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56acw"]
-size = Vector2(1304, 255)
+size = Vector2(1304, 185)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2jhh"]
+size = Vector2(364, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07h5w"]
 size = Vector2(1301, 395)
@@ -84,13 +83,13 @@ z_index = -500
 offset_left = -2.0
 offset_right = 1278.0
 offset_bottom = 720.0
-texture = ExtResource("3_5b2h3")
+texture = ExtResource("5_wjnhn")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -100
 offset_right = 1280.0
 offset_bottom = 720.0
-texture = ExtResource("5_x5hel")
+texture = ExtResource("5_r61mq")
 
 [node name="Obstaculo" type="StaticBody2D" parent="."]
 visible = false
@@ -100,6 +99,7 @@ position = Vector2(646, 183)
 shape = SubResource("RectangleShape2D_7rw6g")
 
 [node name="Piscina" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Piscina"]
 position = Vector2(407, 404)
@@ -107,10 +107,11 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_07hub")
 
 [node name="Senhora" type="Area2D" parent="."]
+visible = false
 position = Vector2(-210, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Senhora"]
-position = Vector2(1032, 575)
+position = Vector2(1025, 620)
 shape = SubResource("CircleShape2D_468ot")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Senhora"]
@@ -122,23 +123,24 @@ shape = SubResource("CircleShape2D_f05e5")
 
 [node name="TextureRect" type="TextureRect" parent="Senhora"]
 z_index = 200
-offset_left = 550.0
-offset_top = -109.0
-offset_right = 1574.0
-offset_bottom = 915.0
+offset_left = 1009.0
+offset_top = 176.0
+offset_right = 1253.0
+offset_bottom = 673.0
 texture = ExtResource("2_xbuj5")
 
 [node name="Obstaculo2" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo2"]
-position = Vector2(638, 189.5)
+position = Vector2(638, 169)
 shape = SubResource("RectangleShape2D_0mvnf")
 
 [node name="Obstaculo21" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo21"]
 position = Vector2(1120.73, 375.365)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_nc4s4")
 
 [node name="AguaSound" type="AudioStreamPlayer2D" parent="."]
@@ -154,33 +156,29 @@ visible = false
 position = Vector2(0, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo3"]
-position = Vector2(643, 120)
+position = Vector2(643, 30.5)
 shape = SubResource("RectangleShape2D_42qvd")
 
-[node name="Obstaculo31" type="StaticBody2D" parent="."]
+[node name="Obstaculo33" type="StaticBody2D" parent="."]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo31"]
-position = Vector2(148, 333)
-shape = SubResource("CircleShape2D_8dn4k")
-
-[node name="Obstaculo32" type="StaticBody2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo32"]
-position = Vector2(785, 348)
-rotation = 1.58476
-shape = SubResource("CapsuleShape2D_4tf52")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo33"]
+position = Vector2(647, 683)
+shape = SubResource("RectangleShape2D_8r1uc")
 
 [node name="Obstaculo4" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo4"]
-position = Vector2(642, 117.5)
+position = Vector2(642, 82.5)
 shape = SubResource("RectangleShape2D_56acw")
 
+[node name="Obstaculo41" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo41"]
+position = Vector2(207, 697)
+shape = SubResource("RectangleShape2D_p2jhh")
+
 [node name="Obstaculo5" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo5"]
 position = Vector2(640.5, 187.5)
@@ -208,6 +206,7 @@ position = Vector2(641, 189.5)
 shape = SubResource("RectangleShape2D_8cjik")
 
 [node name="Fonte" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fonte"]
 position = Vector2(449, 389)

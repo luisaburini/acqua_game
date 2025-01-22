@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bg3a5uh20xkel" path="res://img/cenario/praca/sr-dos-baloes.png" id="1_xf8u4"]
 [ext_resource type="Texture2D" uid="uid://b4li8r406lep0" path="res://img/cenario/praca/capys.png" id="2_75ejj"]
 [ext_resource type="Texture2D" uid="uid://bci31ox8i5we3" path="res://img/cenario/praca/chao-cena1A.png" id="3_10ar6"]
-[ext_resource type="Texture2D" uid="uid://sta22gge1kus" path="res://img/cenario/praca/praca-cena3A.png" id="4_hi1bx"]
+[ext_resource type="Texture2D" uid="uid://by52yq6rjwoko" path="res://img/cenario/praca/praca-cena2B.png" id="4_ayab7"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="5_45i88"]
 [ext_resource type="Texture2D" uid="uid://pgat8brosock" path="res://img/cenario/praca/sapo.png" id="5_en60o"]
 [ext_resource type="Texture2D" uid="uid://4dbwhrjlc3m6" path="res://img/cenario/praca/porta.png" id="6_vcmb7"]
@@ -46,12 +46,12 @@ height = 236.091
 size = Vector2(1301, 543)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ock3"]
-radius = 123.0
-height = 444.0
+radius = 140.0
+height = 410.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aydxi"]
 radius = 68.0
-height = 262.0
+height = 178.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gcd27"]
 radius = 99.0741
@@ -123,7 +123,7 @@ offset_left = 2.0
 offset_right = 1282.0
 offset_bottom = 720.0
 mouse_filter = 2
-texture = ExtResource("4_hi1bx")
+texture = ExtResource("4_ayab7")
 
 [node name="Inventory" parent="." instance=ExtResource("17_hsapi")]
 
@@ -171,7 +171,7 @@ z_index = -3
 position = Vector2(700, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SrBaloes"]
-position = Vector2(187, 418)
+position = Vector2(136, 420)
 shape = SubResource("CapsuleShape2D_2ock3")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="SrBaloes"]

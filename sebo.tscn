@@ -1,7 +1,7 @@
 [gd_scene load_steps=43 format=3 uid="uid://b8wk3pt07sp1m"]
 
 [ext_resource type="Script" path="res://sebo.gd" id="1_mq8n6"]
-[ext_resource type="Texture2D" uid="uid://cop4e6sy0hsnu" path="res://img/cenario/sebo/sebo1.png" id="3_vrqpu"]
+[ext_resource type="Texture2D" uid="uid://c386dryicsg03" path="res://img/cenario/sebo/sebo3.png" id="3_833va"]
 [ext_resource type="Texture2D" uid="uid://c0jxeax1ghys3" path="res://img/cenario/sebo/seta-porta.png" id="5_ss7gp"]
 [ext_resource type="Texture2D" uid="uid://bd0jwuqexw7vw" path="res://img/cenario/sebo/ismael-sebo1.png" id="8_brlfp"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="8_vfo1t"]
@@ -31,11 +31,11 @@ radius = 99.0
 height = 214.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wkd7g"]
-radius = 107.0
+radius = 26.0
 height = 416.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvdkb"]
-size = Vector2(881, 450)
+size = Vector2(784, 431)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bskvs"]
 radius = 103.024
@@ -49,10 +49,10 @@ radius = 86.0
 height = 440.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qybjb"]
-size = Vector2(1276, 363)
+size = Vector2(1276, 330)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1x26"]
-size = Vector2(556.25, 207.5)
+size = Vector2(463, 174)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pqb1x"]
 radius = 157.777
@@ -72,11 +72,11 @@ size = Vector2(203, 177)
 size = Vector2(888, 269)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qob3j"]
-radius = 74.584
-height = 407.534
+radius = 37.0645
+height = 313.655
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q432j"]
-radius = 74.0
+radius = 53.907
 height = 771.208
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3wvpc"]
@@ -114,7 +114,7 @@ offset_left = 7.0
 offset_right = 1287.0
 offset_bottom = 721.0
 mouse_filter = 2
-texture = ExtResource("3_vrqpu")
+texture = ExtResource("3_833va")
 
 [node name="Dialogue" parent="." instance=ExtResource("8_vfo1t")]
 
@@ -148,7 +148,6 @@ position = Vector2(304, 292)
 texture_normal = ExtResource("5_ss7gp")
 
 [node name="Ismael" type="Area2D" parent="."]
-visible = false
 z_index = -2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ismael"]
@@ -176,11 +175,12 @@ disable_mode = 1
 collision_priority = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo"]
-position = Vector2(857.5, 207)
+position = Vector2(906, 197.5)
 shape = SubResource("RectangleShape2D_yvdkb")
 one_way_collision_margin = 0.0
 
 [node name="Vitrola" type="Area2D" parent="."]
+visible = false
 z_index = 1000
 position = Vector2(100, 140)
 scale = Vector2(0.7, 0.7)
@@ -223,7 +223,7 @@ position = Vector2(20, 20)
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Estante2"]
 z_index = -6
-position = Vector2(623, 166.5)
+position = Vector2(623, 150)
 shape = SubResource("RectangleShape2D_qybjb")
 
 [node name="Estante22" type="StaticBody2D" parent="."]
@@ -231,7 +231,7 @@ visible = false
 z_index = 4000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Estante22"]
-position = Vector2(542.125, 424.75)
+position = Vector2(495.5, 408)
 shape = SubResource("RectangleShape2D_b1x26")
 
 [node name="Retorno2" type="Area2D" parent="."]
@@ -271,6 +271,7 @@ position = Vector2(809, 598)
 shape = SubResource("CircleShape2D_6u35f")
 
 [node name="Porta3" type="Area2D" parent="."]
+visible = false
 z_index = 2
 priority = 10
 
@@ -290,11 +291,12 @@ position = Vector2(340, 243)
 texture_normal = ExtResource("5_ss7gp")
 
 [node name="Estante3" type="StaticBody2D" parent="."]
+visible = false
 z_index = -2
 position = Vector2(400, 250)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Estante3"]
-position = Vector2(199, 158)
+position = Vector2(204, 122)
 rotation = 0.0453786
 scale = Vector2(0.8, 0.8)
 shape = SubResource("CapsuleShape2D_qob3j")
@@ -307,6 +309,7 @@ rotation = -1.00182
 shape = SubResource("CapsuleShape2D_q432j")
 
 [node name="Retorno3" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Retorno3"]
 position = Vector2(166, 398)

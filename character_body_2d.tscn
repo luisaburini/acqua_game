@@ -67,8 +67,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e8jgy"]
-radius = 23.0
-height = 74.0
+radius = 15.0
+height = 48.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_savun")
@@ -79,5 +79,5 @@ animation = &"walk"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 19)
+position = Vector2(-6, 69)
 shape = SubResource("CapsuleShape2D_e8jgy")

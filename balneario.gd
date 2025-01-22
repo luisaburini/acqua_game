@@ -14,12 +14,12 @@ var balneario_scenarios = ["res://img/cenario/balneario/balneario-cena1A.png",
 						   "res://img/cenario/balneario/balneario-cena3A.png",
 						   "res://img/cenario/balneario/balneario-cena3B.png"]
 					
-var chao_balneario = ["res://img/cenario/balneario/chao-cena1A.png",
-					  "res://img/cenario/balneario/chao-cena1B.png",
-			 		  "res://img/cenario/balneario/chao-cena2A.png",
-					  "res://img/cenario/balneario/chao-cena2B.png",
-					  "res://img/cenario/balneario/chao-cena3A.png",
-					  "res://img/cenario/balneario/chao-cena3B.png"]
+var chao_balneario = ["res://img/cenario/balneario/balneario-cena1A.png",
+					  "res://img/cenario/balneario/balneario-cena1B.png",
+			 		  "res://img/cenario/balneario/balneario-cena2A.png",
+					  "res://img/cenario/balneario/balneario-cena2B.png",
+					  "res://img/cenario/balneario/balneario-cena3A.png",
+					  "res://img/cenario/balneario/balneario-cena3B.png"]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -59,8 +59,8 @@ func get_objs():
 		return [
 		["Obstaculo", "Piscina"],
 		["Senhora", "Obstaculo2", "Obstaculo21"],
-		["Obstaculo3", "Obstaculo31", "Obstaculo32"],
-		["Obstaculo4"],
+		["Obstaculo3", "Obstaculo33"],
+		["Obstaculo4", "Obstaculo41"],
 		["Placa", "Obstaculo5"],
 		["Fonte", "Obstaculo6"],
 	]
@@ -72,6 +72,9 @@ func hide_all():
 		for o in objs[i]:
 			var obj = get_node(o)
 			if obj != null:
+				obj.hide()
+				if check_collision(o):
+					obj.disabled = true
 				for c in obj.get_children():
 					c.hide()
 					if check_collision(c.get_class()):
@@ -80,7 +83,7 @@ func hide_all():
 						b.hide()
 						if check_collision(b.get_class()):
 							b.disabled = true
-	hide()	
+	hide()
 	
 
 func update_texture():
@@ -97,7 +100,7 @@ func update_objs_state(limit):
 	scenario_index = scenario_index%len(balneario_scenarios)
 
 	update_texture()
-
+	print("BALNEARIO: Update Objects state ")
 	var objs = get_objs()
 	for i in range(len(objs)):
 		for o in objs[i]:
@@ -108,6 +111,7 @@ func update_objs_state(limit):
 					for c in obj.get_children():
 						c.show()
 						if check_button(c.get_class()):
+							print(o)
 							c.hide()
 						if check_collision(c.get_class()):
 							c.disabled = false
@@ -116,6 +120,7 @@ func update_objs_state(limit):
 							if check_collision(b.get_class()):
 								b.disabled = false
 				else:
+					print(o)
 					obj.hide()
 					for c in obj.get_children():
 						c.hide()
@@ -142,8 +147,8 @@ func _on_porta_pressed():
 var start_positions = [ 	
 	Vector2(600, 500),
 	Vector2(100, 500),
-	Vector2(400, 500),
-	Vector2(400, 500),
+	Vector2(300, 400),
+	Vector2(300, 400),
 	Vector2(600, 500),
 	Vector2(100, 600) 
 ]
@@ -154,8 +159,8 @@ func get_start_position():
 var return_positions = [
 	Vector2(900, 500),
 	Vector2(900, 500),
-	Vector2(900, 500),
-	Vector2(1000, 500),
+	Vector2(900, 380),
+	Vector2(1000, 380),
 	Vector2(900, 500),
 	Vector2(900, 500) 
 ]

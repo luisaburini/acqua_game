@@ -12,7 +12,7 @@ var scenario_index = 0
 
 
 var start_positions = [ 	
-	Vector2(900, 650),
+	Vector2(900, 500),
 	Vector2(940, 460),
 	Vector2(300, 530),
 	Vector2(150, 580) 
@@ -22,8 +22,8 @@ func get_start_position():
 	return start_positions[scenario_index]
 
 var return_positions = [
-	Vector2(400, 600),
-	Vector2(900, 660),
+	Vector2(350, 470),
+	Vector2(900, 600),
 	Vector2(450, 450),
 	Vector2(150, 580)
 ]

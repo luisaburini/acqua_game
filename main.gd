@@ -44,7 +44,7 @@ func _on_player_limite_esquerdo():
 	if loc != null:
 		loc.update_objs_state(-1)
 		$Player.end()
-		$Player.start(loc.get_start_position())
+		$Player.start(loc.get_return_position())
 
 
 func _on_sebo_leave():

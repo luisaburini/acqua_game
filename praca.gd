@@ -78,7 +78,8 @@ func hide_all():
 			var obj = get_node(o)
 			if obj != null:
 				obj.hide()
-				# print("Root Node: "+ o)
+				if check_collision(o):
+					obj.disabled = true
 				for c in obj.get_children():
 					c.hide()
 					if check_collision(c.get_class()):
@@ -151,24 +152,24 @@ func check_button(b):
 	return b.ends_with("Button") 
 
 var start_positions = [ 	
-	Vector2(250, 650),
-	Vector2(450, 650),
-	Vector2(250, 650),
-	Vector2(250, 650),
-	Vector2(250, 650),
-	Vector2(250, 650)
+	Vector2(250, 550),
+	Vector2(450, 550),
+	Vector2(250, 550),
+	Vector2(250, 550),
+	Vector2(250, 550),
+	Vector2(250, 550)
 ]
 	
 func get_start_position():
 	return start_positions[scenario_index]
 
 var return_positions = [
-	Vector2(900, 650),
-	Vector2(900, 650),
-	Vector2(900, 650),
-	Vector2(900, 650),
-	Vector2(900, 650),
-	Vector2(900, 650) 
+	Vector2(900, 550),
+	Vector2(900, 550),
+	Vector2(900, 550),
+	Vector2(900, 550),
+	Vector2(900, 550),
+	Vector2(900, 550) 
 ]
 
 func  get_return_position():
@@ -179,16 +180,17 @@ func _on_porta_pressed():
 	ignore_click = true
 	go_to_next_scene.emit()
 
+var is_balao_visible = false
 
 func toggle_visibility_balloons(visible):
 	var balao ="Balao"
+	is_balao_visible = visible
 	for i in ["1", "2", "3"]:
 		var b = get_node(balao+i)
 		if !visible or i in baloes_estourados:
 			b.hide()
 		else:
 			b.show()
-			
 
 func _on_dialogue_pressed_yes():
 	$PedalinhoSound.stop()
@@ -239,7 +241,9 @@ func is_completed():
 var ofereceu_premio = false
 
 func _on_sr_baloes_body_entered(body):
-	if started and scenario_index == 1 and is_player(body.get_class()):
+	print("Must show?")
+	print(!is_balao_visible)
+	if !is_balao_visible and started and scenario_index == 1 and is_player(body.get_class()):
 		$Dialogue.show_all()
 		if $Inventory.check_if_item_exists("ingresso"):
 			$Dialogue.change_label("Vai lá andar no pedalinho")
@@ -252,6 +256,8 @@ func _on_sr_baloes_body_entered(body):
 			$Dialogue.show_all()
 
 
+func is_balao_showing():
+	return $Balao1.is_shape_visible() or $Balao2.is_shape_visible() or $Balao3.is_shape_visible() 
 
 
 func _on_retorno_pressed():
@@ -261,7 +267,6 @@ func _on_retorno_pressed():
 
 func _on_porta_body_entered(body):
 	if started and is_player(body.get_class()):
-		# print("Porta entered")
 		$Porta/TextureButton.show()
 
 
@@ -275,7 +280,7 @@ func _on_saida_body_entered(body):
 	if started and scenario_index == 5 and is_player(body.get_class()):
 		# print("Saida entered")
 		if is_completed():
-			# print("COMPLETED!! LEAVING PRACA")
+			started = false
 			leave.emit()
 		else:
 			$Dialogue.change_texture("res://img/cenario/praca/sa")
