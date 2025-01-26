@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://doqpickhbibsx"]
+[gd_scene load_steps=34 format=3 uid="uid://doqpickhbibsx"]
 
 [ext_resource type="Script" path="res://balneario.gd" id="1_js21y"]
 [ext_resource type="Texture2D" uid="uid://de5n0eqdi465i" path="res://img/cenario/balneario/senhora.png" id="2_xbuj5"]
@@ -9,8 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://dlou21knliyvf" path="res://img/cenario/balneario/retorno.png" id="8_0txry"]
 [ext_resource type="Texture2D" uid="uid://boh8n0oq7eexu" path="res://img/cenario/balneario/lua.png" id="10_tibdl"]
 [ext_resource type="PackedScene" uid="uid://46blvwif58os" path="res://inventory.tscn" id="11_5x4vn"]
+[ext_resource type="Texture2D" uid="uid://bxehu2h7r1cw3" path="res://img/cenario/sebo/apontando-para-a-direita.png" id="12_8qibg"]
+[ext_resource type="Texture2D" uid="uid://cneheufq4tik6" path="res://img/cenario/sebo/effect.png" id="13_cywfb"]
 [ext_resource type="AudioStream" uid="uid://c5nx4kmu8ltf1" path="res://sounds/ambiencia agua.wav" id="13_juypa"]
+[ext_resource type="Texture2D" uid="uid://bk6743pbp6bnk" path="res://img/cenario/sebo/espumante.png" id="14_8nn52"]
 [ext_resource type="AudioStream" uid="uid://x8ex3h5p1h1g" path="res://sounds/mixkit-fairy-arcade-sparkle-866.wav" id="14_mheyc"]
+[ext_resource type="Texture2D" uid="uid://dndlm07a5a44k" path="res://img/cenario/praca/water.png" id="15_vuw0i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7rw6g"]
 size = Vector2(1312, 386)
@@ -44,7 +48,7 @@ size = Vector2(1304, 185)
 size = Vector2(364, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07h5w"]
-size = Vector2(1301, 395)
+size = Vector2(1301, 290)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lc73e"]
 radius = 123.0
@@ -90,6 +94,9 @@ z_index = -100
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("5_r61mq")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="Obstaculo" type="StaticBody2D" parent="."]
 visible = false
@@ -167,12 +174,14 @@ position = Vector2(647, 683)
 shape = SubResource("RectangleShape2D_8r1uc")
 
 [node name="Obstaculo4" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo4"]
 position = Vector2(642, 82.5)
 shape = SubResource("RectangleShape2D_56acw")
 
 [node name="Obstaculo41" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo41"]
 position = Vector2(207, 697)
@@ -181,11 +190,10 @@ shape = SubResource("RectangleShape2D_p2jhh")
 [node name="Obstaculo5" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo5"]
-position = Vector2(640.5, 187.5)
+position = Vector2(640.5, 135)
 shape = SubResource("RectangleShape2D_07h5w")
 
 [node name="Placa" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Placa"]
 position = Vector2(278, 330)
@@ -206,7 +214,6 @@ position = Vector2(641, 189.5)
 shape = SubResource("RectangleShape2D_8cjik")
 
 [node name="Fonte" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fonte"]
 position = Vector2(449, 389)
@@ -255,9 +262,48 @@ z_index = -2
 position = Vector2(1114, 276)
 texture_normal = ExtResource("7_dsvga")
 
+[node name="DicaPorta" type="TextureRect" parent="."]
+offset_left = 1070.0
+offset_top = 332.0
+offset_right = 1198.0
+offset_bottom = 460.0
+texture = ExtResource("12_8qibg")
+
+[node name="DicaRetorno" type="TextureRect" parent="."]
+offset_left = 89.0
+offset_top = 334.0
+offset_right = 217.0
+offset_bottom = 462.0
+texture = ExtResource("12_8qibg")
+flip_h = true
+
+[node name="DicaSenhora" type="TextureRect" parent="."]
+offset_left = 687.0
+offset_top = 281.0
+offset_right = 815.0
+offset_bottom = 409.0
+rotation = -0.785398
+texture = ExtResource("13_cywfb")
+flip_h = true
+
+[node name="DicaPlaca" type="TextureRect" parent="."]
+offset_left = 289.0
+offset_top = 342.0
+offset_right = 417.0
+offset_bottom = 470.0
+texture = ExtResource("14_8nn52")
+
+[node name="DicaFonte" type="TextureRect" parent="."]
+offset_left = 429.0
+offset_top = 412.0
+offset_right = 557.0
+offset_bottom = 540.0
+texture = ExtResource("15_vuw0i")
+
 [connection signal="player_go_to" from="Dialogue" to="." method="_on_dialogue_player_go_to"]
 [connection signal="pressed_no" from="Dialogue" to="." method="_on_dialogue_pressed_no"]
 [connection signal="pressed_yes" from="Dialogue" to="." method="_on_dialogue_pressed_yes"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Senhora" to="." method="_on_senhora_body_entered"]
 [connection signal="body_entered" from="Placa" to="." method="_on_placa_body_entered"]
 [connection signal="body_entered" from="Fonte" to="." method="_on_fonte_body_entered"]

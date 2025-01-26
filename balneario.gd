@@ -27,9 +27,11 @@ func _ready():
 	get_viewport().physics_object_picking_sort = true
 	$Lua.hide()
 	$Dialogue.hide_all()
+	hide_tip()
 
 func reset():
 	scenario_index = 0
+	hide_tip()
 	$Inventory.reset()
 	$Lua.hide()
 	$Dialogue.hide_all()
@@ -259,3 +261,65 @@ func _on_dialogue_pressed_yes():
 func _unhandled_input(event):
 	if started:
 		get_viewport().set_input_as_handled()
+
+func show_tip():
+	print("Balneário show tip")
+	var interagiu_com_senhora = $Inventory.check_if_item_exists("senhora")
+	var leu_placa = $Inventory.check_if_item_exists("placa")
+	match scenario_index:
+		0:
+			_dica_piscina()
+		1:
+			_dica_senhora(interagiu_com_senhora)
+		2:
+			_dica_passagem(interagiu_com_senhora)
+		3:
+			_dica_passagem(interagiu_com_senhora)
+		4:
+			_dica_placa(interagiu_com_senhora, leu_placa)
+		5:
+			_dica_saida()
+		_:
+			print("Where are you?")
+	$Timer.start(2)
+
+func hide_tip():
+	$DicaPorta.hide()
+	$DicaRetorno.hide()
+	$DicaSenhora.hide()
+	$DicaPlaca.hide()
+	$DicaFonte.hide()
+	
+func _dica_piscina():
+	$DicaPorta.show()
+	
+func _dica_senhora(interagiu_com_senhora):
+	if interagiu_com_senhora:
+		$DicaPorta.show()
+		return
+	$DicaSenhora.show()
+	
+func _dica_passagem(interagiu_com_senhora):
+	if interagiu_com_senhora:
+		$DicaPorta.show()
+		return
+	$DicaRetorno.show()
+	
+func _dica_placa(interagiu_senhora, leu_placa):
+	if !interagiu_senhora:
+		$DicaRetorno.show()
+		return
+	if !leu_placa:
+		$DicaPlaca.show()
+		return
+	$DicaPorta.show()
+	
+func _dica_saida():
+	if !is_completed():
+		$DicaRetorno.show()
+		return
+	$DicaFonte.show()
+
+
+func _on_timer_timeout() -> void:
+	hide_tip()

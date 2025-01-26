@@ -8,6 +8,7 @@ func _ready():
 	get_viewport().physics_object_picking_sort = true
 	$Fim.hide()
 	$Player.end()
+	$Indicator.hide()
 	for loc in locations:
 		var loc_node = get_node(loc)
 		loc_node.hide()
@@ -99,6 +100,7 @@ func _on_city_map_pressed_balneario():
 		$CityMap.end()
 		$HUDMusic.stop()
 		current_location = 2
+		$Player.return_to_land()
 		$BalnearioMusic.play()
 		$Player.start($BalnearioPosition.position)
 		$Player.flip_horizontal(true)
@@ -169,26 +171,57 @@ func _on_reset_pressed():
 func _on_sebo_audiodica_finished():
 	$SeboMusic.play()
 
+func _player_walk_to(pos):
+	$Player.walk_to(pos)
+	print(locations[current_location])
+	var loc_node = get_node(locations[current_location])
+	loc_node.hide_tip()
+	$Indicator.set_position(pos-$Indicator.size/2)
+	$Indicator.show()
+	
 
 func _unhandled_input(event):
 	if event is InputEventScreenTouch and event.pressed == true:
 		if !$CityMap.started and !$HUD.started:
 			if $Sebo.started or $Praca.started or $Balneario.started or started_fim:
 				get_viewport().set_input_as_handled()
-				$Player.walk_to(event.position)
+				_player_walk_to(event.position)
 				
 
 
-func _on_sebo_player_go_to(pos):
+func _on_sebo_player_go_to(pos) -> void:
 	if $Sebo.started:
-		$Player.walk_to(pos)
+		_player_walk_to(pos)
+		$IdleTimer.stop()
 
 
-func _on_praca_player_go_to(pos):
+func _on_praca_player_go_to(pos) -> void:
 	if $Praca.started:
-		$Player.walk_to(pos)
+		_player_walk_to(pos)
+		$IdleTimer.stop()
 
-
-func _on_balneario_player_go_to(pos):
+func _on_balneario_player_go_to(pos) -> void:
 	if $Balneario.started:
-		$Player.walk_to(pos)
+		_player_walk_to(pos)
+		$IdleTimer.stop()
+
+
+func _on_player_is_idle() -> void:
+	$Indicator.hide()
+	if $IdleTimer.is_stopped():
+		$IdleTimer.start(10)
+
+
+func _on_idle_timer_timeout() -> void:
+	print("Idle timer timeout")
+	print(locations[current_location])
+	var loc_node = get_node(locations[current_location])
+	loc_node.show_tip()
+
+
+func _on_praca_go_on_water() -> void:
+	$Player.go_on_water()
+
+
+func _on_praca_return_to_land() -> void:
+	$Player.return_to_land()

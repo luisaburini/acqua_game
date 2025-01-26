@@ -4,17 +4,21 @@ const SPEED = 200.0
 const JUMP_VELOCITY = 100.0
 var target_position = position
 var clicked_position = position
+var animation = "walk"
+var idle = "idle"
 signal limite_direito
 signal limite_esquerdo
+signal is_idle
 var walking = false
 var started = false
+
 
 func _physics_process(delta):
 	if started:
 		if position.distance_to(clicked_position) > 2:
 			target_position = (clicked_position - position).normalized()
 			velocity = target_position * SPEED
-			$AnimatedSprite2D.animation = "walk"
+			$AnimatedSprite2D.animation = animation
 			$AnimatedSprite2D.flip_h = velocity.x > 0
 			walking = true
 			$AnimatedSprite2D.flip_v = false
@@ -24,17 +28,19 @@ func _physics_process(delta):
 				walk_to(position)
 		else:
 			walking = false
-			$AnimatedSprite2D.animation = "idle"
+			$AnimatedSprite2D.animation = idle
 			$AnimatedSprite2D.play()
+			is_idle.emit()
 
 		show()
 	
 func start(pos):
 	started = true 
 	go_to(pos)
-	$AnimatedSprite2D.animation = "idle"
+	$AnimatedSprite2D.animation = idle
 	$AnimatedSprite2D.flip_h = false
 	$AnimatedSprite2D.play()
+	is_idle.emit()
 	show()
 			
 func end():
@@ -72,3 +78,15 @@ func go_to(pos):
 	
 func flip_horizontal(shouldFlip):
 	$AnimatedSprite2D.flip_h = shouldFlip
+	
+func go_on_water():
+	print("Go on water")
+	animation = "ride"
+	idle = "idle_pedalinho"
+	print(animation)
+	print(idle)
+	
+func return_to_land():
+	print("Return to land")
+	animation = "walk"
+	idle = "idle"

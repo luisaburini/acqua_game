@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://ds7odrisj6q82"]
+[gd_scene load_steps=18 format=3 uid="uid://ds7odrisj6q82"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_savun"]
 [ext_resource type="Texture2D" uid="uid://v6a8ivk4nfac" path="res://img/protagonista/idle.png" id="2_tslwq"]
+[ext_resource type="Texture2D" uid="uid://dgbegmc5ns5f1" path="res://img/protagonista/pedalinho.png" id="3_1128s"]
 [ext_resource type="Texture2D" uid="uid://cb50nd2mtoxgi" path="res://img/protagonista/walk.png" id="3_im22m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7d38s"]
@@ -15,6 +16,22 @@ region = Rect2(147, 0, 147, 363)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qdb04"]
 atlas = ExtResource("2_tslwq")
 region = Rect2(294, 0, 147, 363)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k6n4"]
+atlas = ExtResource("3_1128s")
+region = Rect2(0, 0, 362, 338)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy8pq"]
+atlas = ExtResource("3_1128s")
+region = Rect2(362, 0, 362, 338)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_weico"]
+atlas = ExtResource("3_1128s")
+region = Rect2(0, 0, 362, 338)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5lkm"]
+atlas = ExtResource("3_1128s")
+region = Rect2(362, 0, 362, 338)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xirto"]
 atlas = ExtResource("3_im22m")
@@ -50,6 +67,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5k6n4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy8pq")
+}],
+"loop": true,
+"name": &"idle_pedalinho",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_weico")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5lkm")
+}],
+"loop": true,
+"name": &"ride",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_xirto")
 }, {
 "duration": 1.0,
@@ -68,16 +107,16 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e8jgy"]
 radius = 15.0
-height = 48.0
+height = 36.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_savun")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ng0qm")
-animation = &"walk"
+animation = &"ride"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-6, 69)
+position = Vector2(-12, 71)
 shape = SubResource("CapsuleShape2D_e8jgy")

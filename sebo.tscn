@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://b8wk3pt07sp1m"]
+[gd_scene load_steps=47 format=3 uid="uid://b8wk3pt07sp1m"]
 
 [ext_resource type="Script" path="res://sebo.gd" id="1_mq8n6"]
 [ext_resource type="Texture2D" uid="uid://c386dryicsg03" path="res://img/cenario/sebo/sebo3.png" id="3_833va"]
@@ -14,11 +14,15 @@
 [ext_resource type="Texture2D" uid="uid://x0t1rcibmyqn" path="res://img/cenario/sebo/porta-sebo1.png" id="13_by46i"]
 [ext_resource type="AudioStream" uid="uid://comh7fk73sya5" path="res://sounds/micuim 8bit.mp3" id="13_pf0ty"]
 [ext_resource type="Texture2D" uid="uid://nrxqclrilwgl" path="res://img/cenario/sebo/saida.png" id="18_p4o6h"]
+[ext_resource type="Texture2D" uid="uid://cneheufq4tik6" path="res://img/cenario/sebo/effect.png" id="20_c31qv"]
 [ext_resource type="AudioStream" uid="uid://dem3l3g4prpeo" path="res://sounds/pagina 1.mp3" id="21_7e5k5"]
+[ext_resource type="Texture2D" uid="uid://cg6ipc6jjv0s6" path="res://img/cenario/sebo/musica.png" id="21_12nqf"]
 [ext_resource type="AudioStream" uid="uid://odktcmhwovwa" path="res://sounds/mixkit-browsing-book-by-pages-1099.wav" id="21_bt2uq"]
 [ext_resource type="Texture2D" uid="uid://defimrtnchcvy" path="res://img/cenario/sebo/porta-sebo4.png" id="21_m3uc3"]
 [ext_resource type="AudioStream" uid="uid://x8ex3h5p1h1g" path="res://sounds/mixkit-fairy-arcade-sparkle-866.wav" id="22_h6b3q"]
+[ext_resource type="Texture2D" uid="uid://bk6743pbp6bnk" path="res://img/cenario/sebo/espumante.png" id="22_kd130"]
 [ext_resource type="AudioStream" uid="uid://bn5aafqn6dme0" path="res://sounds/trancado.mp3" id="23_lqee2"]
+[ext_resource type="Texture2D" uid="uid://bxehu2h7r1cw3" path="res://img/cenario/sebo/apontando-para-a-direita.png" id="23_x0p33"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1nps"]
 size = Vector2(188.25, 409.75)
@@ -87,7 +91,7 @@ height = 561.609
 size = Vector2(191, 741)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4qx2"]
-size = Vector2(189, 238)
+size = Vector2(189, 282)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pwhsw"]
 size = Vector2(382, 526)
@@ -148,6 +152,7 @@ position = Vector2(304, 292)
 texture_normal = ExtResource("5_ss7gp")
 
 [node name="Ismael" type="Area2D" parent="."]
+visible = false
 z_index = -2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ismael"]
@@ -235,7 +240,6 @@ position = Vector2(495.5, 408)
 shape = SubResource("RectangleShape2D_b1x26")
 
 [node name="Retorno2" type="Area2D" parent="."]
-visible = false
 scale = Vector2(0.9, 0.9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Retorno2"]
@@ -331,9 +335,9 @@ shape = SubResource("RectangleShape2D_h7ude")
 visible = false
 position = Vector2(1058, 408)
 stream = ExtResource("13_pf0ty")
+volume_db = 10.0
 
 [node name="Saida" type="Area2D" parent="."]
-visible = false
 z_index = -2
 position = Vector2(-50, 100)
 
@@ -345,11 +349,10 @@ offset_bottom = 462.0
 texture = ExtResource("18_p4o6h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Saida"]
-position = Vector2(967, 356)
+position = Vector2(967, 378)
 shape = SubResource("RectangleShape2D_e4qx2")
 
 [node name="Retorno4" type="Area2D" parent="."]
-visible = false
 position = Vector2(-30, -30)
 
 [node name="TextureRect" type="TextureRect" parent="Retorno4"]
@@ -394,6 +397,95 @@ stream = ExtResource("23_lqee2")
 [node name="LivroShortSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("21_7e5k5")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="DicaLivro" type="TextureRect" parent="."]
+visible = false
+offset_left = 175.0
+offset_top = 421.0
+offset_right = 303.0
+offset_bottom = 549.0
+texture = ExtResource("20_c31qv")
+
+[node name="DicaVitrola" type="TextureRect" parent="."]
+visible = false
+offset_left = 421.0
+offset_top = 589.0
+offset_right = 549.0
+offset_bottom = 717.0
+texture = ExtResource("21_12nqf")
+
+[node name="DicaVinyl" type="TextureRect" parent="."]
+visible = false
+z_index = 3000
+offset_left = 776.0
+offset_top = 498.0
+offset_right = 904.0
+offset_bottom = 626.0
+texture = ExtResource("22_kd130")
+
+[node name="DicaSaida" type="TextureRect" parent="."]
+visible = false
+offset_left = 733.0
+offset_top = 431.0
+offset_right = 861.0
+offset_bottom = 559.0
+texture = ExtResource("23_x0p33")
+
+[node name="DicaPorta1" type="TextureRect" parent="."]
+visible = false
+offset_left = 227.0
+offset_top = 353.0
+offset_right = 355.0
+offset_bottom = 481.0
+texture = ExtResource("23_x0p33")
+
+[node name="DicaPorta2" type="TextureRect" parent="."]
+visible = false
+offset_left = 1102.0
+offset_top = 524.0
+offset_right = 1230.0
+offset_bottom = 652.0
+texture = ExtResource("23_x0p33")
+
+[node name="DicaRetorno2" type="TextureRect" parent="."]
+visible = false
+offset_left = 111.0
+offset_top = 344.0
+offset_right = 239.0
+offset_bottom = 472.0
+texture = ExtResource("23_x0p33")
+flip_h = true
+
+[node name="DicaPorta3" type="TextureRect" parent="."]
+visible = false
+offset_left = 345.0
+offset_top = 417.0
+offset_right = 473.0
+offset_bottom = 545.0
+rotation = -0.785398
+texture = ExtResource("23_x0p33")
+
+[node name="DicaRetorno3" type="TextureRect" parent="."]
+visible = false
+offset_left = 174.0
+offset_top = 302.0
+offset_right = 302.0
+offset_bottom = 430.0
+texture = ExtResource("23_x0p33")
+flip_h = true
+
+[node name="DicaRetorno4" type="TextureRect" parent="."]
+visible = false
+offset_left = 107.0
+offset_top = 560.0
+offset_right = 235.0
+offset_bottom = 688.0
+rotation = -1.4591
+texture = ExtResource("23_x0p33")
+
 [connection signal="player_go_to" from="Dialogue" to="." method="_on_dialogue_player_go_to"]
 [connection signal="pressed_no" from="Dialogue" to="." method="_on_dialogue_pressed_no"]
 [connection signal="pressed_yes" from="Dialogue" to="." method="_on_dialogue_pressed_yes"]
@@ -420,3 +512,4 @@ stream = ExtResource("21_7e5k5")
 [connection signal="body_entered" from="Retorno4" to="." method="_on_retorno_4_body_entered"]
 [connection signal="body_exited" from="Retorno4" to="." method="_on_retorno_4_body_exited"]
 [connection signal="pressed" from="Retorno4/TextureButton" to="." method="_on_texture_button_ret4_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

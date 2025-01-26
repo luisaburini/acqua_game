@@ -4,6 +4,8 @@ signal go_to_next_scene
 signal go_back_scene
 signal leave
 signal player_go_to(pos)
+signal go_on_water
+signal return_to_land
 
 var ignore_click = false
 var started = false
@@ -30,10 +32,12 @@ var chao_praca = ["res://img/cenario/praca/chao-cena1A.png",
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hide_tip()
 	get_viewport().physics_object_picking_sort = true
 	$Dialogue.hide_all()
 	
 func reset():
+	hide_tip()
 	scenario_index = 0
 	rng = RandomNumberGenerator.new()
 	balao_premiado = rng.randi_range(1, 3)
@@ -67,7 +71,7 @@ func get_objs():
 		["SrBaloes", "Obstaculo2"],
 		["Obstaculo3", "Obstaculo31"],
 		["SrPedalinho", "Obstaculo4"],
-		["Sapo"],
+		["Sapo", "Obstaculo5"],
 		["Saida", "Obstaculo6"],
 	]
 	
@@ -101,10 +105,9 @@ func update_objs_state(limit):
 	
 	scenario_index = abs(scenario_index+limit)
 	scenario_index = scenario_index%len(praca_scenarios)
-	# print("Update objs state " + str(scenario_index))
 	
 	update_texture()
-	
+	update_animation()
 	toggle_visibility_balloons(false)
 	
 	var objs = get_objs()
@@ -113,34 +116,35 @@ func update_objs_state(limit):
 			var obj = get_node(o)
 			if obj != null:
 				if scenario_index == i:
-					# print("Root obj " + o)
 					obj.show()
 					for c in obj.get_children():
 						c.show()
 						if check_button(c.get_class()):
 							c.hide()
 						if check_collision(c.get_class()):
-							# print("Enabled " + c.get_class())
 							c.disabled = false
 						for b in c.get_children():
 							b.show()
 							if check_collision(b.get_class()):
-								# print("Enabled " + b.get_class())
 								b.disabled = false
-				else:
-					# print("Root obj " + o)
+				else: 
 					obj.hide()
 					for c in obj.get_children():
 						c.hide()
 						if check_collision(c.get_class()):
-							# print("Disabled " + c.get_class())
 							c.disabled = true
 						for b in c.get_children():
 							b.hide()
 							if check_collision(b.get_class()):
-								# print("Disabled " + b.get_class())
 								b.disabled = true
 
+
+func update_animation():
+	if scenario_index == 4 or scenario_index == 5:
+		go_on_water.emit()
+	else:
+		return_to_land.emit()
+		
 
 func check_collision(o):
 	return o.begins_with("Collision")
@@ -156,8 +160,8 @@ var start_positions = [
 	Vector2(450, 550),
 	Vector2(250, 550),
 	Vector2(250, 550),
-	Vector2(250, 550),
-	Vector2(250, 550)
+	Vector2(180, 400),
+	Vector2(180, 500)
 ]
 	
 func get_start_position():
@@ -168,8 +172,8 @@ var return_positions = [
 	Vector2(900, 550),
 	Vector2(900, 550),
 	Vector2(900, 550),
-	Vector2(900, 550),
-	Vector2(900, 550) 
+	Vector2(900, 300),
+	Vector2(900, 300) 
 ]
 
 func  get_return_position():
@@ -241,8 +245,6 @@ func is_completed():
 var ofereceu_premio = false
 
 func _on_sr_baloes_body_entered(body):
-	print("Must show?")
-	print(!is_balao_visible)
 	if !is_balao_visible and started and scenario_index == 1 and is_player(body.get_class()):
 		$Dialogue.show_all()
 		if $Inventory.check_if_item_exists("ingresso"):
@@ -272,13 +274,11 @@ func _on_porta_body_entered(body):
 
 func _on_porta_body_exited(body):
 	if started and is_player(body.get_class()):
-		# print("Porta exited")
 		$Porta/TextureButton.hide()
 
 
 func _on_saida_body_entered(body):
 	if started and scenario_index == 5 and is_player(body.get_class()):
-		# print("Saida entered")
 		if is_completed():
 			started = false
 			leave.emit()
@@ -293,9 +293,7 @@ func is_player(p):
 	return p == "CharacterBody2D"
 
 func _on_sapo_body_entered(body):
-	# print("Entered sapo lets see if really " + str(scenario_index) + " " + str(body.get_class()) + " " + str(started))
 	if scenario_index == 4 and started and is_player(body.get_class()):
-		# print("Entered sapo")
 		$SapoSound.play()
 		if $Inventory.check_if_item_exists("ingresso") and $Inventory.check_if_item_exists("pedalinho"):
 			$Inventory.add_item("garrafa")
@@ -329,13 +327,11 @@ func _on_sr_pedalinho_body_entered(body):
 
 func _on_retorno_body_entered(body):
 	if started and is_player(body.get_class()):
-		# print("Entered retorno")
 		$Retorno/TextureButton.show()
 
 
 func _on_retorno_body_exited(body):
 	if started and is_player(body.get_class()):
-		# print("Exited retorno")
 		$Retorno/TextureButton.hide()
 
 
@@ -362,8 +358,77 @@ func _unhandled_input(event):
 func _on_dialogue_player_go_to(pos):
 	if started:
 		if ignore_click:
-			print("PRACA: You shall ignore this click")
 			ignore_click = false
 		else:
-			print("PRACA: Dialogue is telling you to go there")
 			player_go_to.emit(pos)
+
+func show_tip():
+	var achou_ingresso = $Inventory.check_if_item_exists("ingresso")
+	var andou_pedalinho = $Inventory.check_if_item_exists("pedalinho")
+	var achou_garrafa = $Inventory.check_if_item_exists("garrafa")
+	match scenario_index:
+		0:
+			_dica_capivara()
+		1:
+			_dica_sr_dos_baloes(achou_ingresso)
+		2:
+			_dica_ex_patos(achou_ingresso)
+		3:
+			_dica_sr_do_pedalinho(achou_ingresso, andou_pedalinho)
+		4:
+			_dica_sapo(achou_ingresso, andou_pedalinho, achou_garrafa)
+		5:
+			_dica_saida()
+		_:
+			print("Where are you?")	
+	$Timer.start(2)
+
+func _dica_capivara() -> void:
+	$DicaPorta.show()
+	
+
+func _dica_sr_dos_baloes(achou_ingresso) -> void:
+	if !achou_ingresso:
+		$DicaSrBaloes.show()
+		return
+	$DicaPorta.show()
+	
+func _dica_ex_patos(achou_ingresso) -> void:
+	if !achou_ingresso:
+		$DicaRetorno.show()
+		return
+	$DicaPorta.show()
+	
+func _dica_sr_do_pedalinho(achou_ingresso, andou_pedalinho) -> void:
+	if !achou_ingresso:
+		$DicaRetorno.show()
+		return
+	if!andou_pedalinho:
+		$DicaSrPedalinho.show()
+		return
+	$DicaPorta.show()
+	
+func _dica_sapo(achou_ingresso, andou_pedalinho, achou_garrafa) -> void:
+	if !achou_ingresso or !andou_pedalinho:
+		$DicaRetorno.show()
+		return
+	if !achou_garrafa:
+		$DicaSapo.show()
+		return
+	$DicaPorta.show()
+
+func _dica_saida() -> void:
+	if is_completed():
+		$DicaPorta.show()
+		return
+	$DicaRetorno.show()
+
+func _on_timer_timeout() -> void:
+	hide_tip()
+	
+func hide_tip():
+	$DicaPorta.hide()
+	$DicaRetorno.hide()
+	$DicaSrBaloes.hide()
+	$DicaSrPedalinho.hide()
+	$DicaSapo.hide()

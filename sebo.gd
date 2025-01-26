@@ -8,12 +8,9 @@ signal audiodica_finished
 signal player_go_to(pos)
 
 var scenario_index = 0
-
-
-
 var start_positions = [ 	
 	Vector2(900, 500),
-	Vector2(940, 460),
+	Vector2(300, 500),
 	Vector2(300, 530),
 	Vector2(150, 580) 
 ]
@@ -45,8 +42,10 @@ var chao_sebo = ["res://img/cenario/sebo/chao-sebo1.png",
 func _ready():
 	get_viewport().physics_object_picking_sort = true
 	$Dialogue.hide_all()
+	hide_tip()
 
 func reset():
+	hide_tip()
 	scenario_index = 0
 	$Inventory.reset()
 	$Dialogue.hide_all()
@@ -216,9 +215,7 @@ func _on_retorno_2_body_entered(body):
 
 func _on_vinyl_body_entered(body):
 	if scenario_index == 2 and started and is_player(body.get_class()):
-		if $Inventory.check_if_item_exists("vinyl"):
-			print("Ja pegou!")
-		else:
+		if !$Inventory.check_if_item_exists("vinyl"):
 			$ColetaSound.play()
 			$Vinyl.hide()
 			$Inventory.add_item("vinyl")
@@ -238,7 +235,6 @@ func is_player(p):
 
 
 func _on_vitrola_body_entered(body):
-	print(body.get_class() + " entered vitrola, lets see if really " + str(scenario_index))
 	if scenario_index == 1 and started and is_player(body.get_class()):
 		$Dialogue.show_all()
 		$Dialogue.hide_interaction()
@@ -361,7 +357,6 @@ func _on_dialogue_pressed_no():
 			ofereceu_livro = false
 
 
-
 func _on_dialogue_player_go_to(pos):
 	if started:
 		if ignore_click:
@@ -373,3 +368,77 @@ func _on_dialogue_player_go_to(pos):
 func _unhandled_input(event):
 	if started:
 		get_viewport().set_input_as_handled()
+		
+		
+func show_tip():
+	var pegou_livro = $Inventory.check_if_item_exists("livro_magico")
+	var pegou_vinyl = $Inventory.check_if_item_exists("vinyl")
+	var tocou_vinyl = $Inventory.check_if_item_exists("vitrola")
+	match scenario_index:
+		0:
+			_dica_livro_ismael(pegou_livro)
+		1:
+			_dica_vitrola(pegou_livro, pegou_vinyl, tocou_vinyl)
+		2:
+			_dica_vinyl(pegou_livro, pegou_vinyl, tocou_vinyl)
+		3:
+			_dica_saida()
+		_:
+			print("Where are you?")
+	$Timer.start(2)
+
+
+func _dica_livro_ismael(pegou_livro):
+	if !pegou_livro:
+		$DicaLivro.show()
+		return
+	if pegou_livro:
+		$DicaPorta1.show()
+	
+func _dica_vitrola(pegou_livro, pegou_vinyl, tocou_vinyl):
+	if !pegou_livro:
+		$DicaRetorno2.show()
+		return
+	if (!pegou_vinyl or is_completed()):
+		$DicaPorta2.show()
+		return
+	if !tocou_vinyl and pegou_vinyl:#
+		$DicaVitrola.show()
+
+
+func _dica_vinyl(pegou_livro, pegou_vinyl, tocou_vinyl):
+	if !pegou_livro: 
+		$DicaRetorno3.show()
+		return
+	if !pegou_vinyl: 
+		$DicaVinyl.show()
+		return
+	if !tocou_vinyl:
+		$DicaRetorno3.show()
+		return
+	if pegou_vinyl and pegou_livro:  
+		$DicaPorta3.show()
+
+
+func _dica_saida():
+	if is_completed(): 
+		$DicaSaida.show()
+		return
+	if  !is_completed(): 
+		$DicaRetorno4.show()
+
+
+func hide_tip():
+	$DicaLivro.hide()
+	$DicaVitrola.hide()
+	$DicaVinyl.hide()
+	$DicaSaida.hide()
+	$DicaPorta1.hide()
+	$DicaPorta2.hide()
+	$DicaRetorno2.hide()
+	$DicaPorta3.hide()
+	$DicaRetorno3.hide()
+	$DicaRetorno4.hide()
+
+func _on_timer_timeout() -> void:
+	hide_tip()

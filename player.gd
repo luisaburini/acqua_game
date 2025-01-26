@@ -72,14 +72,10 @@ func _process(delta):
 		
 	position += velocity * delta
 	if delta_x < 1 and delta_x > -1:
-		print("position.x ", position.x)
 		position.x += sign(delta_x)*1
-		print("position.x ", position.x)
 		delta_x += sign(delta_y)*1
 	if delta_y < 1 and delta_y > -1:
-		print("position.y ", position.y)
 		position.y = position.y + sign(delta_y)*1
-		print("position.y ", position.y)
 		delta_y += sign(delta_y)*1
 		
 	var clamp_position = position.clamp(Vector2.ZERO, screen_size)

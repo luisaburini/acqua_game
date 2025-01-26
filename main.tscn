@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://csx22cryo0iv0"]
+[gd_scene load_steps=18 format=3 uid="uid://csx22cryo0iv0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ufh4c"]
 [ext_resource type="PackedScene" uid="uid://b2mryi4ci1g35" path="res://hud.tscn" id="3_4u6pc"]
@@ -16,13 +16,10 @@
 [ext_resource type="AudioStream" uid="uid://lnum31e7yfgx" path="res://sounds/trilha lunar.wav" id="14_uj1su"]
 [ext_resource type="PackedScene" uid="uid://b8wk3pt07sp1m" path="res://sebo.tscn" id="16_526j1"]
 [ext_resource type="AudioStream" uid="uid://drpr7ny4uujq3" path="res://sounds/som et.wav" id="16_ebr23"]
+[ext_resource type="Texture2D" uid="uid://q4rej7gi3aec" path="res://img/indicator.png" id="17_wn7es"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ufh4c")
-
-[node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource("3_4u6pc")]
 visible = false
@@ -42,13 +39,14 @@ visible = false
 
 [node name="SeboMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_eip3a")
-volume_db = 20.0
+volume_db = 10.0
 
 [node name="Praca" parent="." instance=ExtResource("7_s7ujm")]
 visible = false
 
 [node name="PracaMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_v6yaw")
+volume_db = 10.0
 
 [node name="PracaPosition" type="Marker2D" parent="."]
 position = Vector2(550, 580)
@@ -58,7 +56,7 @@ visible = false
 
 [node name="BalnearioMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_4i3it")
-volume_db = -10.0
+volume_db = 10.0
 
 [node name="Fim" type="TextureRect" parent="."]
 offset_right = 40.0
@@ -85,6 +83,7 @@ vertical_alignment = 1
 
 [node name="FimMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_uj1su")
+volume_db = 10.0
 
 [node name="EtMusic" type="AudioStreamPlayer2D" parent="."]
 visible = false
@@ -101,6 +100,18 @@ z_index = 2000
 position = Vector2(700, 550)
 scale = Vector2(0.65, 0.65)
 
+[node name="Indicator" type="TextureRect" parent="."]
+z_index = 4096
+offset_left = 653.0
+offset_top = 580.0
+offset_right = 753.0
+offset_bottom = 680.0
+texture = ExtResource("17_wn7es")
+
+[node name="IdleTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="finished" from="HUDMusic" to="." method="_on_hud_music_finished"]
 [connection signal="pressed_balneario" from="CityMap" to="." method="_on_city_map_pressed_balneario"]
@@ -114,9 +125,11 @@ scale = Vector2(0.65, 0.65)
 [connection signal="stop_music" from="Sebo" to="." method="_on_sebo_stop_music"]
 [connection signal="finished" from="SeboMusic" to="." method="_on_sebo_music_finished"]
 [connection signal="go_back_scene" from="Praca" to="." method="_on_praca_go_back_scene"]
+[connection signal="go_on_water" from="Praca" to="." method="_on_praca_go_on_water"]
 [connection signal="go_to_next_scene" from="Praca" to="." method="_on_praca_go_to_next_scene"]
 [connection signal="leave" from="Praca" to="." method="_on_praca_leave"]
 [connection signal="player_go_to" from="Praca" to="." method="_on_praca_player_go_to"]
+[connection signal="return_to_land" from="Praca" to="." method="_on_praca_return_to_land"]
 [connection signal="finished" from="PracaMusic" to="." method="_on_praca_music_finished"]
 [connection signal="go_back_scene" from="Balneario" to="." method="_on_balneario_go_back_scene"]
 [connection signal="go_to_next_scene" from="Balneario" to="." method="_on_balneario_go_to_next_scene"]
@@ -124,5 +137,7 @@ scale = Vector2(0.65, 0.65)
 [connection signal="player_go_to" from="Balneario" to="." method="_on_balneario_player_go_to"]
 [connection signal="finished" from="BalnearioMusic" to="." method="_on_balneario_music_finished"]
 [connection signal="pressed" from="Fim/Reset" to="." method="_on_reset_pressed"]
+[connection signal="is_idle" from="Player" to="." method="_on_player_is_idle"]
 [connection signal="limite_direito" from="Player" to="." method="_on_player_limite_direito"]
 [connection signal="limite_esquerdo" from="Player" to="." method="_on_player_limite_esquerdo"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
