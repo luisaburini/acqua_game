@@ -33,7 +33,7 @@ radius = 65.7647
 size = Vector2(1296, 358)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nc4s4"]
-size = Vector2(354.531, 253.269)
+size = Vector2(568.995, 233.27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42qvd"]
 size = Vector2(1306, 61)
@@ -114,7 +114,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_07hub")
 
 [node name="Senhora" type="Area2D" parent="."]
-position = Vector2(-300, -20)
+position = Vector2(-400, -20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Senhora"]
 position = Vector2(1025, 620)
@@ -144,7 +144,7 @@ shape = SubResource("RectangleShape2D_0mvnf")
 [node name="Obstaculo21" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo21"]
-position = Vector2(1120.73, 375.365)
+position = Vector2(1013.5, 365.365)
 shape = SubResource("RectangleShape2D_nc4s4")
 
 [node name="AguaSound" type="AudioStreamPlayer2D" parent="."]
