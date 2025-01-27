@@ -1,8 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://doqpickhbibsx"]
+[gd_scene load_steps=34 format=3 uid="uid://doqpickhbibsx"]
 
 [ext_resource type="Script" path="res://balneario.gd" id="1_js21y"]
 [ext_resource type="Texture2D" uid="uid://de5n0eqdi465i" path="res://img/cenario/balneario/senhora.png" id="2_xbuj5"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="4_s4g8n"]
+[ext_resource type="Texture2D" uid="uid://ca4qbpy8yn6rk" path="res://img/cenario/balneario/balneario-cena1B.png" id="5_qnxb7"]
 [ext_resource type="Texture2D" uid="uid://im6djd27cgas" path="res://img/cenario/balneario/balneario-cena1A.png" id="5_wjnhn"]
 [ext_resource type="Texture2D" uid="uid://dun5sumea0me" path="res://img/cenario/balneario/porta.png" id="7_dsvga"]
 [ext_resource type="Texture2D" uid="uid://dlou21knliyvf" path="res://img/cenario/balneario/retorno.png" id="8_0txry"]
@@ -92,7 +93,7 @@ texture = ExtResource("5_wjnhn")
 z_index = -100
 offset_right = 1280.0
 offset_bottom = 720.0
-texture = ExtResource("5_wjnhn")
+texture = ExtResource("5_qnxb7")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -105,6 +106,7 @@ position = Vector2(646, 183)
 shape = SubResource("RectangleShape2D_7rw6g")
 
 [node name="Piscina" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Piscina"]
 position = Vector2(407, 473)
@@ -112,8 +114,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_07hub")
 
 [node name="Senhora" type="Area2D" parent="."]
-visible = false
-position = Vector2(-210, 0)
+position = Vector2(-300, -20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Senhora"]
 position = Vector2(1025, 620)
@@ -135,14 +136,12 @@ offset_bottom = 673.0
 texture = ExtResource("2_xbuj5")
 
 [node name="Obstaculo2" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo2"]
 position = Vector2(638, 169)
 shape = SubResource("RectangleShape2D_0mvnf")
 
 [node name="Obstaculo21" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo21"]
 position = Vector2(1120.73, 375.365)

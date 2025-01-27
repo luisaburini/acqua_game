@@ -95,6 +95,10 @@ func update_texture():
 		$Retorno.hide()
 	else:
 		$Retorno.show()
+	if scenario_index == 5:
+		$Porta.hide()
+	else:
+		$Porta.show()
 	$Background.texture = load(balneario_scenarios[scenario_index])
 	$Chao.texture = load(chao_balneario[scenario_index])
 
