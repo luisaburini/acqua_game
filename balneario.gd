@@ -157,7 +157,7 @@ var start_positions = [
 	Vector2(300, 400),
 	Vector2(300, 400),
 	Vector2(600, 500),
-	Vector2(100, 600) 
+	Vector2(100, 500) 
 ]
 	
 func get_start_position():

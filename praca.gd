@@ -97,6 +97,10 @@ func hide_all():
 func update_texture():
 	$Dialogue.hide_all()
 	hide_tip()
+	if scenario_index == 0:
+		$Retorno.hide()
+	else:
+		$Retorno.show()
 	$Background.texture = load(praca_scenarios[scenario_index])
 	$Chao.texture = load(chao_praca[scenario_index])
 
