@@ -90,6 +90,11 @@ func hide_all():
 
 func update_texture():
 	$Dialogue.hide_all()
+	hide_tip()
+	if scenario_index == 0:
+		$Retorno.hide()
+	else:
+		$Retorno.show()
 	$Background.texture = load(balneario_scenarios[scenario_index])
 	$Chao.texture = load(chao_balneario[scenario_index])
 
@@ -102,7 +107,7 @@ func update_objs_state(limit):
 	scenario_index = scenario_index%len(balneario_scenarios)
 
 	update_texture()
-	print("BALNEARIO: Update Objects state ")
+	
 	var objs = get_objs()
 	for i in range(len(objs)):
 		for o in objs[i]:
@@ -209,11 +214,13 @@ func _on_retorno_body_exited(body):
 
 func _on_porta_body_entered(body):
 	if started and is_player(body.get_class()):
+		print("Show porta")
 		$Porta/TextureButton.show()
 
 
 func _on_porta_body_exited(body):
 	if started and is_player(body.get_class()):
+		print("Hide porta")
 		$Porta/TextureButton.hide()
 
 

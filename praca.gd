@@ -96,6 +96,7 @@ func hide_all():
 	
 func update_texture():
 	$Dialogue.hide_all()
+	hide_tip()
 	$Background.texture = load(praca_scenarios[scenario_index])
 	$Chao.texture = load(chao_praca[scenario_index])
 
@@ -311,11 +312,11 @@ func _on_sr_pedalinho_body_entered(body):
 	if scenario_index == 3 and started and is_player(body.get_class()):
 		if $Inventory.check_if_item_exists("pedalinho"):
 			$PedalinhoSound.play()
-			$Dialogue.change_label("O passeio de pedalinho foi ótimo.\nSiga a diante!")
+			$Dialogue.change_label("Bom passeio, siga a diante!")
 		else:
 			if $Inventory.check_if_item_exists("ingresso"):
 				$PedalinhoSound.play()
-				$Dialogue.change_label("Você tem o ingresso!\nVenha andar no pedalinho.")
+				$Dialogue.change_label("Você tem o ingresso!\nVá andar no pedalinho.")
 				$Inventory.add_item("pedalinho")
 				$ColetaSound.play()
 			else:

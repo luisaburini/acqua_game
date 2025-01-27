@@ -110,11 +110,11 @@ func get_objs():
 
 func update_texture():
 	$Dialogue.hide_all() 
+	hide_tip()
 	$Background.texture = load(sebo_scenarios[scenario_index])
 	$Chao.texture = load(chao_sebo[scenario_index])
 	
 func update_objs_state(limit):
-
 	scenario_index = abs(scenario_index+limit)
 	scenario_index = scenario_index%len(sebo_scenarios)
 	
