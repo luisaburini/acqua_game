@@ -185,6 +185,7 @@ func _unhandled_input(event):
 		if !$CityMap.started and !$HUD.started:
 			if $Sebo.started or $Praca.started or $Balneario.started or started_fim:
 				get_viewport().set_input_as_handled()
+				print("Main unhandled input")
 				_player_walk_to(event.position)
 				
 
@@ -197,6 +198,7 @@ func _on_sebo_player_go_to(pos) -> void:
 
 func _on_praca_player_go_to(pos) -> void:
 	if $Praca.started:
+		print("Praca on player go to")
 		_player_walk_to(pos)
 		$IdleTimer.stop()
 

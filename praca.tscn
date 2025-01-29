@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bg3a5uh20xkel" path="res://img/cenario/praca/sr-dos-baloes.png" id="1_xf8u4"]
 [ext_resource type="Texture2D" uid="uid://b4li8r406lep0" path="res://img/cenario/praca/capys.png" id="2_75ejj"]
 [ext_resource type="Texture2D" uid="uid://bci31ox8i5we3" path="res://img/cenario/praca/chao-cena1A.png" id="3_10ar6"]
-[ext_resource type="Texture2D" uid="uid://sta22gge1kus" path="res://img/cenario/praca/praca-cena3A.png" id="4_qxetg"]
+[ext_resource type="Texture2D" uid="uid://cemtyh8b0xn73" path="res://img/cenario/praca/praca-cena3B.png" id="4_ml3dj"]
 [ext_resource type="PackedScene" uid="uid://b56pfrbvd7r3d" path="res://dialogue.tscn" id="5_45i88"]
 [ext_resource type="Texture2D" uid="uid://pgat8brosock" path="res://img/cenario/praca/sapo.png" id="5_en60o"]
 [ext_resource type="Texture2D" uid="uid://4dbwhrjlc3m6" path="res://img/cenario/praca/porta.png" id="6_vcmb7"]
@@ -80,13 +80,13 @@ radius = 177.334
 height = 619.527
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fq18i"]
-size = Vector2(1280.5, 114)
+size = Vector2(1280.5, 86)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cx86i"]
 size = Vector2(172, 381)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_igcx2"]
-size = Vector2(1251, 125.5)
+size = Vector2(1251, 87)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v8nws"]
 radius = 37.0
@@ -116,7 +116,6 @@ texture = ExtResource("2_75ejj")
 expand_mode = 3
 
 [node name="Chao" type="TextureRect" parent="."]
-visible = false
 z_index = -1000
 y_sort_enabled = true
 offset_top = -2.0
@@ -130,7 +129,7 @@ offset_left = 2.0
 offset_right = 1282.0
 offset_bottom = 720.0
 mouse_filter = 2
-texture = ExtResource("4_qxetg")
+texture = ExtResource("4_ml3dj")
 
 [node name="Inventory" parent="." instance=ExtResource("17_hsapi")]
 
@@ -268,6 +267,7 @@ texture_normal = ExtResource("15_24yf3")
 texture_pressed = ExtResource("16_o0toj")
 
 [node name="Sapo" type="Area2D" parent="."]
+visible = false
 z_index = -10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sapo"]
@@ -284,9 +284,10 @@ texture = ExtResource("5_en60o")
 expand_mode = 5
 
 [node name="Obstaculo5" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo5"]
-position = Vector2(644.75, 660)
+position = Vector2(644.75, 674)
 shape = SubResource("RectangleShape2D_fq18i")
 
 [node name="Saida" type="Area2D" parent="."]
@@ -305,7 +306,7 @@ texture = ExtResource("19_c8pwd")
 [node name="Obstaculo6" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo6"]
-position = Vector2(647.5, 660.25)
+position = Vector2(647.5, 679.5)
 shape = SubResource("RectangleShape2D_igcx2")
 
 [node name="Retorno" type="Area2D" parent="."]
@@ -382,6 +383,7 @@ offset_bottom = 490.0
 texture = ExtResource("25_8qb4c")
 
 [node name="DicaSapo" type="TextureRect" parent="."]
+visible = false
 offset_left = 628.0
 offset_top = 393.0
 offset_right = 756.0
@@ -395,6 +397,8 @@ one_shot = true
 [connection signal="player_go_to" from="Dialogue" to="." method="_on_dialogue_player_go_to"]
 [connection signal="pressed_no" from="Dialogue" to="." method="_on_dialogue_pressed_no"]
 [connection signal="pressed_yes" from="Dialogue" to="." method="_on_dialogue_pressed_yes"]
+[connection signal="tree_entered" from="Obstaculo" to="." method="_on_obstaculo_tree_entered"]
+[connection signal="tree_exited" from="Obstaculo" to="." method="_on_obstaculo_tree_exited"]
 [connection signal="body_entered" from="SrBaloes" to="." method="_on_sr_baloes_body_entered"]
 [connection signal="body_entered" from="SrPedalinho" to="." method="_on_sr_pedalinho_body_entered"]
 [connection signal="focus_entered" from="SrPedalinho/TextureRect" to="." method="_on_sr_pedalinho_focus_entered"]

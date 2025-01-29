@@ -23,12 +23,12 @@ var praca_scenarios = ["res://img/cenario/praca/praca-cena1A.png",
 					   "res://img/cenario/praca/praca-cena3A.png",
 					   "res://img/cenario/praca/praca-cena3B.png"]
 					
-var chao_praca = ["res://img/cenario/praca/chao-cena1A.png",
-				  "res://img/cenario/praca/chao-cena1B.png",
-			 	 "res://img/cenario/praca/chao-cena2A.png",
-				 "res://img/cenario/praca/chao-cena2B.png",
-				 "res://img/cenario/praca/chao-cena3A.png",
-				 "res://img/cenario/praca/chao-cena3B.png"]
+var chao_praca = ["res://img/cenario/praca/praca-cena1A.png",
+				  "res://img/cenario/praca/praca-cena1B.png",
+			 	  "res://img/cenario/praca/praca-cena2A.png",
+				  "res://img/cenario/praca/praca-cena2B.png",
+				  "res://img/cenario/praca/praca-cena3A.png",
+				  "res://img/cenario/praca/praca-cena3B.png"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -136,7 +136,7 @@ func update_objs_state(limit):
 							b.show()
 							if check_collision(b.get_class()):
 								b.disabled = false
-				else: 
+				else:
 					obj.hide()
 					for c in obj.get_children():
 						c.hide()
@@ -146,7 +146,7 @@ func update_objs_state(limit):
 							b.hide()
 							if check_collision(b.get_class()):
 								b.disabled = true
-
+					
 
 func update_animation():
 	if scenario_index == 4 or scenario_index == 5:
@@ -170,7 +170,7 @@ var start_positions = [
 	Vector2(250, 550),
 	Vector2(250, 550),
 	Vector2(180, 400),
-	Vector2(180, 500)
+	Vector2(180, 400)
 ]
 	
 func get_start_position():
@@ -181,7 +181,7 @@ var return_positions = [
 	Vector2(900, 550),
 	Vector2(900, 550),
 	Vector2(900, 550),
-	Vector2(900, 300),
+	Vector2(900, 500),
 	Vector2(900, 300) 
 ]
 
@@ -191,6 +191,15 @@ func  get_return_position():
 
 func _on_porta_pressed():
 	ignore_click = true
+	var achou_ingresso = $Inventory.check_if_item_exists("ingresso")
+	if scenario_index == 3 and !achou_ingresso:
+		$Dialogue.change_texture("res://img/cenario/praca/pedalinho.png")
+		$Dialogue.change_label("Ainda tem coisa pra fazer aqui")
+		$Dialogue.show_all()
+		$Dialogue.hide_interaction()
+		return
+	if scenario_index == 5 and !is_completed():
+		return
 	go_to_next_scene.emit()
 
 var is_balao_visible = false
@@ -292,7 +301,7 @@ func _on_saida_body_entered(body):
 			started = false
 			leave.emit()
 		else:
-			$Dialogue.change_texture("res://img/cenario/praca/sa")
+			$Dialogue.change_texture("res://img/cenario/praca/sapo-detalhe.png")
 			$Dialogue.change_label("Ainda tem coisa pra fazer aqui")
 			$Dialogue.show_all()
 			$Dialogue.hide_interaction()
@@ -441,3 +450,11 @@ func hide_tip():
 	$DicaSrBaloes.hide()
 	$DicaSrPedalinho.hide()
 	$DicaSapo.hide()
+
+
+func _on_obstaculo_tree_entered() -> void:
+	print("Obstaculo tree entered")
+
+
+func _on_obstaculo_tree_exited() -> void:
+	print("Obstaculo tree exited")

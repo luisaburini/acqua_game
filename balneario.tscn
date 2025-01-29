@@ -33,13 +33,13 @@ radius = 65.7647
 size = Vector2(1296, 358)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nc4s4"]
-size = Vector2(568.995, 233.27)
+size = Vector2(610.997, 184.27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42qvd"]
 size = Vector2(1306, 61)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8r1uc"]
-size = Vector2(1316, 70)
+size = Vector2(1316, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56acw"]
 size = Vector2(1304, 185)
@@ -58,7 +58,7 @@ height = 456.0
 size = Vector2(140, 256.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8cjik"]
-size = Vector2(1302, 399)
+size = Vector2(1302, 157)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_paiyi"]
 radius = 114.754
@@ -68,12 +68,12 @@ height = 623.701
 size = Vector2(570.545, 81.3896)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ybyd"]
-radius = 61.0
-height = 710.0
+radius = 87.0
+height = 818.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wj7hj"]
-radius = 56.0
-height = 732.0
+radius = 85.0
+height = 862.0
 
 [node name="Balneario" type="Node2D"]
 script = ExtResource("1_js21y")
@@ -114,7 +114,8 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_07hub")
 
 [node name="Senhora" type="Area2D" parent="."]
-position = Vector2(-400, -20)
+position = Vector2(-200, 100)
+scale = Vector2(0.85, 0.85)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Senhora"]
 position = Vector2(1025, 620)
@@ -124,7 +125,7 @@ shape = SubResource("CircleShape2D_468ot")
 position = Vector2(1002, 344)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Senhora/StaticBody2D"]
-position = Vector2(82, 119)
+position = Vector2(84, 57)
 shape = SubResource("CircleShape2D_f05e5")
 
 [node name="TextureRect" type="TextureRect" parent="Senhora"]
@@ -136,15 +137,17 @@ offset_bottom = 673.0
 texture = ExtResource("2_xbuj5")
 
 [node name="Obstaculo2" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo2"]
 position = Vector2(638, 169)
 shape = SubResource("RectangleShape2D_0mvnf")
 
 [node name="Obstaculo21" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo21"]
-position = Vector2(1013.5, 365.365)
+position = Vector2(992.499, 340.865)
 shape = SubResource("RectangleShape2D_nc4s4")
 
 [node name="AguaSound" type="AudioStreamPlayer2D" parent="."]
@@ -163,11 +166,11 @@ position = Vector2(0, -1)
 position = Vector2(643, 30.5)
 shape = SubResource("RectangleShape2D_42qvd")
 
-[node name="Obstaculo33" type="StaticBody2D" parent="."]
+[node name="Obstaculo31" type="StaticBody2D" parent="."]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo33"]
-position = Vector2(647, 683)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo31"]
+position = Vector2(647, 674)
 shape = SubResource("RectangleShape2D_8r1uc")
 
 [node name="Obstaculo4" type="StaticBody2D" parent="."]
@@ -209,7 +212,7 @@ shape = SubResource("RectangleShape2D_7s5ag")
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstaculo6"]
-position = Vector2(641, 189.5)
+position = Vector2(641, 68.5)
 shape = SubResource("RectangleShape2D_8cjik")
 
 [node name="Fonte" type="Area2D" parent="."]
@@ -243,7 +246,7 @@ texture_normal = ExtResource("10_tibdl")
 position = Vector2(0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Retorno"]
-position = Vector2(66, 357)
+position = Vector2(74, 357)
 shape = SubResource("CapsuleShape2D_3ybyd")
 
 [node name="TextureButton" type="TouchScreenButton" parent="Retorno"]
@@ -254,7 +257,7 @@ texture_normal = ExtResource("8_0txry")
 [node name="Porta" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Porta"]
-position = Vector2(1243, 348)
+position = Vector2(1200, 348)
 shape = SubResource("CapsuleShape2D_wj7hj")
 
 [node name="TextureButton" type="TouchScreenButton" parent="Porta"]
@@ -281,9 +284,9 @@ flip_h = true
 
 [node name="DicaSenhora" type="TextureRect" parent="."]
 visible = false
-offset_left = 687.0
+offset_left = 497.0
 offset_top = 281.0
-offset_right = 815.0
+offset_right = 625.0
 offset_bottom = 409.0
 rotation = -0.785398
 texture = ExtResource("13_cywfb")

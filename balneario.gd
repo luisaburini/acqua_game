@@ -61,7 +61,7 @@ func get_objs():
 		return [
 		["Obstaculo", "Piscina"],
 		["Senhora", "Obstaculo2", "Obstaculo21"],
-		["Obstaculo3", "Obstaculo33"],
+		["Obstaculo3", "Obstaculo31"],
 		["Obstaculo4", "Obstaculo41"],
 		["Placa", "Obstaculo5"],
 		["Fonte", "Obstaculo6"],
@@ -107,6 +107,9 @@ func is_player(p):
 	return p == "CharacterBody2D"
 
 func update_objs_state(limit):
+	hide_all()
+	show()
+	
 	scenario_index = abs(scenario_index+limit)
 	scenario_index = scenario_index%len(balneario_scenarios)
 
@@ -119,10 +122,10 @@ func update_objs_state(limit):
 			if obj != null:
 				if scenario_index == i:
 					obj.show()
+					print("Showing " + obj.get_class() + o)
 					for c in obj.get_children():
 						c.show()
 						if check_button(c.get_class()):
-							print(o)
 							c.hide()
 						if check_collision(c.get_class()):
 							c.disabled = false
@@ -130,17 +133,7 @@ func update_objs_state(limit):
 							b.show()
 							if check_collision(b.get_class()):
 								b.disabled = false
-				else:
-					print(o)
-					obj.hide()
-					for c in obj.get_children():
-						c.hide()
-						if check_collision(c.get_class()):
-							c.disabled = true
-						for b in c.get_children():
-							b.hide()
-							if check_collision(b.get_class()):
-								b.disabled = true
+					
 
 
 func check_collision(o):
